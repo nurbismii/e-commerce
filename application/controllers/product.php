@@ -78,4 +78,44 @@ class product extends CI_Controller
             </div>');
         redirect('product');
     }
+    public function shirt()
+    {
+        $data['data'] = $this->m_product->getData();
+        $data['data_'] = $this->m_product->get();
+        $this->load->view('_partials/header');
+        $this->load->view('pages/transaksi/produk/baju', $data);
+        $this->load->view('_partials/js');
+    }
+    public function glasses()
+    {
+        $data['data'] = $this->m_product->getData();
+        $data['data_'] = $this->m_product->get();
+        $this->load->view('_partials/header');
+        $this->load->view('pages/transaksi/produk/kacamata', $data);
+        $this->load->view('_partials/js');
+    }
+    public function pants()
+    {
+        $data['data'] = $this->m_product->getData();
+        $data['data_'] = $this->m_product->get();
+        $this->load->view('_partials/header');
+        $this->load->view('pages/transaksi/produk/celana', $data);
+        $this->load->view('_partials/js');
+    }
+    public function sweater()
+    {
+        $data['data'] = $this->m_product->getData();
+        $data['data_'] = $this->m_product->get();
+        $this->load->view('_partials/header');
+        $this->load->view('pages/transaksi/produk/sweater', $data);
+        $this->load->view('_partials/js');
+    }
+    public function shoes()
+    {
+        $data['data'] = $this->m_product->getData();
+        $data['data_'] = $this->m_product->get();
+        $this->load->view('_partials/header');
+        $this->load->view('pages/transaksi/produk/sepatu', $data);
+        $this->load->view('_partials/js');
+    }
 }

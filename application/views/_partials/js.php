@@ -40,6 +40,17 @@
         });
     </script>
 
+    <script>
+        $(document).ready(function() {
+            $("#tableUser").DataTable({
+                columnDefs: [{
+                    type: 'date',
+                    targets: [4]
+                }],
+            });
+        });
+    </script>
+
     </body>
 
     </html>

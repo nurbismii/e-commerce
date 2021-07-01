@@ -9,6 +9,7 @@ class dashboard extends CI_Controller
     }
     public function index()
     {
+        check_not_login();
         $this->load->view('_partials/header');
         $this->load->view('dashboard');
         $this->load->view('_partials/js');

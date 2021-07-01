@@ -11,6 +11,7 @@ class auth extends CI_Controller
 
 	public function index()
 	{
+		check_already_login();
 		$this->load->view('_partials/auth_header');
 		$this->load->view('auth/login');
 		$this->load->view('_partials/auth_js');
@@ -50,9 +51,10 @@ class auth extends CI_Controller
 			if ($query->num_rows() > 0) {
 				$row = $query->row();
 				$user_data = array(
-					'user_id' => $row->user_id,
+					'id_user' => $row->id_user,
 					'username' => $row->username,
 					'nama' => $row->nama,
+					'picture' => $row->picture,
 				);
 				$this->session->set_userdata($user_data);
 				redirect('dashboard');
@@ -66,6 +68,11 @@ class auth extends CI_Controller
 				redirect(base_url('login'));
 			}
 		}
+	}
+	function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('auth');
 	}
 	public function check_username_exists($username)
 	{

@@ -44,7 +44,7 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="<?= base_url('product/shirt') ?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Baju</span></a>
     </li>
@@ -52,16 +52,16 @@
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
+            <i class="fas fa-fw fa-tags"></i>
             <span>Kategori</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Pilih kategori:</h6>
-                <a class="collapse-item" href="utilities-color.html">Kacamata</a>
-                <a class="collapse-item" href="utilities-border.html">Sweater</a>
-                <a class="collapse-item" href="utilities-animation.html">Celana</a>
-                <a class="collapse-item" href="utilities-other.html">Sepatu</a>
+                <a class="collapse-item" href="<?= base_url('product/glasses') ?>">Kacamata</a>
+                <a class="collapse-item" href="<?= base_url('product/sweater') ?>">Sweater</a>
+                <a class="collapse-item" href="<?= base_url('product/pants') ?>">Celana</a>
+                <a class="collapse-item" href="<?= base_url('product/shoes') ?>">Sepatu</a>
             </div>
         </div>
     </li>
@@ -77,13 +77,13 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-folder"></i>
+            <i class="fas fa-fw fa-wallet"></i>
             <span>Transaksi</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Daftar transaksi:</h6>
-                <a class="collapse-item" href="#">Riwayat Pembelian</a>
+                <a class="collapse-item" href="<?= base_url('transaksi/cart') ?>">Keranjang belanja</a>
                 <a class="collapse-item" href="#">Bayar sekarang</a>
 
             </div>
