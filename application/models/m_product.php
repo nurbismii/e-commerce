@@ -6,7 +6,6 @@ class m_product extends CI_Model
     private $table = "product";
     private $v_table = "v_products";
 
-
     public $id_produk;
     public $nama;
     public $harga;
@@ -84,6 +83,7 @@ class m_product extends CI_Model
     }
     public function deleteData($id)
     {
+        $this->deleteFoto($id);
         $this->db->where('id_produk', $id);
         $this->db->delete('product');
     }
@@ -106,9 +106,9 @@ class m_product extends CI_Model
     }
     public function deleteFoto($id)
     {
-        $produk = $this->getData($id);
+        $produk = $this->getDataDetail($id);
         if ($produk->foto != "default.jpg") {
-            $filename = explode(".", $produk->image)[0];
+            $filename = explode(".", $produk->foto)[0];
             return array_map('unlink', glob(FCPATH . "upload/product/$filename.*"));
         }
     }

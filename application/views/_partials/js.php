@@ -23,7 +23,18 @@
             $("#tableProduct").DataTable({
                 columnDefs: [{
                     type: 'date',
-                    targets: [3]
+                    targets: [7]
+                }],
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#tableCategory").DataTable({
+                columnDefs: [{
+                    type: 'date',
+                    targets: [2]
                 }],
             });
         });

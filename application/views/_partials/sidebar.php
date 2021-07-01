@@ -39,7 +39,7 @@
                 <h6 class="collapse-header">Mengatur Komponen :</h6>
                 <a class="collapse-item" href="<?= base_url('product') ?>">Produk</a>
                 <a class="collapse-item" href="<?= base_url('category') ?>">Kategori</a>
-                <a class="collapse-item" href="#">User</a>
+                <a class="collapse-item" href="<?= base_url('user') ?>">User</a>
             </div>
         </div>
     </li>
@@ -59,7 +59,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Pilih kategori:</h6>
                 <a class="collapse-item" href="utilities-color.html">Kacamata</a>
-                <a class="collapse-item" href="utilities-border.html">Hoodie</a>
+                <a class="collapse-item" href="utilities-border.html">Sweater</a>
                 <a class="collapse-item" href="utilities-animation.html">Celana</a>
                 <a class="collapse-item" href="utilities-other.html">Sepatu</a>
             </div>

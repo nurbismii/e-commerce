@@ -63,6 +63,7 @@
                             </div>
                             <button type="submit" class="btn btn-success mr-2">Simpan</button>
                             <button type="reset" class="btn btn-light" data-dismiss="modal">Tutup</button>
+                            <a href="<?= base_url('product') ?>" class="btn btn-light float-right">Kembali</a>
                         </div>
                     </div>
                 </form>
