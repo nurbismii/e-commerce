@@ -2,34 +2,92 @@
 
 class m_product extends CI_Model
 {
-    public function getDataCustomerService()
+
+    private $table = "product";
+    private $v_table = "v_products";
+
+
+    public $id_produk;
+    public $nama;
+    public $harga;
+    public $jumlah;
+    public $deskripsi;
+    public $id_kategori;
+    public $created_at;
+    public $updated_at;
+
+    public function rules()
     {
-        $this->db->select('*');
-        $this->db->from('product');
-        $query = $this->db->get();
-        return $query->result();
+        return
+            [
+                [
+                    'field' => 'id_produk',
+                    'label' => 'Id_produk',
+                    'rules' => 'required',
+                ],
+                [
+                    'field' => 'nama',
+                    'label' => 'Nama',
+                    'rules' => 'required',
+                ],
+                [
+                    'field' => 'harga',
+                    'label' => 'Harga',
+                    'rules' => 'required',
+                ],
+            ];
     }
-    public function setData($data)
+
+    public function getData()
     {
-        return $this->db->insert('product', $data);
+        return $this->db->get($this->v_table)->result();
     }
-    public function updateData($data, $id)
+    public function get()
     {
-        $this->db->where('id_produk', $id);
-        $this->db->update('product', $data);
+        return $this->db->get($this->table)->result();
     }
-    public function getDataDetail($id)
+    public function getDataDetail($id_produk)
     {
-        $this->db->where('id_produk', $id);
-        $query = $this->db->get('product');
-        return $query->row();
+        return $this->db->get_where($this->table, ['id_produk' => $id_produk])->row();
+    }
+    public function setData()
+    {
+        $post = $this->input->post();
+        $this->id_produk = $post['id_produk'];
+        $this->nama = $post['nama'];
+        $this->harga = $post['harga'];
+        $this->jumlah = $post['jumlah'];
+        $this->deskripsi = $post['deskripsi'];
+        $this->foto = $this->_upload();
+        $this->id_kategori = $post['kategori'];
+        $this->created_at = date("Y-m-d H:i:s");
+
+        return $this->db->insert($this->table, $this);
+    }
+    public function updateData()
+    {
+        $post = $this->input->post();
+        $this->id_produk = $post['id_produk'];
+        $this->nama = $post['nama'];
+        $this->harga = $post['harga'];
+        $this->jumlah = $post['jumlah'];
+        $this->deskripsi = $post['deskripsi'];
+        $this->id_kategori = $post['kategori'];
+        $this->updated_at = date("Y-m-d H:i:s");
+
+        if (!empty($_FILES['foto']['nama'])) {
+            $this->foto = $this->_upload();
+        } else {
+            $this->foto = $post['foto_lama'];
+        }
+        return $this->db->update($this->table, $this, array('id_produk' => $post['id_produk']));
     }
     public function deleteData($id)
     {
         $this->db->where('id_produk', $id);
         $this->db->delete('product');
     }
-    public function upload()
+    public function _upload()
     {
         $config['upload_path']          = './upload/product/';
         $config['allowed_types']        = 'gif|jpg|png|jpeg';
@@ -45,5 +103,13 @@ class m_product extends CI_Model
             return $this->upload->data("file_name");
         }
         return "default.jpg";
+    }
+    public function deleteFoto($id)
+    {
+        $produk = $this->getData($id);
+        if ($produk->foto != "default.jpg") {
+            $filename = explode(".", $produk->image)[0];
+            return array_map('unlink', glob(FCPATH . "upload/product/$filename.*"));
+        }
     }
 }
