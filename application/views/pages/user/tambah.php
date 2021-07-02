@@ -37,8 +37,8 @@
                         <div class="form-group">
                             <label for="role">Role</label>
                             <select class="form-control" name="role" id="role">
-                                <option value="admin">Admin</option>
-                                <option value="user">User</option>
+                                <option value="1">Admin</option>
+                                <option value="2">User</option>
                             </select>
                         </div>
                         <div class="form-group">

@@ -65,7 +65,7 @@ class auth extends CI_Controller
                         <span aria-hidden="true">&times;</span></button>
                         Username atau password salah
                     </div>');
-				redirect(base_url('login'));
+				redirect('auth');
 			}
 		}
 	}

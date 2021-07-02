@@ -30,7 +30,7 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="<?= base_url('dashboard') ?>" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="<?= base_url('product') ?>" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-folder"></i>
             <span>Master Data</span>
         </a>
@@ -40,6 +40,7 @@
                 <a class="collapse-item" href="<?= base_url('product') ?>">Produk</a>
                 <a class="collapse-item" href="<?= base_url('category') ?>">Kategori</a>
                 <a class="collapse-item" href="<?= base_url('user') ?>">User</a>
+                <a class="collapse-item" href="<?= base_url('role') ?>">Role</a>
             </div>
         </div>
     </li>

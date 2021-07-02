@@ -50,7 +50,7 @@ class m_users extends CI_Model
     //set data
     public function register($enc_password)
     {
-        $role = "user";
+        $role = "2";
         $data = array(
             'nama' => $this->input->post('nama'),
             'username' => $this->input->post('username'),

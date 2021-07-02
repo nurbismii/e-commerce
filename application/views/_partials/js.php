@@ -51,6 +51,17 @@
         });
     </script>
 
+    <script>
+        $(document).ready(function() {
+            $("#tableRole").DataTable({
+                columnDefs: [{
+                    type: 'date',
+                    targets: [2]
+                }],
+            });
+        });
+    </script>
+
     </body>
 
     </html>

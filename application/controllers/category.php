@@ -67,12 +67,24 @@ class category extends CI_Controller
     public function delete($id)
     {
         $this->m_category->deleteData($id);
-        $this->session->set_flashdata('msg', '
+        $err = $this->db->error();
+
+        if ($err['code'] != 0) {
+            $this->session->set_flashdata('msg', '
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+            Category ini sudah berelasi
+        </div>');
+            redirect('category');
+        } else {
+            $this->session->set_flashdata('msg', '
             <div class="alert alert-warning alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                Kategori berhasil dihapus
+                Category berhasil dihapus
             </div>');
-        redirect('category');
+            redirect('category');
+        }
     }
 }

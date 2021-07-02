@@ -1,87 +1,90 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class user extends CI_Controller
+class role extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_users');
+        $this->load->model('m_role');
     }
     public function index()
     {
-        $data['data'] = $this->m_users->getData();
+        $data['data'] = $this->m_role->getData();
         $this->load->view('_partials/header');
-        $this->load->view('pages/user/user', $data);
+        $this->load->view('pages/role/role', $data);
         $this->load->view('_partials/js');
     }
-
     public function add()
     {
-        $user = $this->m_users;
+        $role = $this->m_role;
         $validation = $this->form_validation;
 
-        $validation->set_rules($user->rules());
+        $validation->set_rules($role->rules());
 
         if ($validation->run()) {
-            $user->setData();
+            $role->setData();
             $this->session->set_flashdata('msg', '
             <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                User baru berhasil ditambahkan
+                Role berhasil baru ditambahkan
             </div>');
-            redirect('user');
+            redirect('role');
         }
         $this->load->view('_partials/header');
-        $this->load->view('pages/user/tambah');
+        $this->load->view('pages/role/tambah');
         $this->load->view('_partials/js');
     }
-
-    public function edit($id = null)
+    public function edit($id_role = null)
     {
-        if (!isset($id)) redirect('user');
 
-        $user = $this->m_users;
+        if (!isset($id_role)) redirect('role');
+
+        $role = $this->m_role;
         $validation = $this->form_validation;
-        $validation->set_rules($user->rules());
+        $validation->set_rules($role->rules());
 
         if ($validation->run()) {
 
-            $user->updateData();
+            $role->updateData();
 
             $this->session->set_flashdata('msg', '
             <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                Data user berhasil diubah
+                Role berhasil diubah
             </div>');
-            redirect('user');
-        } else {
-            $this->session->set_flashdata('msg', '
-            <div class="alert alert-info alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-                Confirm password sebelum simpan perubahan
-            </div>');
+            redirect('role');
         }
-        $data['data'] = $user->getDataDetail($id);
+        $data['data'] = $role->getDataDetail($id_role);
         if (!$data['data']) show_404();
 
         $this->load->view('_partials/header');
-        $this->load->view('pages/user/edit', $data);
+        $this->load->view('pages/role/edit', $data);
         $this->load->view('_partials/js');
     }
-
     public function delete($id)
     {
-        $this->m_users->deleteData($id);
-        $this->session->set_flashdata('msg', '
+        $this->m_role->deleteData($id);
+        $err = $this->db->error();
+
+        if ($err['code'] != 0) {
+            $this->session->set_flashdata('msg', '
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+            Role ini sudah berelasi
+        </div>');
+            redirect('role');
+        } else {
+            $this->session->set_flashdata('msg', '
             <div class="alert alert-warning alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                User berhasil dihapus
+                Role berhasil dihapus
             </div>');
-        redirect('user');
+            redirect('role');
+        }
     }
 }

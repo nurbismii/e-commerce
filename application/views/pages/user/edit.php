@@ -39,10 +39,6 @@
                                 <input type="text" class="form-control" id="email" name="email" <?php echo form_error('email') ? 'is-invalid' : '' ?> value="<?php echo $data->email ?>">
                             </div>
                             <div class="form-group">
-                                <label for="role">Role</label>
-                                <input type="text" class="form-control" id="role" name="role" <?php echo form_error('role') ? 'is-invalid' : '' ?> value="<?php echo $data->role ?>" readonly>
-                            </div>
-                            <div class="form-group">
                                 <label for="Foto">Foto</label>
                                 <input type="file" class="form-control" id="foto" name="foto">
                             </div>
