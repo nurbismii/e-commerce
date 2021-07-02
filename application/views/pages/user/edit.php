@@ -40,7 +40,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="Foto">Foto</label>
-                                <input type="file" class="form-control" id="foto" name="foto">
+                                <input type="file" class="form-control" id="userfile" name="userfile">
                             </div>
                             <img width="50" src="<?php echo base_url('upload/user/') . $data->picture ?>">
                             <div class="form-group">

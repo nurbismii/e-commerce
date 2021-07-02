@@ -8,61 +8,42 @@
             <?php $this->load->view('_partials/topbar') ?>
             <div class="container-fluid">
 
-                <h1 class="h3 mb-4 text-gray-800"> Produk </h1>
+                <h1 class="h3 mb-4 text-gray-800"> Celana </h1>
 
                 <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Celana</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="tableProduct" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr style="text-align: center;">
-                                        <th>Foto</th>
-                                        <th>Nama</th>
-                                        <th>Deskripsi</th>
-                                        <th>Jumlah</th>
-                                        <th>Harga</th>
-                                        <th>Kategori</th>
-                                        <th><i class="fas fa-fw fa-cog"></i></th>
-                                    </tr>
-                                </thead>
-                                <?php $count = 0;
-                                foreach ($data as $row) {
-                                    $count++;
-                                ?>
-                                    <?php if ($row->kategori == "Celana") { ?>
-                                        <tbody>
-                                            <tr style="text-align:center; text-align:justify;">
-                                                <td><img width="50" src="<?php echo base_url('upload/product/') . $row->foto ?>"></td>
-                                                <td><?php echo $row->nama ?></td>
-                                                <td><?php echo $row->deskripsi ?></td>
-                                                <td><?php echo $row->jumlah ?></td>
-                                                <td><?php echo $row->harga ?></td>
-                                                <td><?php echo $row->kategori ?></td>
-                                                <td>
-                                                    <a href="#" class="btn btn-primary btn-icon-split btn-sm badge">
-                                                        <span class="icon text-white-50">
-                                                            <i class="fas fa-arrow-right"></i>
-                                                        </span>
-                                                        <span class="text">Beli</span>
-                                                    </a>
-                                                    <button data-toggle="modal" data-target="#addCart<?php echo $row->id_produk ?>" class="btn btn-success btn-icon-split btn-sm badge">
-                                                        <span class="icon text-white-50">
-                                                            <i class="fas fa-arrow-right"></i>
-                                                        </span>
-                                                        <span class="text">Cart</span>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    <?php } ?>
-                                <?php } ?>
-                            </table>
-                        </div>
-                    </div>
+                <div class="row">
+
+                    <?php $count = 0;
+                    foreach ($data as $row) {
+                        $count++;
+                        $rupiah = number_format($row->harga);
+                        $rupiah = str_replace(',', '.', $rupiah);
+                    ?>
+                        <?php if ($row->kategori == "Celana") { ?>
+                            <div class="col-lg-3">
+                                <div class="card" style="width: 14rem;">
+                                    <img class="card-img-top" src="<?php echo base_url('upload/product/') . $row->foto ?>" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo substr($row->nama, 0, 15)  ?></h5>
+                                        <p class="card-text"><?php echo substr($row->deskripsi, 0, 20)  ?> ....</p>
+                                        <p class="card-text">Rp. <?php echo  $rupiah ?></p>
+                                        <a href="#" class="btn btn-primary btn-sm">Beli </a>
+                                        <button data-toggle="modal" data-target="#addCart<?php echo $row->id_produk ?>" class="btn btn-light btn-sm btn-icon-split">
+                                            <span class="icon text-gray-600">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </span>
+                                            <span class="text">+</span>
+                                        </button>
+                                        <a href="#" class="btn btn-info btn-sm float-right btn-icon-split">
+                                        <span class="icon text-gray-300">
+                                            <i class="fas fa-eye"></i>
+                                        </span>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    <?php } ?>
                 </div>
             </div>
         </div>

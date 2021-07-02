@@ -17,15 +17,15 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="tableCategory" width="100%" cellspacing="0">
+                            <table class="table table-borderless" width="100%" cellspacing="0">
                                 <thead>
                                     <tr style="text-align:center">
-                                        <th>Gambar</th>
-                                        <th>Nama Produk</th>
+                                        <th>Produk</th>
+                                        <th></th>
+                                        <th></th>
                                         <th>Harga</th>
-                                        <th>Jumlah Pesan</th>
-                                        <th>Deskripsi</th>
-                                        <th>Jumlah Produk</th>
+                                        <th>Jumlah</th>
+
                                         <th><i class="fas fa-fw fa-cog"></i></th>
                                     </tr>
                                 </thead>
@@ -33,30 +33,32 @@
                                 foreach ($cart_ as $row) {
                                     $count++;
                                 ?>
-                                    <tbody>
-                                        <tr style="text-align:center">
-                                            <td><img width="100" src="<?php echo base_url('upload/product/') . $row->foto ?>"></td>
-                                            <td><?php echo $row->nama_produk ?></td>
-                                            <td><?php echo $row->harga ?></td>
-                                            <td><?php echo $row->jumlah ?></td>
-                                            <td><?php echo $row->deskripsi ?></td>
-                                            <td><?php echo $row->jumlah_produk ?></td>
-                                            <td>
-                                                <button data-toggle="modal" data-target="#edit<?php echo $row->id_cart ?>" class="btn btn-success btn-icon-split btn-sm badge">
-                                                    <span class="icon text-white-50">
-                                                        <i class="fas fa-arrow-right"></i>
-                                                    </span>
-                                                    <span class="text">Edit</span>
-                                                </button>
-                                                <button class="btn btn-danger btn-icon-split btn-sm badge" data-toggle="modal" data-target="#delete<?php echo $row->id_cart ?>">
-                                                    <span class="icon text-white-50">
-                                                        <i class="fas fa-trash"></i>
-                                                    </span>
-                                                    <span class="text">Hapus</span>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                    <?php if ($this->session->userdata('nama') == $row->nama) { ?>
+                                        <tbody>
+                                            <tr style="text-align:center">
+                                                <td><img width="100" src="<?php echo base_url('upload/product/') . $row->foto ?>"></td>
+                                                <td><button class="btn btn-danger btn-icon-split btn-sm badge" data-toggle="modal" data-target="#delete<?php echo $row->id_cart ?>">
+                                                        <span class="icon text-white-50">
+                                                            <i class="fas fa-trash"></i>
+                                                        </span>
+                                                        <span class="text">Hapus</span>
+                                                    </button></td>
+                                                <td><?php echo $row->nama_produk ?></td>
+                                                <td><?php echo $row->harga ?></td>
+                                                <td><?php echo $row->jumlah ?></td>
+
+
+                                                <td>
+                                                    <button data-toggle="modal" data-target="#edit<?php echo $row->id_cart ?>" class="btn btn-success btn-icon-split btn-sm badge">
+                                                        <span class="icon text-white-50">
+                                                            <i class="fas fa-arrow-right"></i>
+                                                        </span>
+                                                        <span class="text">Edit</span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    <?php } ?>
                                 <?php } ?>
                             </table>
                         </div>
@@ -114,6 +116,30 @@ foreach ($cart_ as $row) {
                     </form>
                 </div>
                 <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
+<!-- delete modal -->
+<?php $count = 0;
+foreach ($cart_ as $row) {
+    $count++;
+?>
+    <div class="modal fade" id="delete<?php echo $row->id_cart ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delteModalLabel">Hapus Produk</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Apa kamu yakin ?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">Batal</button>
+                    <button type="button" onclick="location.href='<?php echo base_url('transaksi/delete/') . $row->id_cart ?>'" class="btn btn-primary">Hapus</button>
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@ class m_users extends CI_Model
     public $password;
     public $email;
     public $picture;
-    public $role;
+    public $id_role;
     public $created_at;
 
     public function rules()
@@ -78,7 +78,7 @@ class m_users extends CI_Model
         $this->password = md5($post['password']);
         $this->email = $post['email'];
         $this->picture = $this->_upload();
-        $this->role = $post['role'];
+        $this->id_role = $post['id_role'];
         $this->created_at = date("Y-m-d H:i:s");
 
         return $this->db->insert($this->table, $this);
@@ -92,14 +92,10 @@ class m_users extends CI_Model
         $this->password = md5($post['password']);
         $this->nama = $post['nama'];
         $this->email = $post['email'];
-        $this->role = $post['role'];
+        $this->picture = $this->_upload();
+        $this->id_role = $post['id_role'];
         $this->created_at = date("Y-m-d H:i:s");
 
-        if (!empty($_FILES['foto']['nama'])) {
-            $this->picture = $this->_upload();
-        } else {
-            $this->picture = $post['foto_lama'];
-        }
         return $this->db->update($this->table, $this, array('id_user' => $post['id_user']));
     }
     // function check already username

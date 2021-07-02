@@ -11,6 +11,7 @@ class m_product extends CI_Model
     public $harga;
     public $jumlah;
     public $deskripsi;
+    public $foto;
     public $id_kategori;
     public $created_at;
     public $updated_at;
@@ -70,15 +71,11 @@ class m_product extends CI_Model
         $this->nama = $post['nama'];
         $this->harga = $post['harga'];
         $this->jumlah = $post['jumlah'];
+        $this->foto = $this->_upload();
         $this->deskripsi = $post['deskripsi'];
         $this->id_kategori = $post['kategori'];
         $this->updated_at = date("Y-m-d H:i:s");
 
-        if (!empty($_FILES['foto']['nama'])) {
-            $this->foto = $this->_upload();
-        } else {
-            $this->foto = $post['foto_lama'];
-        }
         return $this->db->update($this->table, $this, array('id_produk' => $post['id_produk']));
     }
     public function deleteData($id)

@@ -55,8 +55,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="foto">Gambar</label>
-                                <input type=file name="foto" class="form-control <?php echo form_error('foto') ? 'is-invalid' : '' ?>">
+                                <label for="foto">Foto</label>
+                                <input type=file id="userfile" name="userfile" class="form-control">
                             </div>
                             <div class="form-group">
                                 <input type=hidden name="foto_lama" value="<?php echo $data->foto ?>">

@@ -14,6 +14,7 @@ class transaksi extends CI_Controller
         $this->load->view('pages/transaksi/');
         $this->load->view('_partials/js');
     }
+
     public function add()
     {
         $id_produk = $this->input->post('id_produk');
@@ -28,7 +29,7 @@ class transaksi extends CI_Controller
 
         $this->m_transaksi->setData($insert);
         $this->session->set_flashdata('msg', '
-        <div class="alert alert-danger alert-dismissible" role="alert">
+        <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
             Item telah ditambahkan ke kerajang belanja
@@ -57,6 +58,18 @@ class transaksi extends CI_Controller
         </div>');
         redirect('transaksi/cart');
     }
+    public function delete($id)
+    {
+        $this->m_transaksi->deleteData($id);
+        $this->session->set_flashdata('msg', '
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+            Produk berhasil dihapus dari keranjang
+        </div>');
+        redirect('transaksi/cart');
+    }
+
     public function cart()
     {
         $data['cart'] = $this->m_transaksi->getData();
