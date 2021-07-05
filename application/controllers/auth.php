@@ -55,6 +55,7 @@ class auth extends CI_Controller
 					'username' => $row->username,
 					'nama' => $row->nama,
 					'picture' => $row->picture,
+					'email' => $row->email
 				);
 				$this->session->set_userdata($user_data);
 				redirect('dashboard');

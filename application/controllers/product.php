@@ -6,7 +6,9 @@ class product extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('cart');
         $this->load->model('m_product');
+        $this->load->model('m_keranjang');
     }
     public function index()
     {
@@ -77,6 +79,13 @@ class product extends CI_Controller
                 Produk berhasil dihapus
             </div>');
         redirect('product');
+    }
+    public function all_category()
+    {
+        $data['data'] = $this->m_product->getData();
+        $this->load->view('_partials/header');
+        $this->load->view('pages/transaksi/produk/v_produk', $data);
+        $this->load->view('_partials/js');
     }
     public function shirt()
     {

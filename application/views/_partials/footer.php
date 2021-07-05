@@ -2,7 +2,7 @@
  <footer class="sticky-footer bg-white">
      <div class="container my-auto">
          <div class="copyright text-center my-auto">
-             <span> Copyright &copy; D'fiza STORE 2021 </span>
+             <span> Created By Nur Bismi </span>
          </div>
      </div>
  </footer>

@@ -1,74 +1,73 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class category extends CI_Controller
+class metode_pembayaran extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->library('cart');
-        $this->load->model('m_product');
-        $this->load->model('m_category');
+        $this->load->model('m_metode_pembayaran');
     }
     public function index()
     {
-        $data['data'] = $this->m_category->getData();
+        $data['data'] = $this->m_metode_pembayaran->getData();
         $this->load->view('_partials/header');
-        $this->load->view('pages/category/category', $data);
+        $this->load->view('pages/pembayaran/pembayaran', $data);
         $this->load->view('_partials/js');
     }
     public function add()
     {
-        $category = $this->m_category;
+        $pembayaran = $this->m_metode_pembayaran;
         $validation = $this->form_validation;
 
-        $validation->set_rules($category->rules());
+        $validation->set_rules($pembayaran->rules());
 
         if ($validation->run()) {
-            $category->setData();
+            $pembayaran->setData();
             $this->session->set_flashdata('msg', '
             <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                Kategori baru berhasil ditambahkan
+                Berhasil ditambahkan
             </div>');
-            redirect('category');
+            redirect('metode_pembayaran');
         }
         $this->load->view('_partials/header');
-        $this->load->view('pages/category/tambah');
+        $this->load->view('pages/pembayaran/tambah');
         $this->load->view('_partials/js');
     }
-    public function edit($id_kategori = null)
+    public function edit($id_norek = null)
     {
 
-        if (!isset($id_kategori)) redirect('category');
+        if (!isset($id_norek)) redirect('metode_pembayaran');
 
-        $category = $this->m_category;
+        $pembayaran = $this->m_metode_pembayaran;
         $validation = $this->form_validation;
-        $validation->set_rules($category->rules());
+        $validation->set_rules($pembayaran->rules());
 
         if ($validation->run()) {
 
-            $category->updateData();
+            $pembayaran->updateData();
 
             $this->session->set_flashdata('msg', '
             <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                Kategori berhasil diubah
+                Berhasil diubah
             </div>');
-            redirect('category');
+            redirect('metode_pembayaran');
         }
-        $data['data'] = $category->getDataDetail($id_kategori);
+        $data['data'] = $pembayaran->getDataDetail($id_norek);
         if (!$data['data']) show_404();
 
         $this->load->view('_partials/header');
-        $this->load->view('pages/category/edit', $data);
+        $this->load->view('pages/pembayaran/edit', $data);
         $this->load->view('_partials/js');
     }
     public function delete($id)
     {
-        $this->m_category->deleteData($id);
+        $this->m_metode_pembayaran->deleteData($id);
         $err = $this->db->error();
 
         if ($err['code'] != 0) {
@@ -76,17 +75,17 @@ class category extends CI_Controller
         <div class="alert alert-danger alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
-            Category ini sudah berelasi
+            Bank ini sudah berelasi
         </div>');
-            redirect('category');
+            redirect('metode_pembayaran');
         } else {
             $this->session->set_flashdata('msg', '
             <div class="alert alert-warning alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                Category berhasil dihapus
+                No Rekening berhasil dihapus
             </div>');
-            redirect('category');
+            redirect('metode_pembayaran');
         }
     }
 }

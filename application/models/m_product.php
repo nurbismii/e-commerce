@@ -35,9 +35,15 @@ class m_product extends CI_Model
                     'label' => 'Harga',
                     'rules' => 'required',
                 ],
+                [
+                    'field' => 'deskripsi',
+                    'label' => 'Deskripsi',
+                    'rules' => 'trim|required|min_length[1]|max_length[255]',
+                ],
+
+
             ];
     }
-
     public function getData()
     {
         return $this->db->get($this->v_table)->result();

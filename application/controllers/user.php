@@ -6,6 +6,7 @@ class user extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('cart');
         $this->load->model('m_users');
     }
     public function index()
