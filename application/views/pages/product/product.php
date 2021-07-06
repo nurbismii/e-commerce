@@ -45,7 +45,7 @@
                                     <tbody>
                                         <tr style="text-align:center; text-align:justify;">
                                             <td><?php echo $row->id_produk ?></td>
-                                            <td><img width="50" src="<?php echo base_url('upload/product/') . $row->foto ?>"></td>
+                                            <td><img class="rounded" width="50" src="<?php echo base_url('upload/product/') . $row->foto ?>"></td>
                                             <td><?php echo $row->nama ?></td>
                                             <td><?php echo $row->deskripsi ?></td>
                                             <td><?php echo $row->jumlah ?></td>

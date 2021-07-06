@@ -27,7 +27,6 @@
                             <span class="text">Kembali</span>
                         </a>
                     </div>
-
                 </div>
             </div>
         </div>

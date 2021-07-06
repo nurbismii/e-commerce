@@ -50,7 +50,6 @@
 
             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-shopping-cart"></i>
-                <!-- Counter - Messages -->
                 <span class="badge badge-danger badge-counter"><?= $jml_item ?></span>
             </a>
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
@@ -58,49 +57,32 @@
                     Keranjang
                 </h6>
                 <?php if ($cart = $this->cart->contents()) { ?>
-                    <div class="card-body">
-                        <table class="table table-borderless" width="100%" cellspacing="0">
-                            <thead>
-                                <tr style="text-align:justify;">
-                                    <td width="2%">No</td>
-                                    <td width="10%">Gambar</td>
-                                    <td width="33%">Item</td>
-                                    <td width="17%">Harga</td>
-                                    <td width="8%">Qty</td>
-                                </tr>
-                            </thead>
+                    <?php
+                    $grand_total = 0;
+                    $i = 1;
 
-                            <?php
+                    foreach ($cart as $item) :
 
-                            $grand_total = 0;
-                            $i = 1;
+                        $grand_total = $grand_total + $item['subtotal'];
+                    ?>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
 
-                            foreach ($cart as $item) :
+                            <div class="dropdown-list-image mr-3">
 
-                                $grand_total = $grand_total + $item['subtotal'];
-                            ?>
-                                <input type="hidden" name="cart[<?php echo $item['id']; ?>][id_produk]" value="<?php echo $item['id']; ?>" />
-                                <input type="hidden" name="cart[<?php echo $item['id']; ?>][rowid]" value="<?php echo $item['rowid']; ?>" />
-                                <input type="hidden" name="cart[<?php echo $item['id']; ?>][name]" value="<?php echo $item['name']; ?>" />
-                                <input type="hidden" name="cart[<?php echo $item['id']; ?>][price]" value="<?php echo $item['price']; ?>" />
-                                <input type="hidden" name="cart[<?php echo $item['id']; ?>][gambar]" value="<?php echo $item['gambar']; ?>" />
-                                <input type="hidden" name="cart[<?php echo $item['id']; ?>][qty]" value="<?php echo $item['qty']; ?>" />
-                                <tbody>
-                                    <tr style="text-align:justify">
-                                        <td><?php echo $i++; ?></td>
-                                        <td><img class="img-responsive" width="50" src="<?php echo base_url() . 'upload/product/' . $item['gambar']; ?>" /></td>
-                                        <td><?php echo substr($item['name'], 0, 15); ?></td>
-                                        <td><?php echo number_format($item['price'], 0, ",", "."); ?></td>
-                                        <td><?php echo $item['qty']; ?></td>
+                                <img class="rounded" height="50" src="<?php echo base_url() . 'upload/product/' . $item['gambar']; ?>" alt="...">
+                                <div class="small text-gray-600"><?php echo $i++ ?></div>
+                            </div>
+                            <div class="font-weight-bold">
 
+                                <div class="text-truncate"><?php echo substr($item['name'], 0, 15); ?></div>
+                                <div class="small text-gray-800">Rp. <?php echo number_format($item['price'], 0, ",", "."); ?></div>
 
-                                    <?php endforeach; ?>
-                                    </tr>
-                                </tbody>
-                        </table>
-                    </div>
+                                <div class="small text-gray-800">Qty : <?php echo $item['qty']; ?></div>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
                 <?php } else {
-                    echo "<h6><b><center> Keranjang belanja masih kosong </center></b></h6>";
+                    echo "<h6><b><center> Keranjang kosong </center></b></h6>";
                 }
                 ?>
                 <a class="dropdown-item text-center text-gray-800" href="<?= base_url('shopping/tampil_cart') ?>">Cek Keranjang</a>

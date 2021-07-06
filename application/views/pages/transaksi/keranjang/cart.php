@@ -50,7 +50,7 @@
                                                 <tr style="text-align:justify">
                                                     <td><?php echo $i++; ?></td>
 
-                                                    <td><img class="img-responsive" width="50" src="<?php echo base_url() . 'upload/product/' . $item['gambar']; ?>" /></td>
+                                                    <td><img class="rounded" width="50" src="<?php echo base_url() . 'upload/product/' . $item['gambar']; ?>" /></td>
                                                     <td><?php echo $item['name']; ?></td>
                                                     <td><?php echo number_format($item['price'], 0, ",", "."); ?></td>
                                                     <td><input type="number" class="form-control input-sm" name="cart[<?php echo $item['id']; ?>][qty]" value="<?php echo $item['qty']; ?>" /></td>

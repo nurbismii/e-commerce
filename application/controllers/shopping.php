@@ -149,7 +149,7 @@ class shopping extends CI_Controller
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
                 Silahkan lakukan pembayaran dan akan di proses 3x24 jam.
-                Konfirmasi ke nomor 081222333444 Setelah melakukan pembayaran.
+                Konfirmasi ke nomor 085282810040 Setelah melakukan pembayaran.
             </div>');
         $this->load->view('_partials/header');
         $this->load->view('pages/transaksi/order-success', $data);

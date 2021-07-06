@@ -41,7 +41,7 @@
                                             <td><?php echo $row->id_user ?></td>
                                             <td><?php echo $row->nama ?></td>
                                             <td><?php echo $row->email ?></td>
-                                            <td><img width="50" src="<?php echo base_url('upload/user/') . $row->picture ?>" alt=""></td>
+                                            <td><img class="rounded" width="50" src="<?php echo base_url('upload/user/') . $row->picture ?>" alt=""></td>
                                             <td>
                                                 <a href="<?php echo base_url('user/edit/' . $row->id_user) ?>" class="btn btn-warning btn-icon-split btn-sm">
                                                     <span class="icon text-white-50">
