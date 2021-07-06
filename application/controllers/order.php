@@ -16,27 +16,27 @@ class order extends CI_Controller
         $this->load->view('pages/transaksi/order', $data);
         $this->load->view('_partials/js');
     }
-
     public function add()
     {
         $order = $this->m_order;
-        $validation = $this->form_validation;
 
-        $validation->set_rules($order->rules());
+        $data = array(
+            'transaksi_id' => $this->input->post('transaksi_id'),
+            'produk_id' => $this->input->post('produk_id'),
+            'user_id' => $this->input->post('user_id'),
+            'pesan' => $this->input->post('pesan'),
+            'status' => $this->input->post('status'),
+        );
 
-        if ($validation->run()) {
-            $order->setData();
-            $this->session->set_flashdata('msg', '
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-                Produk berhasil ditambahkan
-            </div>');
-            redirect('order');
-        }
-        $this->load->view('_partials/header');
-        $this->load->view('pages/order/tambah');
-        $this->load->view('_partials/js');
+        $order->setData($data);
+        $this->m_order->deleteData($_POST['transaksi_id']);
+        $this->session->set_flashdata('msg', '
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+            Konfirmasi telah dikirim
+        </div>');
+        redirect('order');
     }
     public function edit($id_produk = null)
     {

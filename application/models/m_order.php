@@ -11,17 +11,11 @@ class m_order extends CI_Model
     public $qty;
     public $harga;
 
-
-    public function rules()
+    public function get_data_info()
     {
-        return [
-            [
-                'field' => 'nama_produk',
-                'label' => 'namaProduk',
-                'rules' => 'required',
-            ],
-        ];
+        return $this->db->get('v_order_info')->result();
     }
+
     public function getData()
     {
         return $this->db->get($this->v_table)->result();
@@ -34,13 +28,18 @@ class m_order extends CI_Model
     {
         return $this->db->get_where($this->table, ['id' => $id])->row();
     }
-    public function setData()
+    public function setData($data)
     {
-        return $this->db->insert($this->table, $this);
+        return $this->db->insert('order_info', $data);
     }
     public function deleteData($id)
     {
         $this->db->where('id', $id);
         $this->db->delete($this->table);
+    }
+    public function get_id($id)
+    {
+        $query = $this->db->query("SELECT id from transaksi_temp where id = '" . $id . "'");
+        return $query->row();
     }
 }

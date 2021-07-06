@@ -158,8 +158,7 @@ class shopping extends CI_Controller
     # History belanja
     public function history()
     {
-        $data['data_'] = $this->m_order->get_data();
-        $data['data'] = $this->m_order->getData();
+        $data['data'] = $this->m_order->get_data_info();
         $this->load->view('_partials/header');
         $this->load->view('pages/transaksi/riwayat/history', $data);
         $this->load->view('_partials/js');

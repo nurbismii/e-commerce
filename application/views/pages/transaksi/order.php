@@ -10,7 +10,6 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-4 text-gray-800">Order</h1>
                 <?php echo $this->session->flashdata('msg'); ?>
-                
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -62,3 +61,54 @@
         <?php $this->load->view('_partials/footer') ?>
     </div>
 </div>
+<?php $count = 0;
+foreach ($data as $row) {
+    $count++;
+?>
+    <!-- Modal Penilai -->
+    <div class="modal fade" id="delete<?php echo $row->id ?>" role="dialog">
+        <div class="modal-dialog modal-md">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Pengiriman</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?php echo form_open_multipart('order/add') ?>
+                    <div class="form-group col-sm-8">
+                        <div class="col-lg">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" id="transaksi_id" name="transaksi_id" value="<?php echo $row->id ?>"></input>
+                                <input type="hidden" class="form-control" name="user_id" value="<?php echo $row->user_id ?>"></input>
+                                <input type="hidden" class="form-control" id="produk_id" name="produk_id" value="<?php echo $row->produk_id ?>">
+                            </div>
+                            <div class="form-group">
+
+                                <div class="form-group">
+                                    <label for="pesan">Pesan</label>
+                                    <textarea type="text" class="form-control" id="pesan" name="pesan" placeholder="Pesan"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Status">Status Pengiriman</label>
+                                    <select class="form-control" name="status" id="status">
+                                        <option value="">- Kategori -</option>
+                                        <option value="Proses">Proses</option>
+                                        <option value="Menunggu">Menunggu</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Tidak</button>
+                            <button type="submit" class="btn btn-sm btn-info">Ya</button>
+                        </div>
+                        </form>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php } ?>

@@ -29,11 +29,9 @@
                                     <tr style="text-align:center">
                                         <th>Nama</th>
                                         <th>Produk</th>
-                                        <th>Alamat</th>
-                                        <th>Telp</th>
-                                        <th>Qty</th>
                                         <th>Harga</th>
-                                        <th><i class="fas fa-fw fa-cog"></i></th>
+                                        <th>Status</th>
+                                        <th>Pesan</th>
                                     </tr>
                                 </thead>
                                 <?php $count = 0;
@@ -44,12 +42,11 @@
                                         <tbody>
                                             <tr style="text-align:center">
                                                 <td><?php echo $row->nama ?></td>
-                                                <td><?php echo $row->nama_produk ?></td>
-                                                <td><?php echo $row->alamat ?></td>
-                                                <td><?php echo $row->telp ?></td>
-                                                <td><?php echo $row->qty ?></td>
+                                                <td><?php echo $row->produk ?></td>
                                                 <td><?php echo $row->harga ?></td>
-                                                <td><a data-toggle="modal" data-target="#delete<?php echo $row->id ?>" class='btn btn-sm btn-danger' rel="noopener noreferrer">Hapus</a></td>
+                                                <td><?php echo $row->status ?></td>
+                                                <td><?php echo $row->pesan ?></td>
+
                                             </tr>
                                         </tbody>
                                     <?php } ?>
@@ -63,33 +60,29 @@
         <?php $this->load->view('_partials/footer') ?>
     </div>
 </div>
-<?php $count = 0;
-foreach ($data_ as $row) {
-    $count++;
-?>
-    <!-- Modal Penilai -->
-    <div class="modal fade" id="delete<?php echo $row->id ?>" role="dialog">
-        <div class="modal-dialog modal-md">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Anda yakin mau menghapus riwayat transaksi?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Tidak</button>
-                    <button type="button" onclick="location.href='<?php echo base_url('order/delete/') . $row->id ?>'" class="btn btn-info">Hapus</button>
-                </div>
 
-                </form>
+<!-- Modal Penilai 
+<div class="modal fade" id="delete<?php echo $row->id ?>" role="dialog">
+    <div class="modal-dialog modal-md">
+        Modal content
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Anda yakin mau menghapus riwayat transaksi?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Tidak</button>
+                <button type="button" onclick="location.href='<?php echo base_url('order/delete/') . $row->id ?>'" class="btn btn-info">Hapus</button>
             </div>
 
+            </form>
         </div>
+
     </div>
-    <!--End Modal-->
-<?php } ?>
+</div>
+End Modal-->
