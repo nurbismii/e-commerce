@@ -8,7 +8,6 @@ class m_keranjang extends CI_Model
         $query = $this->db->get('product');
         return $query->result_array();
     }
-
     public function get_produk_kategori($id_kategori)
     {
         if ($id_kategori > 0) {
@@ -53,8 +52,14 @@ class m_keranjang extends CI_Model
     }
     public function cek_stok($id)
     {
-        $query = $this->db->get('product');
-        $this->db->where('id_produk', $id);
+        $query = $this->db->query("SELECT id_produk,jumlah from product where id_produk = '" . $id . "'");
         return $query->row();
+    }
+    public function update_stok($id, $jumlah)
+    {
+        $this->id_produk = $id;
+        $this->jumlah = $jumlah;
+
+        return $this->db->update('product', $this, array('id_produk' => $id));
     }
 }

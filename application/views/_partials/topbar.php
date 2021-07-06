@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+<nav class="navbar navbar-expand navbar-light bg-light topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -6,11 +6,11 @@
     </button>
 
     <!-- Topbar Search -->
-    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <form action="<?= base_url('dashboard/home') ?>" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+            <input name="keyword" type="text" class="form-control bg-light border-0 small" placeholder="Cari produk kamu" aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
+                <button class="btn btn-info" type="submit">
                     <i class="fas fa-search fa-sm"></i>
                 </button>
             </div>
@@ -30,7 +30,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-info" type="button">
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
@@ -39,17 +39,23 @@
             </div>
 
         <li class="nav-item dropdown no-arrow mx-1">
+            <?php
+            $cart = $this->cart->contents();
+            $jml_item = 0;
+            foreach ($cart as $key => $val) {
+                $jml_item =  $jml_item + $val['qty'];
+            }
+
+            ?>
 
             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-shopping-cart"></i>
                 <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter"></span>
+                <span class="badge badge-danger badge-counter"><?= $jml_item ?></span>
             </a>
-
-
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
-                    Keranjang Belanja
+                    Keranjang
                 </h6>
                 <?php if ($cart = $this->cart->contents()) { ?>
                     <div class="card-body">
@@ -61,8 +67,6 @@
                                     <td width="33%">Item</td>
                                     <td width="17%">Harga</td>
                                     <td width="8%">Qty</td>
-
-
                                 </tr>
                             </thead>
 
@@ -72,6 +76,7 @@
                             $i = 1;
 
                             foreach ($cart as $item) :
+
                                 $grand_total = $grand_total + $item['subtotal'];
                             ?>
                                 <input type="hidden" name="cart[<?php echo $item['id']; ?>][id_produk]" value="<?php echo $item['id']; ?>" />
@@ -84,9 +89,10 @@
                                     <tr style="text-align:justify">
                                         <td><?php echo $i++; ?></td>
                                         <td><img class="img-responsive" width="50" src="<?php echo base_url() . 'upload/product/' . $item['gambar']; ?>" /></td>
-                                        <td><?php echo $item['name']; ?></td>
+                                        <td><?php echo substr($item['name'], 0, 15); ?></td>
                                         <td><?php echo number_format($item['price'], 0, ",", "."); ?></td>
                                         <td><?php echo $item['qty']; ?></td>
+
 
                                     <?php endforeach; ?>
                                     </tr>
@@ -94,14 +100,13 @@
                         </table>
                     </div>
                 <?php } else {
-                    echo "<center> Keranjang belanja masih kosong </center>";
+                    echo "<h6><b><center> Keranjang belanja masih kosong </center></b></h6>";
                 }
                 ?>
                 <a class="dropdown-item text-center text-gray-800" href="<?= base_url('shopping/tampil_cart') ?>">Cek Keranjang</a>
-                <a class="dropdown-item text-center text-gray-800" href="<?= base_url('shopping/check_out') ?>">Lanjut Pembayaran</a>
             </div>
         </li>
-
+        <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
@@ -145,7 +150,7 @@
             <div class="modal-body">Yakin ingin logout.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="<?= site_url('auth/logout') ?>">Logout</a>
+                <a class="btn btn-info" href="<?= site_url('auth/logout') ?>">Logout</a>
             </div>
         </div>
     </div>

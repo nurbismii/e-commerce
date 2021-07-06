@@ -9,6 +9,7 @@ class product extends CI_Controller
         $this->load->library('cart');
         $this->load->model('m_product');
         $this->load->model('m_keranjang');
+        $this->load->model('m_category');
     }
     public function index()
     {
@@ -80,51 +81,16 @@ class product extends CI_Controller
             </div>');
         redirect('product');
     }
-    public function all_category()
+    public function category($id_kategori = null)
     {
-        $data['data'] = $this->m_product->getData();
+        $kategori = $this->m_category->get_kategori($id_kategori);
+        $data = array(
+            'title' => $kategori,
+            'produk' => $this->m_category->get_all_produk($id_kategori),
+            'isi' => 'v_produk'
+        );
         $this->load->view('_partials/header');
         $this->load->view('pages/transaksi/produk/v_produk', $data);
-        $this->load->view('_partials/js');
-    }
-    public function shirt()
-    {
-        $data['data'] = $this->m_product->getData();
-        $data['data_'] = $this->m_product->get();
-        $this->load->view('_partials/header');
-        $this->load->view('pages/transaksi/produk/baju', $data);
-        $this->load->view('_partials/js');
-    }
-    public function glasses()
-    {
-        $data['data'] = $this->m_product->getData();
-        $data['data_'] = $this->m_product->get();
-        $this->load->view('_partials/header');
-        $this->load->view('pages/transaksi/produk/kacamata', $data);
-        $this->load->view('_partials/js');
-    }
-    public function pants()
-    {
-        $data['data'] = $this->m_product->getData();
-        $data['data_'] = $this->m_product->get();
-        $this->load->view('_partials/header');
-        $this->load->view('pages/transaksi/produk/celana', $data);
-        $this->load->view('_partials/js');
-    }
-    public function sweater()
-    {
-        $data['data'] = $this->m_product->getData();
-        $data['data_'] = $this->m_product->get();
-        $this->load->view('_partials/header');
-        $this->load->view('pages/transaksi/produk/sweater', $data);
-        $this->load->view('_partials/js');
-    }
-    public function shoes()
-    {
-        $data['data'] = $this->m_product->getData();
-        $data['data_'] = $this->m_product->get();
-        $this->load->view('_partials/header');
-        $this->load->view('pages/transaksi/produk/sepatu', $data);
         $this->load->view('_partials/js');
     }
 }

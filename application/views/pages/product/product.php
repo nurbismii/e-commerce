@@ -9,7 +9,7 @@
             <div class="container-fluid">
 
                 <h1 class="h3 mb-4 text-gray-800">Produk
-                    <a href="<?php echo site_url('product/add') ?>" class="btn btn-primary btn-icon-split float-right">
+                    <a href="<?php echo site_url('product/add') ?>" class="btn btn-info btn-icon-split float-right btn-sm">
                         <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
                         </span>
@@ -21,7 +21,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Data Produk</h6>
+                        <h6 class="m-0 font-weight-bold text-info">Data Produk</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -52,17 +52,17 @@
                                             <td><?php echo $row->harga ?></td>
                                             <td><?php echo $row->kategori ?></td>
                                             <td>
-                                                <a href="<?php echo base_url('product/edit/' . $row->id_produk) ?>" class="btn btn-warning btn-icon-split btn-sm badge">
+                                                <a href="<?php echo base_url('product/edit/' . $row->id_produk) ?>" class="btn btn-warning btn-icon-split badge">
                                                     <span class="icon text-white-50">
                                                         <i class="fas fa-edit"></i>
                                                     </span>
-                                                    <span class="text">Update</span>
+                                                    <span class="text">Ubah</span>
                                                 </a>
-                                                <button class="btn btn-danger btn-icon-split btn-sm badge" data-toggle="modal" data-target="#delete<?php echo $row->id_produk ?>">
+                                                <button class="btn btn-danger btn-icon-split badge" data-toggle="modal" data-target="#delete<?php echo $row->id_produk ?>">
                                                     <span class="icon text-white-50">
                                                         <i class="fas fa-trash"></i>
                                                     </span>
-                                                    <span class="text">Delete</span>
+                                                    <span class="text">Hapus</span>
                                                 </button>
                                             </td>
                                         </tr>
@@ -93,7 +93,7 @@ foreach ($data_ as $row) {
                 <div class="modal-body">Apa kamu yakin ?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <button type="button" onclick="location.href='<?php echo base_url('product/delete/') . $row->id_produk ?>'" class="btn btn-primary">Hapus</button>
+                    <button type="button" onclick="location.href='<?php echo base_url('product/delete/') . $row->id_produk ?>'" class="btn btn-info">Hapus</button>
                 </div>
             </div>
         </div>

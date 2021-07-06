@@ -58,7 +58,7 @@ class auth extends CI_Controller
 					'email' => $row->email
 				);
 				$this->session->set_userdata($user_data);
-				redirect('dashboard');
+				redirect('dashboard/home');
 			} else {
 				$this->session->set_flashdata('msg', '
                     <div class="alert alert-warning alert-dismissible" id_cs="alert">

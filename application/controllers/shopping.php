@@ -10,6 +10,8 @@ class shopping extends CI_Controller
         $this->load->library('cart');
         $this->load->model('m_product');
         $this->load->model('m_keranjang');
+        $this->load->model('m_metode_pembayaran');
+        $this->load->model('m_order');
     }
 
     public function tampil_cart()
@@ -41,6 +43,7 @@ class shopping extends CI_Controller
 
     function tambah()
     {
+
         $data_produk = array(
             'id' => $this->input->post('id'),
             'name' => $this->input->post('nama'),
@@ -50,12 +53,12 @@ class shopping extends CI_Controller
         );
         $this->cart->insert($data_produk);
         $this->session->set_flashdata('msg', '
-            <div class="alert alert-success alert-dismissible" role="alert">
+            <div class="alert alert-info alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
                 Produk berhasil ditambahkan ke keranjang
             </div>');
-        redirect('product/all_category');
+        redirect('dashboard/home');
     }
 
     function hapus($rowid)
@@ -69,6 +72,12 @@ class shopping extends CI_Controller
             );
             $this->cart->update($data);
         }
+        $this->session->set_flashdata('msg', '
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                Isi keranjang berhasil diubah
+            </div>');
         redirect('shopping/tampil_cart');
     }
 
@@ -90,6 +99,12 @@ class shopping extends CI_Controller
             );
             $this->cart->update($data);
         }
+        $this->session->set_flashdata('msg', '
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                Isi keranjang berhasil diubah
+            </div>');
         redirect('shopping/tampil_cart');
     }
 
@@ -120,13 +135,33 @@ class shopping extends CI_Controller
                     'harga' => $item['price']
                 );
                 $this->m_keranjang->tambah_detail_order($data_detail);
+                $cek = $this->m_keranjang->cek_stok($item['id']);
+                $stok = $cek->jumlah - $item['qty'];
+                $this->m_keranjang->update_stok($item['id'], $stok);
             }
         }
         //-------------------------Hapus shopping cart--------------------------
         $this->cart->destroy();
         $data['kategori'] = $this->m_keranjang->get_kategori_all();
+        $data['data'] = $this->m_metode_pembayaran->getData();
+        $this->session->set_flashdata('msg', '
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                Silahkan lakukan pembayaran dan akan di proses 3x24 jam.
+                Konfirmasi ke nomor 081222333444 Setelah melakukan pembayaran.
+            </div>');
         $this->load->view('_partials/header');
-        $this->load->view('pages/transaksi/sukses', $data);
+        $this->load->view('pages/transaksi/order-success', $data);
+        $this->load->view('_partials/js');
+    }
+    # History belanja
+    public function history()
+    {
+        $data['data_'] = $this->m_order->get_data();
+        $data['data'] = $this->m_order->getData();
+        $this->load->view('_partials/header');
+        $this->load->view('pages/transaksi/riwayat/history', $data);
         $this->load->view('_partials/js');
     }
 }

@@ -7,16 +7,18 @@
             <!-- Topbar -->
             <?php $this->load->view('_partials/topbar') ?>
             <div class="container-fluid">
-                <h1 class="h3 mb-4 text-gray-800">Semua Kategori</h1>
+                <h1 class="h3 mb-4 text-gray-800"><? ?>
+
+                </h1>
                 <?php echo $this->session->flashdata('msg') ?>
                 <div class="row">
                     <?php $count = 0;
-                    foreach ($data as $row) {
+                    foreach ($produk as $row) {
                         $count++;
                         $rupiah = number_format($row->harga);
                         $rupiah = str_replace(',', '.', $rupiah);
                     ?>
-                        <div class="col-lg-3">
+                        <div class="col-sm-3">
                             <?php echo form_open_multipart('shopping/tambah') ?>
                             <div class="card" style="width: 14rem;">
                                 <img class="card-img-top" src="<?php echo base_url('upload/product/') . $row->foto ?>" alt="Card image cap">
@@ -54,8 +56,9 @@
         <?php $this->load->view('_partials/footer') ?>
     </div>
 </div>
+
 <?php $count = 0;
-foreach ($data as $row) {
+foreach ($produk as $row) {
     $count++;
 ?>
     <div class="modal fade" id="addCart<?php echo $row->id_produk ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

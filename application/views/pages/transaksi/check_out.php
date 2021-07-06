@@ -45,14 +45,6 @@
                                     <input type="tel" class="form-control" name="telp" id="telp" placeholder="No Telp">
                                 </div>
                                 <div class="form-group  has-success has-feedback">
-                                    <label class="control-label col-xs-3" for="namaBak">Pembayaran</label>
-                                    <select class="form-control" name="bank" id="">
-                                        <option value="1">Bank Mandiri</option>
-                                        <option value="2">Bank BNI</option>
-                                        <option value="3">Bayar ditempat</option>
-                                    </select>
-                                </div>
-                                <div class="form-group  has-success has-feedback">
                                     <div class="col-xs-offset-3 col-xs-9">
                                         <button type="submit" class="btn btn-primary">Proses Order</button>
                                     </div>

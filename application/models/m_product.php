@@ -115,4 +115,13 @@ class m_product extends CI_Model
             return array_map('unlink', glob(FCPATH . "upload/product/$filename.*"));
         }
     }
+    public function ambil_data($keyword = null)
+    {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        if (!empty($keyword)) {
+            $this->db->like('nama', $keyword);
+        }
+        return $this->db->get()->result_array();
+    }
 }

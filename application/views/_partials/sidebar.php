@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -39,7 +39,7 @@
                     <h6 class="collapse-header">Mengatur Komponen :</h6>
                     <a class="collapse-item" href="<?= base_url('product') ?>">Produk</a>
                     <a class="collapse-item" href="<?= base_url('category') ?>">Kategori</a>
-                    <a class="collapse-item" href="<?= base_url('transaksi') ?>">Order</a>
+                    <a class="collapse-item" href="<?= base_url('order') ?>">Order</a>
                     <a class="collapse-item" href="<?= base_url('metode_pembayaran') ?>">Pembayaran</a>
                     <a class="collapse-item" href="<?= base_url('user') ?>">User</a>
                     <a class="collapse-item" href="<?= base_url('role') ?>">Role</a>
@@ -48,24 +48,23 @@
         </li>
     <?php } ?>
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('product/all_category') ?>">
-            <i class="fas fa-fw fa-tags"></i>
-            <span>Semua Kategori</span></a>
+        <a class="nav-link" href="<?= base_url('dashboard/home') ?>">
+            <i class="fas fa-fw fa-home"></i>
+            <span>Home</span></a>
     </li>
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-tag"></i>
+            <i class="fas fa-fw fa-tags"></i>
             <span>Kategori</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Pilih kategori:</h6>
-                <a class="collapse-item" href="<?= base_url('product/shirt') ?>">Baju</a>
-                <a class="collapse-item" href="<?= base_url('product/glasses') ?>">Kacamata</a>
-                <a class="collapse-item" href="<?= base_url('product/sweater') ?>">Sweater</a>
-                <a class="collapse-item" href="<?= base_url('product/pants') ?>">Celana</a>
-                <a class="collapse-item" href="<?= base_url('product/shoes') ?>">Sepatu</a>
+                <?php $kategori = $this->m_category->getData(); ?>
+                <?php foreach ($kategori as $key => $value) { ?>
+                    <a class="collapse-item" href="<?= base_url('product/category/') . $value->id_kategori ?>"><?php echo $value->kategori ?></a>
+                <?php } ?>
             </div>
         </div>
     </li>
@@ -87,20 +86,16 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Daftar transaksi:</h6>
-                <a class="collapse-item" href="#">Riwayat Transaksi</a>
-
+                <a class="collapse-item" href="<?= base_url('shopping/history') ?>">Riwayat Transaksi</a>
             </div>
         </div>
     </li>
-
     <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
             <i class="fas fa-fw fa-cog"></i>
             <span>Cara Pembelian</span></a>
     </li>
-
-
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

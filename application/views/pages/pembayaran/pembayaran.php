@@ -9,7 +9,7 @@
             <div class="container-fluid">
 
                 <h1 class="h3 mb-4 text-gray-800">Pembayaran
-                    <a href="<?php echo site_url('metode_pembayaran/add') ?>" class="btn btn-primary btn-icon-split float-right">
+                    <a href="<?php echo site_url('metode_pembayaran/add') ?>" class="btn btn-info btn-icon-split float-right btn-sm">
                         <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
                         </span>
@@ -21,7 +21,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Data Metode Pembayaran</h6>
+                        <h6 class="m-0 font-weight-bold text-info">Data Metode Pembayaran</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -44,13 +44,13 @@
                                             <td><?php echo $row->nama_bank ?></td>
                                             <td><?php echo $row->no_rek ?></td>
                                             <td>
-                                                <a href="<?php echo base_url('metode_pembayaran/edit/' . $row->id_norek) ?>" class="btn btn-warning btn-icon-split btn-sm badge">
+                                                <a href="<?php echo base_url('metode_pembayaran/edit/' . $row->id_norek) ?>" class="btn btn-warning btn-icon-split btn-sm">
                                                     <span class="icon text-white-50">
                                                         <i class="fas fa-edit"></i>
                                                     </span>
                                                     <span class="text">Ubah</span>
                                                 </a>
-                                                <button class="btn btn-danger btn-icon-split btn-sm badge" data-toggle="modal" data-target="#delete<?php echo $row->id_norek ?>">
+                                                <button class="btn btn-danger btn-icon-split btn-sm" data-toggle="modal" data-target="#delete<?php echo $row->id_norek ?>">
                                                     <span class="icon text-white-50">
                                                         <i class="fas fa-trash"></i>
                                                     </span>
@@ -86,7 +86,7 @@ foreach ($data as $row) {
                 <div class="modal-body">Apa kamu yakin ?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-dismiss="modal" type="button">Batal</button>
-                    <button type="button" onclick="location.href='<?php echo base_url('metode_pembayaran/delete/') . $row->id_norek ?>'" class="btn btn-primary">Hapus</button>
+                    <button type="button" onclick="location.href='<?php echo base_url('metode_pembayaran/delete/') . $row->id_norek ?>'" class="btn btn-info">Hapus</button>
                 </div>
             </div>
         </div>

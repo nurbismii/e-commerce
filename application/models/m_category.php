@@ -43,6 +43,22 @@ class m_category extends CI_Model
     public function deleteData($id)
     {
         $this->db->where('id_kategori', $id);
-        $this->db->delete('category');
+        $this->db->delete($this->table);
+    }
+    // get
+    public function get_kategori($id_kategori)
+    {
+        $this->db->select('*');
+        $this->db->from('category');
+        $this->db->where('kategori', $id_kategori);
+        return $this->db->get()->row();
+    }
+    public function get_all_produk($id)
+    {
+        $this->db->select('product.*,kategori');
+        $this->db->from('product');
+        $this->db->join('category', 'category.id_kategori=product.id_kategori', 'left');
+        $this->db->where('product.id_kategori', $id);
+        return $this->db->get()->result();
     }
 }
