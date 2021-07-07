@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <!-- Page Heading -->
                 <h1 class="h3 mb-4 text-gray-800">Riwayat Transaksi
-                    <a class="btn btn-info btn-icon-split btn-sm float-right" href="<?= base_url('dashboard/home') ?>">
+                    <a class="btn btn-info btn-icon-split btn-sm float-right" href="<?= base_url('home') ?>">
                         <span class="icon text-white-50">
                             <i class="fas fa-home"></i>
                         </span>

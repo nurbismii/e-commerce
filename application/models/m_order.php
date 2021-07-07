@@ -15,22 +15,18 @@ class m_order extends CI_Model
     {
         return $this->db->get('v_order_info')->result();
     }
-
     public function getData()
     {
         return $this->db->get($this->v_table)->result();
     }
-    public function get_data()
-    {
-        return $this->db->get($this->table)->result();
-    }
-    public function getDataDetail($id)
-    {
-        return $this->db->get_where($this->table, ['id' => $id])->row();
-    }
     public function setData($data)
     {
         return $this->db->insert('order_info', $data);
+    }
+    public function update($data, $id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('order_info', $data);
     }
     public function deleteData($id)
     {

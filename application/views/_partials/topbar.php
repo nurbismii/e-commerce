@@ -37,7 +37,7 @@
                     </div>
                 </form>
             </div>
-
+        </li>
         <li class="nav-item dropdown no-arrow mx-1">
             <?php
             $cart = $this->cart->contents();
@@ -48,7 +48,7 @@
 
             ?>
 
-            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="<?= base_url('home') ?>" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="badge badge-danger badge-counter"><?= $jml_item ?></span>
             </a>

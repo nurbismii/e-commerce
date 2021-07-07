@@ -53,7 +53,7 @@
                                                     <td><img class="rounded" width="50" src="<?php echo base_url() . 'upload/product/' . $item['gambar']; ?>" /></td>
                                                     <td><?php echo $item['name']; ?></td>
                                                     <td><?php echo number_format($item['price'], 0, ",", "."); ?></td>
-                                                    <td><input type="number" class="form-control input-sm" name="cart[<?php echo $item['id']; ?>][qty]" value="<?php echo $item['qty']; ?>" /></td>
+                                                    <td><input type="number" min="1" max="5" class="form-control input-sm" name="cart[<?php echo $item['id']; ?>][qty]" value="<?php echo $item['qty']; ?>" /></td>
                                                     <td><?php echo number_format($item['subtotal'], 0, ",", ".") ?></td>
                                                     <td><a href="<?php echo base_url() ?>shopping/hapus/<?php echo $item['rowid']; ?>" class="btn btn-sm btn-danger"><span class="icon text-gray-300">
                                                                 <i class="fas fa-trash"></i>
@@ -73,12 +73,14 @@
                                     </table>
                                 </div>
                             </div>
+
                         <?php } else {
-                            echo "<h5><center><b> KERANJANG KOSONG </b></center></h5>";
+
+                            echo "<hr><h5><center><b> KERANJANG KOSONG </b></center></h5>";
                         }
                         ?>
                         <hr>
-                        <center><a href="<?php echo base_url('home') ?>" class='btn btn-block btn-info'>Pergi Belanja</a></center>
+                        <center><a href="<?php echo base_url('home') ?>" class='btn btn-info '>Pergi Belanja</a></center>
                         <hr>
                     </form>
                 </div>
