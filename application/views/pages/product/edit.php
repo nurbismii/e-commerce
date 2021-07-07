@@ -56,10 +56,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="foto">Foto</label>
-                                <input type=file id="userfile" name="userfile" class="form-control">
+                                <input type="file" id="userfile" name="userfile" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type=hidden name="foto_lama" value="<?php echo $data->foto ?>">
+                                <input type="text" name="foto_lama" value="<?php echo $data->foto ?>">
                             </div>
                             <button type="submit" class="btn btn-success mr-2">Simpan</button>
                             <button type="reset" class="btn btn-light" data-dismiss="modal">Tutup</button>

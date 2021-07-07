@@ -44,6 +44,10 @@ class m_product extends CI_Model
 
             ];
     }
+    public function __construct()
+    {
+        $this->load->database();
+    }
     public function getData()
     {
         return $this->db->get($this->v_table)->result();
@@ -77,7 +81,11 @@ class m_product extends CI_Model
         $this->nama = $post['nama'];
         $this->harga = $post['harga'];
         $this->jumlah = $post['jumlah'];
-        $this->foto = $this->_upload();
+        if (!empty($_FILES["userfile"]["nama"])) {
+            $this->foto = $this->_upload();
+        } else {
+            $this->foto = $post["foto_lama"];
+        }
         $this->deskripsi = $post['deskripsi'];
         $this->id_kategori = $post['kategori'];
         $this->updated_at = date("Y-m-d H:i:s");
@@ -115,13 +123,10 @@ class m_product extends CI_Model
             return array_map('unlink', glob(FCPATH . "upload/product/$filename.*"));
         }
     }
-    public function ambil_data($keyword = null)
+    public function cari_produk()
     {
-        $this->db->select('*');
-        $this->db->from($this->table);
-        if (!empty($keyword)) {
-            $this->db->like('nama', $keyword);
-        }
-        return $this->db->get()->result_array();
+        $cari = $this->input->GET('cari', TRUE);
+        $data = $this->db->query("SELECT * FROM v_products WHERE nama like '%$cari'");
+        return $data->result();
     }
 }

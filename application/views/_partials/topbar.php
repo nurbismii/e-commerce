@@ -6,9 +6,9 @@
     </button>
 
     <!-- Topbar Search -->
-    <form action="<?= base_url('dashboard/home') ?>" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <form action="<?= base_url('home/hasil_pencarian') ?>" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
-            <input name="keyword" type="text" class="form-control bg-light border-0 small" placeholder="Cari produk kamu" aria-label="Search" aria-describedby="basic-addon2">
+            <input name="cari" type="text" class="form-control bg-light border-0 small" placeholder="Cari produk kamu" aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
                 <button class="btn btn-info" type="submit">
                     <i class="fas fa-search fa-sm"></i>

@@ -78,7 +78,7 @@
                         }
                         ?>
                         <hr>
-                        <center><a href="<?php echo base_url('dashboard/home') ?>" class='btn btn-block btn-info'>Pergi Belanja</a></center>
+                        <center><a href="<?php echo base_url('home') ?>" class='btn btn-block btn-info'>Pergi Belanja</a></center>
                         <hr>
                     </form>
                 </div>

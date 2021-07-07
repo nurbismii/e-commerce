@@ -20,7 +20,7 @@
                         <h5 class="card-title"><?php echo $data->nama ?></h5>
                         <p class="card-text"><?php echo $data->deskripsi ?></p>
                         <p class="card-text">Rp <?php echo $harga ?></p>
-                        <a href="<?= base_url('product/category') ?>" class="btn btn-light btn-sm btn-icon-split">
+                        <a href="<?= base_url('home') ?>" class="btn btn-light btn-sm btn-icon-split">
                             <span class="icon text-gray-600">
                                 <i class="fas fa-undo"></i>
                             </span>

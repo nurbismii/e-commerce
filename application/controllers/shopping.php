@@ -58,7 +58,7 @@ class shopping extends CI_Controller
                 <span aria-hidden="true">&times;</span></button>
                 Produk berhasil ditambahkan ke keranjang
             </div>');
-        redirect('dashboard/home');
+        redirect('home');
     }
 
     function hapus($rowid)

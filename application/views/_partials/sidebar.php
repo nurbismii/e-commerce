@@ -48,7 +48,7 @@
         </li>
     <?php } ?>
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('dashboard/home') ?>">
+        <a class="nav-link" href="<?= base_url('home') ?>">
             <i class="fas fa-fw fa-home"></i>
             <span>Home</span></a>
     </li>
