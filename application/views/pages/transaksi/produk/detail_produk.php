@@ -14,11 +14,13 @@
                 $harga = str_replace(',', '.', $harga); ?>
 
 
-                <div class="card bg-dark text-black">
+                <div class="card bg-dark text-info">
                     <img width="100%" height="500" src="<?php echo base_url('upload/product/') . $data->foto ?>" alt="Card image">
                     <div class="card-img-overlay">
                         <h5 class="card-title"><?php echo $data->nama ?></h5>
-                        <p class="card-text"><?php echo $data->deskripsi ?></p>
+                        <p class="card-text"><?php echo $data->deskripsi ?> <br>
+                            <span class="card-text small">Stok <?php echo $data->jumlah ?></span>
+                        </p>
                         <p class="card-text">Rp <?php echo $harga ?></p>
                         <a href="<?= base_url('home') ?>" class="btn btn-light btn-sm btn-icon-split">
                             <span class="icon text-gray-600">

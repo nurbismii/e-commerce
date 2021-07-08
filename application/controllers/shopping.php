@@ -43,7 +43,6 @@ class shopping extends CI_Controller
 
     function tambah()
     {
-
         $data_produk = array(
             'id' => $this->input->post('id'),
             'name' => $this->input->post('nama'),
@@ -116,7 +115,8 @@ class shopping extends CI_Controller
             'nama' => $this->input->post('nama'),
             'email' => $this->input->post('email'),
             'alamat' => $this->input->post('alamat'),
-            'telp' => $this->input->post('telp')
+            'telp' => $this->input->post('telp'),
+            'status' => $this->input->post('status')
         );
         $transaksi_id = $this->m_keranjang->tambah_transaksi($data_user);
         //-------------------------Input data order------------------------------
@@ -132,12 +132,22 @@ class shopping extends CI_Controller
                     'order_id' => $id_order,
                     'produk' => $item['id'],
                     'qty' => $item['qty'],
-                    'harga' => $item['price']
+                    'harga' => $item['price'],
                 );
-                $this->m_keranjang->tambah_detail_order($data_detail);
                 $cek = $this->m_keranjang->cek_stok($item['id']);
-                $stok = $cek->jumlah - $item['qty'];
-                $this->m_keranjang->update_stok($item['id'], $stok);
+                if ($cek->jumlah < $item['qty']) {
+                    $this->session->set_flashdata('msg', '
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                        Produk yang di inginkan tidak mencukupi atau lagi kosong silahkan lihat stok yang tersedia
+                    </div>');
+                    redirect('home');
+                } else {
+                    $this->m_keranjang->tambah_detail_order($data_detail);
+                    $stok = $cek->jumlah - $item['qty'];
+                    $this->m_keranjang->update_stok($item['id'], $stok);
+                }
             }
         }
         //-------------------------Hapus shopping cart--------------------------

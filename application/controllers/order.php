@@ -17,43 +17,24 @@ class order extends CI_Controller
         $this->load->view('pages/transaksi/order', $data);
         $this->load->view('_partials/js');
     }
-    public function add()
-    {
-        $order = $this->m_order;
-
-        $data = array(
-            'produk_id' => $this->input->post('produk_id'),
-            'user_id' => $this->input->post('user_id'),
-            'pesan' => $this->input->post('pesan'),
-            'status' => $this->input->post('status'),
-        );
-        $order->setData($data);
-        $this->session->set_flashdata('msg', '
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span></button>
-            Konfirmasi telah dikirim
-        </div>');
-        redirect('order');
-    }
     public function update()
     {
-        $id = $this->input->post('id');
+        $id = $this->input->post('transaksi_id');
         $status = $this->input->post('status');
 
         $data = array(
             'id' => $id,
             'status' => $status
+
         );
         $this->m_order->update($data, $id);
-        $this->m_order->deleteData($id);
         $this->session->set_flashdata('msg', '
         <div class="alert alert-info alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
             Status pengiriman berhasil diubah
         </div>');
-        redirect('order');
+        redirect('home');
     }
     #delete order history
     public function delete($id)

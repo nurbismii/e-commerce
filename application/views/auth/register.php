@@ -32,7 +32,6 @@
                             Daftar Akun
                         </button>
                         <?php echo form_close() ?>
-
                         <hr>
                         <?php echo validation_errors(); ?>
                         <div class="text-center">

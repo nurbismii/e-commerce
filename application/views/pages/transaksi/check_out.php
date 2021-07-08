@@ -43,6 +43,7 @@
                                 <div class="form-group">
                                     <label for="Telp">No Telp</label>
                                     <input type="tel" class="form-control" name="telp" id="telp" placeholder="No Telp">
+                                    <input type="hidden" class="form-control" name="status" value="Tertunda">
                                 </div>
                                 <div class="form-group  has-success has-feedback">
                                     <div class="col-xs-offset-3 col-xs-9">

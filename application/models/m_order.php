@@ -5,15 +5,9 @@ class m_order extends CI_Model
     private $v_table = "v_order";
     private $table = "transaksi_temp";
 
-    public $id;
-    public $order_id;
-    public $produk;
-    public $qty;
-    public $harga;
-
     public function get_data_info()
     {
-        return $this->db->get('v_order_info')->result();
+        return $this->db->get('v_order')->result();
     }
     public function getData()
     {
@@ -26,7 +20,7 @@ class m_order extends CI_Model
     public function update($data, $id)
     {
         $this->db->where('id', $id);
-        $this->db->update('order_info', $data);
+        $this->db->update($this->table, $data);
     }
     public function deleteData($id)
     {

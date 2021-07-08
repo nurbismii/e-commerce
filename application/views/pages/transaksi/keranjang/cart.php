@@ -64,7 +64,7 @@
                                             <tfoot>
                                                 <tr class="bg-gray-300">
                                                     <td colspan="3"><b>Total Pembayaran: Rp <?php echo number_format($grand_total, 0, ",", "."); ?></b></td>
-                                                    <td colspan="4" align="right">
+                                                    <td colspan="4" style="text-align: right;">
                                                         <a data-toggle="modal" data-target="#myModal" class='btn btn-sm btn-danger' rel="noopener noreferrer">Kosongkan</a>
                                                         <button class='btn btn-sm btn-primary' type="submit">Ubah</button>
                                                         <a href="<?php echo base_url() ?>shopping/check_out" class='btn btn-sm btn-info'>Lanjut pembayaran</a>
@@ -80,7 +80,9 @@
                         }
                         ?>
                         <hr>
-                        <center><a href="<?php echo base_url('home') ?>" class='btn btn-info '>Pergi Belanja</a></center>
+                        <div style="text-align: center;">
+                            <a href="<?php echo base_url('home') ?>" class='btn btn-info '>Pergi Belanja</a>
+                        </div>
                         <hr>
                     </form>
                 </div>

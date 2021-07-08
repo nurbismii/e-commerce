@@ -41,7 +41,7 @@ class m_keranjang extends CI_Model
 
     public function tambah_order($data)
     {
-        $this->db->insert('order', $data);
+        $this->db->insert('ordeer', $data);
         $id = $this->db->insert_id();
         return (isset($id)) ? $id : FALSE;
     }
