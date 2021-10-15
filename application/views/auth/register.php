@@ -35,7 +35,7 @@
                         <hr>
                         <?php echo validation_errors(); ?>
                         <div class="text-center">
-                            <a class="small" href="<?= base_url('auth') ?>">Sudah memiliki akun? Login!</a>
+                            <a class="small" href="<?= base_url('auth/login_shop') ?>">Sudah memiliki akun? Login!</a>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2021 at 07:25 AM
+-- Generation Time: Jul 09, 2021 at 05:39 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -63,10 +63,8 @@ CREATE TABLE `detail_order` (
 --
 
 INSERT INTO `detail_order` (`id`, `order_id`, `produk`, `qty`, `harga`) VALUES
-(41, 59, 'B006', 2, '50000'),
-(42, 60, 'B004', 1, '50000'),
-(43, 60, 'B006', 1, '50000'),
-(44, 61, 'B004', 1, '50000');
+(55, 78, 'B004', 1, '50000'),
+(56, 79, 'B005', 1, '150000');
 
 -- --------------------------------------------------------
 
@@ -85,63 +83,28 @@ CREATE TABLE `no_rek` (
 --
 
 INSERT INTO `no_rek` (`id_norek`, `nama_bank`, `no_rek`) VALUES
-(1, 'Bank Mandiri ', '111-1111-111 '),
-(2, 'Bank BNI', '2222-222-222 '),
-(3, 'Cash on Delivery', 'Bayar Di Tempat');
+(1, 'Bank Mandiri a/n DFIZA STORE', '111 1111 111'),
+(2, 'Bank BNI a/n DFIZA STORE', '222 222 2222');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Table structure for table `ordeer`
 --
 
-CREATE TABLE `order` (
+CREATE TABLE `ordeer` (
   `id` int(11) NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp(),
   `transaksi_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `order`
+-- Dumping data for table `ordeer`
 --
 
-INSERT INTO `order` (`id`, `tanggal`, `transaksi_id`) VALUES
-(59, '2021-07-06 15:26:40', 59),
-(60, '2021-07-06 15:30:31', 60),
-(61, '2021-07-06 15:37:00', 61);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `order_info`
---
-
-CREATE TABLE `order_info` (
-  `id` int(11) NOT NULL,
-  `produk_id` char(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `pesan` varchar(128) NOT NULL,
-  `status` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `order_info`
---
-
-INSERT INTO `order_info` (`id`, `produk_id`, `user_id`, `pesan`, `status`) VALUES
-(63, 'B004', 1, 'Terimasi', 'Proses');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pembayaran`
---
-
-CREATE TABLE `pembayaran` (
-  `id` int(11) NOT NULL,
-  `pembayaran_id` int(11) NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `ordeer` (`id`, `tanggal`, `transaksi_id`) VALUES
+(78, '2021-07-08 07:58:48', 79),
+(79, '2021-07-08 08:00:39', 80);
 
 -- --------------------------------------------------------
 
@@ -166,13 +129,13 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id_produk`, `id_kategori`, `nama`, `harga`, `jumlah`, `foto`, `deskripsi`, `created_at`, `updated_at`) VALUES
-('B004', 1, 'Baju Pantai ', 50000, 3, 'B004.jpg', 'Baju pantai pria kain sangat halus', '2021-07-07 05:24:02', '2021-07-07 05:24:02'),
-('B005', 1, 'Baju Kemeja', 150000, 5, 'B005.jpg', 'Baju Kemeja keren untuk pria', '2021-07-07 05:20:00', '2021-07-07 05:20:00'),
-('B006', 1, 'Baju Santai', 50000, 2, 'B006.jpg', 'Baju santai motif bunga bunga', '2021-07-06 08:18:28', '2021-07-06 15:30:31'),
-('C001', 2, 'Jeans Denim 1945', 300000, 8, 'C001.jpg', 'Denim blalalalalalala~', '2021-07-02 12:34:43', '2021-07-05 11:53:21'),
-('K001', 5, 'Kacamata Hitam Pria Aviation Polarized UV400 Anti Silau', 30000, 10, 'K001.jpeg', 'Paket Pembelian Gratis 1.Hard Case Original 2.Lap Kain Kacamata 3.Tester Card(Membuktikan kacamata original) 4.Sarung Kacamata', '2021-07-06 14:07:41', '2021-07-06 14:07:41'),
+('B004', 1, 'Baju Pantai ', 50000, 1, 'B004.jpg', 'Baju pantai pria kain sangat halus', '2021-07-08 04:02:48', '2021-07-08 07:58:48'),
+('B005', 1, 'Baju Kemeja', 150000, 4, 'B005.jpg', 'Baju Kemeja keren untuk pria', '2021-07-07 05:20:00', '2021-07-08 08:00:39'),
+('B006', 1, 'Baju Santai', 50000, 4, 'B006.jpg', 'Baju santai motif bunga bunga', '2021-07-08 05:22:14', '2021-07-08 07:00:41'),
+('C001', 2, 'Jeans Denim 1945', 300000, 7, 'C001.jpg', 'Denim blalalalalalala~', '2021-07-02 12:34:43', '2021-07-08 07:05:33'),
+('K001', 5, 'Kacamata Hitam Pria Aviation Polarized UV400 Anti Silau', 30000, 9, 'K001.jpeg', 'Paket Pembelian Gratis 1.Hard Case Original 2.Lap Kain Kacamata 3.Tester Card(Membuktikan kacamata original) 4.Sarung Kacamata', '2021-07-06 14:07:41', '2021-07-08 05:22:42'),
 ('K002', 5, 'Kacamata Hitam Pria Aviation Polarized UV401 Anti Silau', 150000, 5, 'K002.jpg', 'Kacamata anti radiasi Aviaton Polarized UV', '2021-07-03 10:08:40', NULL),
-('S002', 3, 'SEPATU VANS OLDSKOOL CLASSIC NAVY WHITE ORIGINAL BNIB TERMURAH', 450000, 12, 'S002.jpg', 'VANS CLASSIC OLDSKOOL NAVY WHITE GLOBAL', '2021-07-01 09:13:11', '2021-07-06 08:42:17'),
+('S002', 3, 'SEPATU VANS OLDSKOOL CLASSIC NAVY WHITE ORIGINAL BNIB TERMURAH', 450000, 9, 'S002.jpg', 'VANS CLASSIC OLDSKOOL NAVY WHITE GLOBAL', '2021-07-01 09:13:11', '2021-07-08 04:32:46'),
 ('SW01', 4, 'Sweater', 150000, 5, 'SW01.jpg', 'Sweater WanitaÂ bahan FLEECE ukuran REMAJA-DEWASA Ukuran M, Lebar 98, Panjang 58 Ukuran L, Lebar 102, Panjang 62', '2021-07-05 13:25:02', '2021-07-05 13:25:02');
 
 -- --------------------------------------------------------
@@ -206,8 +169,17 @@ CREATE TABLE `transaksi_temp` (
   `nama` varchar(128) NOT NULL,
   `email` varchar(64) NOT NULL,
   `alamat` varchar(225) NOT NULL,
-  `telp` varchar(16) NOT NULL
+  `telp` varchar(16) NOT NULL,
+  `status` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaksi_temp`
+--
+
+INSERT INTO `transaksi_temp` (`id`, `id_user`, `nama`, `email`, `alamat`, `telp`, `status`) VALUES
+(79, 7, 'Dfiza', 'dfiza@gmail.com', 'Jl Kebayoran', '085282810040', 'Selesai'),
+(80, 1, 'Nur Bismi', 'admin@gmail.com', 'Jl Kebayoran', '085282810040', 'Proses');
 
 -- --------------------------------------------------------
 
@@ -245,27 +217,14 @@ INSERT INTO `users` (`id_user`, `id_role`, `nama`, `username`, `password`, `emai
 CREATE TABLE `v_order` (
 `id` int(11)
 ,`nama` varchar(128)
-,`user_id` int(11)
+,`email` varchar(64)
 ,`alamat` varchar(225)
 ,`telp` varchar(16)
-,`produk_id` char(10)
-,`nama_produk` varchar(225)
+,`status` varchar(32)
+,`tanggal` timestamp
 ,`qty` int(11)
 ,`harga` varchar(20)
-);
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `v_order_info`
--- (See below for the actual view)
---
-CREATE TABLE `v_order_info` (
-`produk` varchar(225)
-,`harga` int(11)
-,`status` varchar(64)
-,`pesan` varchar(128)
-,`nama` varchar(128)
+,`nama_produk` varchar(225)
 );
 
 -- --------------------------------------------------------
@@ -291,16 +250,7 @@ CREATE TABLE `v_products` (
 --
 DROP TABLE IF EXISTS `v_order`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_order`  AS  select `detail_order`.`order_id` AS `id`,`transaksi_temp`.`nama` AS `nama`,`transaksi_temp`.`id_user` AS `user_id`,`transaksi_temp`.`alamat` AS `alamat`,`transaksi_temp`.`telp` AS `telp`,`product`.`id_produk` AS `produk_id`,`product`.`nama` AS `nama_produk`,`detail_order`.`qty` AS `qty`,`detail_order`.`harga` AS `harga` from ((`detail_order` join `product` on(`detail_order`.`produk` = `product`.`id_produk`)) join `transaksi_temp` on(`detail_order`.`order_id` = `transaksi_temp`.`id`)) ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `v_order_info`
---
-DROP TABLE IF EXISTS `v_order_info`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_order_info`  AS  select `product`.`nama` AS `produk`,`product`.`harga` AS `harga`,`order_info`.`status` AS `status`,`order_info`.`pesan` AS `pesan`,`users`.`nama` AS `nama` from ((`order_info` join `product` on(`order_info`.`produk_id` = `product`.`id_produk`)) join `users` on(`order_info`.`user_id` = `users`.`id_user`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_order`  AS  select `transaksi_temp`.`id` AS `id`,`transaksi_temp`.`nama` AS `nama`,`transaksi_temp`.`email` AS `email`,`transaksi_temp`.`alamat` AS `alamat`,`transaksi_temp`.`telp` AS `telp`,`transaksi_temp`.`status` AS `status`,`ordeer`.`tanggal` AS `tanggal`,`detail_order`.`qty` AS `qty`,`detail_order`.`harga` AS `harga`,`product`.`nama` AS `nama_produk` from (((`transaksi_temp` join `ordeer` on(`transaksi_temp`.`id` = `ordeer`.`transaksi_id`)) join `detail_order` on(`ordeer`.`id` = `detail_order`.`order_id`)) join `product` on(`detail_order`.`produk` = `product`.`id_produk`)) ;
 
 -- --------------------------------------------------------
 
@@ -334,15 +284,9 @@ ALTER TABLE `no_rek`
   ADD PRIMARY KEY (`id_norek`);
 
 --
--- Indexes for table `order`
+-- Indexes for table `ordeer`
 --
-ALTER TABLE `order`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `order_info`
---
-ALTER TABLE `order_info`
+ALTER TABLE `ordeer`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -386,25 +330,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `detail_order`
 --
 ALTER TABLE `detail_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `no_rek`
 --
 ALTER TABLE `no_rek`
-  MODIFY `id_norek` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_norek` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `order`
+-- AUTO_INCREMENT for table `ordeer`
 --
-ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
-
---
--- AUTO_INCREMENT for table `order_info`
---
-ALTER TABLE `order_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+ALTER TABLE `ordeer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -416,7 +354,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `transaksi_temp`
 --
 ALTER TABLE `transaksi_temp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `users`

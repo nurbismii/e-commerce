@@ -3,7 +3,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class shopping extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -43,21 +42,27 @@ class shopping extends CI_Controller
 
     function tambah()
     {
-        $data_produk = array(
-            'id' => $this->input->post('id'),
-            'name' => $this->input->post('nama'),
-            'price' => $this->input->post('harga'),
-            'gambar' => $this->input->post('foto'),
-            'qty' => $this->input->post('jumlah')
-        );
-        $this->cart->insert($data_produk);
-        $this->session->set_flashdata('msg', '
-            <div class="alert alert-info alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-                Produk berhasil ditambahkan ke keranjang
-            </div>');
-        redirect('home');
+        if (!$this->session->userdata('id_user')) {
+            $this->load->view('_partials/auth_header');
+            $this->load->view('auth/login');
+            $this->load->view('_partials/auth_js');
+        } else {
+            $data_produk = array(
+                'id' => $this->input->post('id'),
+                'name' => $this->input->post('nama'),
+                'price' => $this->input->post('harga'),
+                'gambar' => $this->input->post('foto'),
+                'qty' => $this->input->post('jumlah')
+            );
+            $this->cart->insert($data_produk);
+            $this->session->set_flashdata('msg', '
+                <div class="alert alert-info alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                    Produk berhasil ditambahkan ke keranjang
+                </div>');
+            redirect('home');
+        }
     }
 
     function hapus($rowid)
