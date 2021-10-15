@@ -6,10 +6,18 @@ class auth extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->library('cart');
 		$this->load->model('m_users');
 	}
 
 	public function index()
+	{
+		$this->load->view('_partials/header');
+		$this->load->view('dashboard');
+		$this->load->view('_partials/js');
+	}
+
+	public function login_shop()
 	{
 		check_already_login();
 		$this->load->view('_partials/auth_header');
@@ -40,7 +48,7 @@ class auth extends CI_Controller
 				<span aria-hidden="true">&times;</span></button>
 				Registrasi berhasil
 			</div>');
-			redirect(base_url('auth'));
+			redirect(base_url('auth/login_shop'));
 		}
 	}
 	public function login()
@@ -66,14 +74,14 @@ class auth extends CI_Controller
                         <span aria-hidden="true">&times;</span></button>
                         Username atau password salah
                     </div>');
-				redirect('auth');
+				redirect('auth/login_shop');
 			}
 		}
 	}
 	function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('auth');
+		redirect('home');
 	}
 	public function check_username_exists($username)
 	{

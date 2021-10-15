@@ -11,7 +11,6 @@ class home extends CI_Controller
     }
     public function index()
     {
-        check_not_login();
         $data['produk'] = $this->m_product->get();
         $this->load->view('_partials/header');
         $this->load->view('pages/transaksi/produk/v_produk', $data);
