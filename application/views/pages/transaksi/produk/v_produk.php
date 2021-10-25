@@ -22,7 +22,7 @@
                             <div class="col-sm-3">
                                 <?php echo form_open_multipart('shopping/tambah') ?>
 
-                                <div class="card" style="width: 14rem;">
+                                <div class="card" style="width: 17rem;">
                                     <img class="card-img-top" height="200" src="<?php echo base_url('upload/product/') . $row->foto ?>" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo substr($row->nama, 0, 15) ?></h5>
