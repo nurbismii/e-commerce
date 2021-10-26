@@ -7,19 +7,17 @@
             <!-- Topbar -->
             <?php $this->load->view('_partials/topbar') ?>
             <div class="container-fluid">
-                <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Order</h1>
                 <?php echo $this->session->flashdata('msg'); ?>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-info">Data Order</h6>
+                        <h6 class="m-0 font-weight-bold text-dark">Data Order</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="tableCategory" width="100%" cellspacing="0">
+                            <table class="table table-borderless" id="tableCategory" width="100%" cellspacing="0">
                                 <thead>
-                                    <tr style="text-align: center">
+                                    <tr>
                                         <th>Nama</th>
                                         <th>Alamat</th>
                                         <th>Telp</th>
@@ -27,7 +25,7 @@
                                         <th>Qty</th>
                                         <th>Harga</th>
                                         <th>Status</th>
-                                        <th><i class="fas fa-fw fa-cog"></i></th>
+                                        <th class="text-center"><i class="fas fa-fw fa-cog"></i></th>
                                     </tr>
                                 </thead>
                                 <?php $count = 0;
@@ -35,7 +33,7 @@
                                     $count++;
                                 ?>
                                     <tbody>
-                                        <tr style="text-align:justify">
+                                        <tr style="text-align:justify;">
                                             <td><?php echo $row->nama ?></td>
                                             <td><?php echo $row->alamat ?></td>
                                             <td><?php echo $row->telp ?></td>
@@ -44,8 +42,8 @@
                                             <td><?php echo $row->harga ?></td>
                                             <td><?php echo $row->status ?></td>
                                             <td>
-                                                <button class="btn btn-info btn-icon-split badge" data-toggle="modal" data-target="#konfirm<?php echo $row->id ?>">
-                                                    <span class="icon text-white-50">
+                                                <button class="btn btn-light btn-icon-split badge" data-toggle="modal" data-target="#konfirm<?php echo $row->id ?>">
+                                                    <span class="icon text-white-300">
                                                         <i class="fas fa-reply"></i>
                                                     </span>
                                                     <span class="text">Confirm</span>

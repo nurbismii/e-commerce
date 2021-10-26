@@ -88,12 +88,15 @@ class m_users extends CI_Model
     {
         $post = $this->input->post();
         $this->id_user = $post['id_user'];
+        $this->nama = $post['nama'];
         $this->username = $post['username'];
         $this->password = md5($post['password']);
-        $this->nama = $post['nama'];
         $this->email = $post['email'];
-        $this->picture = $this->_upload();
-        $this->id_role = $post['id_role'];
+        if (!empty($_FILES["userfile"]["nama"])) {
+            $this->picture = $this->_upload();
+        } else {
+            $this->picture = $post["foto_lama"];
+        }
         $this->created_at = date("Y-m-d H:i:s");
 
         return $this->db->update($this->table, $this, array('id_user' => $post['id_user']));

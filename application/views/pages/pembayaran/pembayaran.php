@@ -7,25 +7,23 @@
             <!-- Topbar -->
             <?php $this->load->view('_partials/topbar') ?>
             <div class="container-fluid">
-
-                <h1 class="h3 mb-4 text-gray-800">Pembayaran
-                    <a href="<?php echo site_url('metode_pembayaran/add') ?>" class="btn btn-info btn-icon-split float-right btn-sm">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-plus"></i>
-                        </span>
-                        <span class="text">Tambah Pembayaran</span>
-                    </a>
-                </h1>
                 <?php echo $this->session->flashdata('msg'); ?>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-info">Data Metode Pembayaran</h6>
+                        <h6 class="m-0 font-weight-bold text-dark">Metode Pembayaran
+                            <a href="<?php echo site_url('pembayaran/add') ?>" class="btn btn-light btn-icon-split float-right btn-sm">
+                                <span class="icon text-white-300">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                                <span class="text">Baru</span>
+                            </a>
+                        </h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="tableCategory" width="100%" cellspacing="0">
+                            <table class="table table-borderless" id="tableCategory" width="100%" cellspacing="0">
                                 <thead>
                                     <tr style="text-align:center">
                                         <th>ID</th>
@@ -44,7 +42,7 @@
                                             <td><?php echo $row->nama_bank ?></td>
                                             <td><?php echo $row->no_rek ?></td>
                                             <td>
-                                                <a href="<?php echo base_url('metode_pembayaran/edit/' . $row->id_norek) ?>" class="btn btn-warning btn-icon-split btn-sm">
+                                                <a href="<?php echo base_url('pembayaran/edit/' . $row->id_norek) ?>" class="btn btn-warning btn-icon-split btn-sm">
                                                     <span class="icon text-white-50">
                                                         <i class="fas fa-edit"></i>
                                                     </span>
@@ -86,7 +84,7 @@ foreach ($data as $row) {
                 <div class="modal-body">Apa kamu yakin ?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-dismiss="modal" type="button">Batal</button>
-                    <button type="button" onclick="location.href='<?php echo base_url('metode_pembayaran/delete/') . $row->id_norek ?>'" class="btn btn-info">Hapus</button>
+                    <button type="button" onclick="location.href='<?php echo base_url('pembayaran/delete/') . $row->id_norek ?>'" class="btn btn-info">Hapus</button>
                 </div>
             </div>
         </div>

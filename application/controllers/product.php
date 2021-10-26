@@ -37,8 +37,11 @@ class product extends CI_Controller
             </div>');
             redirect('product');
         }
+
+        $data['kategori'] = $this->m_category->getData();
+
         $this->load->view('_partials/header');
-        $this->load->view('pages/product/tambah');
+        $this->load->view('pages/product/tambah', $data);
         $this->load->view('_partials/js');
     }
     public function edit($id_produk = null)
@@ -66,6 +69,7 @@ class product extends CI_Controller
         $data['data'] = $product->getDataDetail($id_produk);
         if (!$data['data']) show_404();
 
+        $data['kategori'] = $this->m_category->getData();
         $this->load->view('_partials/header');
         $this->load->view('pages/product/edit', $data);
         $this->load->view('_partials/js');
@@ -90,7 +94,25 @@ class product extends CI_Controller
             'isi' => 'v_produk'
         );
         $this->load->view('_partials/header');
-        $this->load->view('pages/transaksi/produk/v_produk', $data);
+        $this->load->view('pages/home/produk', $data);
+        $this->load->view('_partials/js');
+    }
+
+    public function detail()
+    {
+        $id = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data['kategori'] = $this->m_keranjang->get_kategori_all();
+        $data['data'] = $this->m_product->getDataDetail($id);
+        $this->load->view('_partials/header');
+        $this->load->view('pages/home/detail_produk', $data);
+        $this->load->view('_partials/js');
+    }
+
+    public function show()
+    {
+        $data['produk'] = $this->m_product->get();
+        $this->load->view('_partials/header');
+        $this->load->view('pages/home/produk', $data);
         $this->load->view('_partials/js');
     }
 }

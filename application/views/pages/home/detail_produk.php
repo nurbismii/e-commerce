@@ -22,7 +22,7 @@
                             <span class="card-text small">Stok <?php echo $data->jumlah ?></span>
                         </p>
                         <p class="card-text">Rp <?php echo $harga ?></p>
-                        <a href="<?= base_url('home') ?>" class="btn btn-light btn-sm btn-icon-split">
+                        <a href="<?= base_url('shop') ?>" class="btn btn-light btn-sm btn-icon-split">
                             <span class="icon text-gray-600">
                                 <i class="fas fa-undo"></i>
                             </span>

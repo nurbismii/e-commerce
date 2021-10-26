@@ -7,22 +7,21 @@
             <!-- Topbar -->
             <?php $this->load->view('_partials/topbar') ?>
             <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Users <a href="<?php echo site_url('user/add') ?>" class="btn btn-info btn-sm btn-icon-split float-right">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-plus"></i>
-                        </span>
-                        <span class="text">Tambah User</span>
-                    </a></h1>
                 <?php echo $this->session->flashdata('msg') ?>
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-info">Data User</h6>
+                        <h6 class="m-0 font-weight-bold text-dark">Users
+                            <a href="<?php echo site_url('user/add') ?>" class="btn btn-light btn-sm btn-icon-split float-right">
+                                <span class="icon text-white-300">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                                <span class="text">Baru</span>
+                            </a>
+                        </h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="tableUser" width="100%" cellspacing="0">
+                            <table class="table table-borderless" id="tableUser" width="100%" cellspacing="0">
                                 <thead>
                                     <tr style="text-align:center">
                                         <th>ID User</th>

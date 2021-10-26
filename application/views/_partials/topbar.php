@@ -6,11 +6,11 @@
     </button>
 
     <!-- Topbar Search -->
-    <form action="<?= base_url('home/hasil_pencarian') ?>" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <form action="<?= base_url('home/cari') ?>" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
-            <input name="cari" type="text" class="form-control bg-light border-0 small" placeholder="Cari produk kamu" aria-label="Search" aria-describedby="basic-addon2">
+            <input name="cari" type="text" class="form-control bg-light border-0 small" placeholder="Pencarian" aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <button class="btn btn-info" type="submit">
+                <button class="btn btn-light" type="submit">
                     <i class="fas fa-search fa-sm"></i>
                 </button>
             </div>
@@ -85,7 +85,7 @@
                     echo "<h6><b><center> Keranjang kosong </center></b></h6>";
                 }
                 ?>
-                <a class="dropdown-item text-center text-gray-800" href="<?= base_url('shopping/tampil_cart') ?>">Cek Keranjang</a>
+                <a class="dropdown-item text-center text-gray-800" href="<?= base_url('shopping/cart') ?>">Cek Keranjang</a>
             </div>
         </li>
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -97,7 +97,6 @@
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                         Login Disini
                     </span>
-                    <img class="img-profile rounded-circle" src=" ">
                 <?php } else { ?>
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                         <?php echo $this->session->userdata('nama') ?>
@@ -108,7 +107,7 @@
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <?php if (!$this->session->userdata('nama')) { ?>
-                    <a class="dropdown-item" href="<?= base_url('auth/login_shop') ?>" >
+                    <a class="dropdown-item" href="<?= base_url('auth/loginshop') ?>">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Login
                     </a>
@@ -129,9 +128,7 @@
                 <?php } ?>
             </div>
         </li>
-
     </ul>
-
 </nav>
 <!-- End of Topbar -->
 

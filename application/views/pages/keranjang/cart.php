@@ -8,26 +8,27 @@
             <?php $this->load->view('_partials/topbar') ?>
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Keranjang</h1>
                 <?php echo $this->session->flashdata('msg'); ?>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Keranjang</h6>
+                        <h6 class="m-0 font-weight-bold text-info">Keranjang
+                            <a href="<?php echo base_url('product/show') ?>" class="btn btn-success float-right btn-sm">Lanjut belanja</a>
+                        </h6>
                     </div>
-                    <form action="<?php echo site_url('shopping/ubah_cart') ?>" method="POST" name="frmShopping" enctype="multipart/form-data">
+                    <form action="<?php echo site_url('shopping/updatecart') ?>" method="POST" name="frmShopping" enctype="multipart/form-data">
                         <?php if ($cart = $this->cart->contents()) { ?>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-borderless" id="tableCategory" width="100%" cellspacing="0">
+                                    <table class="table table-borderless" width="100%" cellspacing="0">
                                         <thead>
                                             <tr style="text-align:justify;">
                                                 <td width="2%">No</td>
                                                 <td width="10%">Gambar</td>
                                                 <td width="33%">Item</td>
-                                                <td width="17%">Harga</td>
+                                                <td width="15%">Harga</td>
                                                 <td width="8%">Qty</td>
-                                                <td width="20%">Jumlah</td>
+                                                <td width="18%">Jumlah</td>
                                                 <td width="10%">Hapus</td>
                                             </tr>
                                         </thead>
@@ -62,12 +63,10 @@
                                                 </tr>
                                             </tbody>
                                             <tfoot>
-                                                <tr class="bg-gray-300">
-                                                    <td colspan="3"><b>Total Pembayaran: Rp <?php echo number_format($grand_total, 0, ",", "."); ?></b></td>
-                                                    <td colspan="4" style="text-align: right;">
-                                                        <a data-toggle="modal" data-target="#myModal" class='btn btn-sm btn-danger' rel="noopener noreferrer">Kosongkan</a>
-                                                        <button class='btn btn-sm btn-primary' type="submit">Ubah</button>
-                                                        <a href="<?php echo base_url() ?>shopping/check_out" class='btn btn-sm btn-info'>Lanjut pembayaran</a>
+                                                <tr class="bg-gray-100">
+                                                    <td colspan="8" style="text-align: right;">
+                                                        <b>Total Pembayaran : Rp <?php echo number_format($grand_total, 0, ",", "."); ?></b>
+                                                    </td>
                                                 </tr>
                                             </tfoot>
                                     </table>
@@ -79,11 +78,12 @@
                             echo "<hr><h5><center><b> KERANJANG KOSONG </b></center></h5>";
                         }
                         ?>
-                        <hr>
-                        <div style="text-align: center;">
-                            <a href="<?php echo base_url('home') ?>" class='btn btn-info '>Pergi Belanja</a>
+                        <div class="card-header py-3" style="text-align: right;">
+                            <a data-toggle="modal" data-target="#myModal" class='btn btn-sm btn-danger' rel="noopener noreferrer">Hapus semua</a>
+                            <button class='btn btn-sm btn-warning' type="submit">Ubah</button>
+                            <a href="<?= base_url('shopping/checkout') ?>" class='btn btn-sm btn-info'>Beli</a>
+                            </h6>
                         </div>
-                        <hr>
                     </form>
                 </div>
             </div>

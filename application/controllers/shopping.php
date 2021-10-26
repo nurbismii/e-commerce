@@ -13,32 +13,23 @@ class shopping extends CI_Controller
         $this->load->model('m_order');
     }
 
-    public function tampil_cart()
+    public function cart()
     {
         $data['produk'] = $this->m_keranjang->get_produk_all();
         $data['kategori'] = $this->m_keranjang->get_kategori_all();
         $this->load->view('_partials/header');
-        $this->load->view('pages/transaksi/keranjang/cart', $data);
+        $this->load->view('pages/keranjang/cart', $data);
         $this->load->view('_partials/js');
     }
 
-    public function check_out()
+    public function checkout()
     {
         $data['kategori'] = $this->m_keranjang->get_kategori_all();
         $this->load->view('_partials/header');
-        $this->load->view('pages/transaksi/check_out', $data);
+        $this->load->view('pages/keranjang/checkout', $data);
         $this->load->view('_partials/js');
     }
 
-    public function detail_produk()
-    {
-        $id = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data['kategori'] = $this->m_keranjang->get_kategori_all();
-        $data['data'] = $this->m_product->getDataDetail($id);
-        $this->load->view('_partials/header');
-        $this->load->view('pages/transaksi/produk/detail_produk', $data);
-        $this->load->view('_partials/js');
-    }
 
     function tambah()
     {
@@ -61,7 +52,7 @@ class shopping extends CI_Controller
                     <span aria-hidden="true">&times;</span></button>
                     Produk berhasil ditambahkan ke keranjang
                 </div>');
-            redirect('home');
+            return redirect('product/show');
         }
     }
 
@@ -82,10 +73,10 @@ class shopping extends CI_Controller
                 <span aria-hidden="true">&times;</span></button>
                 Isi keranjang berhasil diubah
             </div>');
-        redirect('shopping/tampil_cart');
+        redirect('shopping/cart');
     }
 
-    function ubah_cart()
+    function updatecart()
     {
         $cart_info = $_POST['cart'];
         foreach ($cart_info as $id => $cart) {
@@ -109,10 +100,10 @@ class shopping extends CI_Controller
                 <span aria-hidden="true">&times;</span></button>
                 Isi keranjang berhasil diubah
             </div>');
-        redirect('shopping/tampil_cart');
+        redirect('shopping/cart');
     }
 
-    public function proses_order()
+    public function order()
     {
         //-------------------------Input data transaksi--------------------------
         $data_user = array(
@@ -147,7 +138,7 @@ class shopping extends CI_Controller
                         <span aria-hidden="true">&times;</span></button>
                         Produk yang di inginkan tidak mencukupi atau lagi kosong silahkan lihat stok yang tersedia
                     </div>');
-                    redirect('home');
+                    redirect('product/show');
                 } else {
                     $this->m_keranjang->tambah_detail_order($data_detail);
                     $stok = $cek->jumlah - $item['qty'];
@@ -175,7 +166,7 @@ class shopping extends CI_Controller
     {
         $data['data'] = $this->m_order->get_data_info();
         $this->load->view('_partials/header');
-        $this->load->view('pages/transaksi/riwayat/history', $data);
+        $this->load->view('pages/riwayat/history', $data);
         $this->load->view('_partials/js');
     }
 }

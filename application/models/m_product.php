@@ -101,10 +101,10 @@ class m_product extends CI_Model
     public function _upload()
     {
         $config['upload_path']          = './upload/product/';
-        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['allowed_types']        = 'jpg|png|jpeg|jfif';
         $config['file_name']            = $this->id_produk;
         $config['overwrite']            = true;
-        $config['max_size']             = 5120; // 1MB
+        $config['max_size']             = 2048; // 1MB
         // $config['max_width']            = 1024;
         // $config['max_height']           = 768;
 

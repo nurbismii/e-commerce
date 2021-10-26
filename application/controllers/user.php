@@ -60,12 +60,13 @@ class user extends CI_Controller
             redirect('user');
         } else {
             $this->session->set_flashdata('msg', '
-            <div class="alert alert-info alert-dismissible" role="alert">
+            <div class="alert alert-warning alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
                 Confirm password sebelum simpan perubahan
             </div>');
         }
+
         $data['data'] = $user->getDataDetail($id);
         if (!$data['data']) show_404();
 

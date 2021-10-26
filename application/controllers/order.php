@@ -14,7 +14,7 @@ class order extends CI_Controller
         $data['data'] = $this->m_order->getData();
         $data['info'] = $this->m_order->get_data_info();
         $this->load->view('_partials/header');
-        $this->load->view('pages/transaksi/order', $data);
+        $this->load->view('pages/order/order', $data);
         $this->load->view('_partials/js');
     }
     public function update()

@@ -6,10 +6,9 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> D'fiza <sup>STORE</sup></div>
+        <div class="sidebar-brand-text mx-300"> D'fiza <sup>STORE</sup></div>
     </a>
 
-    <!-- Divider -->
     <hr class="sidebar-divider my-0">
     <?php if ($this->session->userdata('id_user') == 1) { ?>
         <!-- Nav Item - Dashboard -->
@@ -19,13 +18,7 @@
                 <span>Dashboard</span></a>
         </li>
     <?php } ?>
-    <!-- Divider -->
-    <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Produk
-    </div>
     <!-- Nav Item - Tables -->
     <?php if ($this->session->userdata('id_user') == 1) { ?>
         <!-- Nav Item - Pages Collapse Menu -->
@@ -34,7 +27,7 @@
         ">
             <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-folder-open"></i>
-                <span>Master Data</span>
+                <span>Master</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
@@ -42,7 +35,7 @@
                     <a class="collapse-item <?= ($this->uri->segment(1) == "product") ? 'active' : ''; ?>" href="<?= base_url('product') ?>">Produk</a>
                     <a class="collapse-item <?= ($this->uri->segment(1) == "category") ? 'active' : ''; ?>" href="<?= base_url('category') ?>">Kategori</a>
                     <a class="collapse-item <?= ($this->uri->segment(1) == "order") ? 'active' : ''; ?>" href="<?= base_url('order') ?>">Order</a>
-                    <a class="collapse-item <?= ($this->uri->segment(1) == "metode_pembayaran") ? 'active' : ''; ?>" href="<?= base_url('metode_pembayaran') ?>">Pembayaran</a>
+                    <a class="collapse-item <?= ($this->uri->segment(1) == "metode_pembayaran") ? 'active' : ''; ?>" href="<?= base_url('pembayaran') ?>">Pembayaran</a>
                     <a class="collapse-item <?= ($this->uri->segment(1) == "user") ? 'active' : ''; ?>" href="<?= base_url('user') ?>">User</a>
                     <a class="collapse-item <?= ($this->uri->segment(1) == "role") ? 'active' : ''; ?>" href="<?= base_url('role') ?>">Role</a>
                 </div>
@@ -54,8 +47,14 @@
             <i class="fas fa-fw fa-home"></i>
             <span>Home</span></a>
     </li>
+
+    <li class="nav-item <?= ($this->uri->segment(2) == 'show') ? 'active' : ''; ?>">
+        <a class="nav-link " href="<?= base_url('product/show') ?>">
+            <i class="fas fa-fw fa-shopping-cart"></i>
+            <span>Produk</span></a>
+    </li>
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item <?= ($this->uri->segment(1) == 'product') ? 'active' : ''; ?>">
+    <li class="nav-item <?= ($this->uri->segment(2) == 'category') ? 'active' : ''; ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-tags"></i>
             <span>Kategori</span>
@@ -71,14 +70,6 @@
         </div>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Transaksi
-    </div>
-
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item  <?= ($this->uri->segment(1) == 'shopping') ? 'active' : ''; ?>">
         <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
@@ -87,8 +78,8 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Daftar transaksi:</h6>
-                <a class="collapse-item  <?= ($this->uri->segment(2) == 'history') ? 'active' : ''; ?>" href="<?= base_url('shopping/history') ?>">Riwayat Transaksi</a>
+                <h6 class="collapse-header">Komponen :</h6>
+                <a class="collapse-item  <?= ($this->uri->segment(2) == 'history') ? 'active' : ''; ?>" href="<?= base_url('shopping/history') ?>">Riwayat</a>
             </div>
         </div>
     </li>

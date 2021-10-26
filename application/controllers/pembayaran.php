@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class metode_pembayaran extends CI_Controller
+class pembayaran extends CI_Controller
 {
     public function __construct()
     {
@@ -40,7 +40,7 @@ class metode_pembayaran extends CI_Controller
     public function edit($id_norek = null)
     {
 
-        if (!isset($id_norek)) redirect('metode_pembayaran');
+        if (!isset($id_norek)) redirect('pembayaran');
 
         $pembayaran = $this->m_metode_pembayaran;
         $validation = $this->form_validation;
@@ -56,7 +56,7 @@ class metode_pembayaran extends CI_Controller
                 <span aria-hidden="true">&times;</span></button>
                 Berhasil diubah
             </div>');
-            redirect('metode_pembayaran');
+            redirect('pembayaran');
         }
         $data['data'] = $pembayaran->getDataDetail($id_norek);
         if (!$data['data']) show_404();

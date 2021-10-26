@@ -29,20 +29,20 @@
                                         <p class="card-text small"><?php echo substr($row->deskripsi, 0, 22) ?>..<br>
                                             <span class="card-text small">Stok <?php echo $row->jumlah ?></span>
                                         </p>
-                                        <p class="card-text">Rp. <?php echo $rupiah ?></p>
+                                        <p class="card-text">Rp <?php echo $rupiah ?></p>
                                         <input type="hidden" name="id" value="<?php echo $row->id_produk ?>" />
                                         <input type="hidden" name="nama" value="<?php echo $row->nama ?>" />
                                         <input type="hidden" name="harga" value="<?php echo $row->harga ?>" />
                                         <input type="hidden" name="foto" value="<?php echo $row->foto ?>" />
                                         <input type="hidden" name="jumlah" value="1" />
-                                        <button type="submit" class="btn btn-light btn-sm btn-icon-split">
-                                            <span class="icon text-gray-600">
+                                        <button type="submit" class="btn btn-info btn-sm btn-icon-split">
+                                            <span class="icon text-gray-300">
                                                 <i class="fas fa-shopping-cart"></i>
                                             </span>
-                                            <span class="text">+</span>
+                                            <span class="text">Tambah</span>
                                         </button>
-                                        <a href="<?php echo base_url('shopping/detail_produk/') . $row->id_produk; ?>" class="btn btn-info btn-sm btn-icon-split">
-                                            <span class="icon text-gray-300">
+                                        <a href="<?php echo base_url('shop/detail/') . $row->id_produk; ?>" class="btn btn-light btn-sm btn-icon-split">
+                                            <span class="icon text-gray-100">
                                                 <i class="fas fa-eye"></i>
                                             </span>
                                             <span class="text">Detail</span>

@@ -23,7 +23,7 @@
             $("#tableProduct").DataTable({
                 columnDefs: [{
                     type: 'date',
-                    targets: [7]
+                    targets: [6]
                 }],
             });
         });

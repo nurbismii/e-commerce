@@ -7,50 +7,61 @@
             <!-- Topbar -->
             <?php $this->load->view('_partials/topbar') ?>
             <div class="container-fluid">
-                <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Tambah User</h1>
-                <?php echo form_open_multipart('user/add') ?>
-                <div class="form-group col-sm-8">
-                    <div class="col-lg">
-                        <div class="form-group">
-                            <label for="Nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap"></input>
-                        </div>
-                        <div class="form-group">
-                            <label for="Username">Username</label>
-                            <input <?php echo form_error('username') ?: '' ?> type="text" class="form-control" id="Username" name="username" placeholder="Username">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-5">
-                                <label for="Password">Password</label>
-                                <input <?php echo form_error('password') ?: '' ?> type="password" class="form-control" id="Password" name="password" placeholder="Password">
+                <div class="row">
+                    <div class="col-lg-8 mb-4">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-dark">User Baru
+                                    <a href="<?= base_url('user') ?>" class="btn btn-light btn-sm float-right">Tutup</a>
+                                </h6>
                             </div>
-                            <div class="form-group col-md-7">
-                                <label for="Password2">Confirm Password</label>
-                                <input <?php echo form_error('password2') ?: '' ?> type="password" class="form-control" id="password2" name="password2" placeholder="Confirm password">
-                            </div>
+                            <form class="user" action="<?= base_url('user/add') ?>" method="POST" enctype="multipart/form-data">
+                                <div class="card-body">
+                                    <div class="form-group col-sm-12">
+                                        <div class="form-group">
+                                            <label for="Nama">Nama Lengkap</label>
+                                            <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Lengkap"></input>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Username">Username</label>
+                                            <input <?php echo form_error('username') ?: '' ?> type="text" class="form-control form-control-user" id="Username" name="username" placeholder="Username">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-5">
+                                                <label for="Password">Password</label>
+                                                <input <?php echo form_error('password') ?: '' ?> type="password" class="form-control form-control-user" id="Password" name="password" placeholder="Password">
+                                            </div>
+                                            <div class="form-group col-md-7">
+                                                <label for="Password2">Confirm Password</label>
+                                                <input <?php echo form_error('password2') ?: '' ?> type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Confirm password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Username">Email</label>
+                                            <input <?php echo form_error('email') ?: '' ?> type="email" class="form-control form-control-user" id="email" name="email" placeholder="contoh@mail.com">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="role">Role</label>
+                                            <select class="form-control form-control-user" name="id_role" id="id_role">
+                                                <option value="1">Admin</option>
+                                                <option value="2">User</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="foto">Foto</label>
+                                            <input type="file" class="form-control form-control-user" id="userfile" name="userfile">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer py-3 text-right">
+                                    <button type="reset" class="btn btn-light btn-sm">Hapus</button>
+                                    <button type="submit" class="btn btn-success btn-sm mr-2">Simpan</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label for="Username">Email</label>
-                            <input <?php echo form_error('email') ?: '' ?> type="email" class="form-control" id="email" name="email" placeholder="contoh@mail.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="role">Role</label>
-                            <select class="form-control" name="id_role" id="id_role">
-                                <option value="1">Admin</option>
-                                <option value="2">User</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="foto">Foto</label>
-                            <input type="file" class="form-control" id="userfile" name="userfile">
-                        </div>
-                        <button type="submit" class="btn btn-success mr-2">Simpan</button>
-                        <button type="reset" class="btn btn-light">Hapus</button>
-                        <a href="<?= base_url('user') ?>" class="btn btn-light float-right">Kembali</a>
                     </div>
                 </div>
-                <?php echo form_close() ?>
             </div>
         </div>
         <?php $this->load->view('_partials/footer') ?>

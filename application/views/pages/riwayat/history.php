@@ -8,19 +8,18 @@
             <?php $this->load->view('_partials/topbar') ?>
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Riwayat Transaksi
-                    <a class="btn btn-info btn-icon-split btn-sm float-right" href="<?= base_url('home') ?>">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-home"></i>
-                        </span>
-                        <span class="text">Home</span>
-                    </a>
-                </h1>
                 <?php echo $this->session->flashdata('msg'); ?>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-info">Riwayat</h6>
+                        <h6 class="m-0 font-weight-bold text-info">Riwayat
+                            <a class="btn btn-light btn-icon-split btn-sm float-right" href="<?= base_url('home') ?>">
+                                <span class="icon text-white-300">
+                                    <i class="fas fa-home"></i>
+                                </span>
+                                <span class="text">Home</span>
+                            </a>
+                        </h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -50,8 +49,8 @@
                                             <tr style="text-align:justify">
                                                 <?php if ($row->status == "Proses") { ?>
                                                     <td>
-                                                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#konfirm<?php echo $row->id ?>">
-                                                            <span class="icon text-white-50">
+                                                        <button class="btn btn-light btn-sm" data-toggle="modal" data-target="#konfirm<?php echo $row->id ?>">
+                                                            <span class="icon text-white-300">
                                                                 <i class="fas fa-reply"></i>
                                                             </span>
                                                             <span class="text"></span>
