@@ -32,23 +32,23 @@ class m_keranjang extends CI_Model
         return $this->db->get();
     }
 
-    public function tambah_transaksi($data)
+    public function cart($data)
     {
-        $this->db->insert('transaksi_temp', $data);
+        $this->db->insert('cart', $data);
         $id = $this->db->insert_id();
         return (isset($id)) ? $id : FALSE;
     }
 
-    public function tambah_order($data)
+    public function order($data)
     {
-        $this->db->insert('ordeer', $data);
+        $this->db->insert('order', $data);
         $id = $this->db->insert_id();
         return (isset($id)) ? $id : FALSE;
     }
 
-    public function tambah_detail_order($data)
+    public function detail_order($data)
     {
-        $this->db->insert('detail_order', $data);
+        $this->db->insert('detail_cart', $data);
     }
     public function cek_stok($id)
     {

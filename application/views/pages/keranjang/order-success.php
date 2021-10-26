@@ -1,6 +1,9 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
-    <?php $this->load->view('_partials/sidebar') ?>
+    <?php
+    if ($this->session->userdata('id_role') == 1)
+        $this->load->view('_partials/sidebar');
+    ?>
     <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
@@ -8,7 +11,7 @@
             <?php $this->load->view('_partials/topbar') ?>
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Pembayaran<a class="btn btn-info btn-icon-split btn-sm float-right" href="<?= base_url('home') ?>">
+                <h1 class="h3 mb-4 text-gray-800">Pembayaran<a class="btn btn-light btn-icon-split btn-sm float-right" href="<?= base_url('home') ?>">
                         <span class="icon text-white-50">
                             <i class="fas fa-home"></i>
                         </span>

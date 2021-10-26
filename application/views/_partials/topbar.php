@@ -16,28 +16,38 @@
             </div>
         </div>
     </form>
+
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
+        <?php if ($this->session->userdata('id_role') == 2) { ?>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="<?= base_url('home') ?>">
+                    <i class="m-0 font-weight-bold text-dark">Home</i>
+                </a>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="<?= base_url('home/produk') ?>">
+                    <i class="m-0 font-weight-bold text-dark">Produk</i>
+                </a>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="<?= base_url('home/kategori') ?>">
+                    <i class="m-0 font-weight-bold text-dark">Kategori</i>
+                </a>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="<?= base_url('home/kontak') ?>">
+                    <i class="m-0 font-weight-bold text-dark">Kontak</i>
+                </a>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="<?= base_url('home/tentang') ?>">
+                    <i class="m-0 font-weight-bold text-dark">Tentang</i>
+                </a>
+            </li>
+        <?php } ?>
+        <div class="topbar-divider d-none d-sm-block"></div>
 
-        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-        <li class="nav-item dropdown no-arrow d-sm-none">
-            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-            </a>
-            <!-- Dropdown - Messages -->
-            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-info" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </li>
         <li class="nav-item dropdown no-arrow mx-1">
             <?php
             $cart = $this->cart->contents();
@@ -85,9 +95,10 @@
                     echo "<h6><b><center> Keranjang kosong </center></b></h6>";
                 }
                 ?>
-                <a class="dropdown-item text-center text-gray-800" href="<?= base_url('shopping/cart') ?>">Cek Keranjang</a>
+                <a class="dropdown-item text-center text-gray-800" href="<?= base_url('shopping/cart') ?>">Lihat</a>
             </div>
         </li>
+
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
@@ -112,6 +123,10 @@
                         Login
                     </a>
                 <?php } else { ?>
+                    <a class="dropdown-item" href="<?= base_url('order') ?>">
+                        <i class="fas fa-handshake fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Pembelian
+                    </a>
                     <a class="dropdown-item" href="#">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                         Kelola Profile

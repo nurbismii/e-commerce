@@ -10,13 +10,15 @@ class auth extends CI_Controller
 		$this->load->model('m_users');
 		$this->load->library('cart');
 		$this->load->model('m_product');
+		$this->load->model('m_category');
 	}
 
 	public function index()
 	{
 		$data['produk'] = $this->m_product->get();
+		$data['kategori'] = $this->m_category->getData();
 		$this->load->view('_partials/header');
-		$this->load->view('pages/home/produk', $data);
+		$this->load->view('pages/home/home', $data);
 		$this->load->view('_partials/js');
 	}
 
@@ -63,6 +65,7 @@ class auth extends CI_Controller
 				$row = $query->row();
 				$user_data = array(
 					'id_user' => $row->id_user,
+					'id_role' => $row->id_role,
 					'username' => $row->username,
 					'nama' => $row->nama,
 					'picture' => $row->picture,
@@ -84,7 +87,7 @@ class auth extends CI_Controller
 	function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('home');
+		redirect('auth/loginshop');
 	}
 	public function check_username_exists($username)
 	{

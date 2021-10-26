@@ -69,19 +69,15 @@
             </div>
         </div>
     </li>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item  <?= ($this->uri->segment(1) == 'shopping') ? 'active' : ''; ?>">
-        <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-wallet"></i>
-            <span>Transaksi</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Komponen :</h6>
-                <a class="collapse-item  <?= ($this->uri->segment(2) == 'history') ? 'active' : ''; ?>" href="<?= base_url('shopping/history') ?>">Riwayat</a>
-            </div>
-        </div>
+    <li class="nav-item">
+        <a class="nav-link " href="">
+            <i class="fas fa-fw fa-address-card"></i>
+            <span>Kontak</span></a>
     </li>
-    <!-- Divider -->
+
+    <li class="nav-item">
+        <a class="nav-link " href="">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Tentang Kami</span></a>
+    </li>
 </ul>

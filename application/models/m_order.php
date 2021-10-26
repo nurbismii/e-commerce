@@ -2,20 +2,11 @@
 
 class m_order extends CI_Model
 {
-    private $v_table = "v_order";
-    private $table = "transaksi_temp";
+    private $table = "order";
 
-    public function get_data_info()
-    {
-        return $this->db->get('v_order')->result();
-    }
     public function getData()
     {
-        return $this->db->get($this->v_table)->result();
-    }
-    public function setData($data)
-    {
-        return $this->db->insert('order_info', $data);
+        return $this->db->get($this->table)->result();
     }
     public function update($data, $id)
     {
@@ -27,9 +18,16 @@ class m_order extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete($this->table);
     }
-    public function get_id($id)
+    public function join($id)
     {
-        $query = $this->db->query("SELECT id from transaksi_temp where id = '" . $id . "'");
-        return $query->row();
+        $this->db->select('*');
+        $this->db->from('alamat_pengiriman');
+        $this->db->join('order', 'alamat_pengiriman.id=order.alamat_id', 'left');
+        $this->db->join('detail_cart', 'order.id=detail_cart.order_id', 'left');
+        $this->db->join('product', 'detail_cart.produk=product.id_produk', 'left');
+        $this->db->where('alamat_pengiriman.user_id', $id);
+        $query = $this->db->get();
+
+        return $query->result();
     }
 }

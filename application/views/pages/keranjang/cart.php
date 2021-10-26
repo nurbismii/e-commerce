@@ -1,6 +1,9 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
-    <?php $this->load->view('_partials/sidebar') ?>
+    <?php
+    if ($this->session->userdata('id_role') == 1)
+        $this->load->view('_partials/sidebar');
+    ?>
     <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
@@ -12,8 +15,8 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-info">Keranjang
-                            <a href="<?php echo base_url('product/show') ?>" class="btn btn-success float-right btn-sm">Lanjut belanja</a>
+                        <h6 class="m-0 font-weight-bold text-dark">Keranjang
+                            <a href="<?php echo base_url('product/show') ?>" class="btn btn-light float-right btn-sm">Lanjut belanja</a>
                         </h6>
                     </div>
                     <form action="<?php echo site_url('shopping/updatecart') ?>" method="POST" name="frmShopping" enctype="multipart/form-data">
@@ -56,7 +59,7 @@
                                                     <td><?php echo number_format($item['price'], 0, ",", "."); ?></td>
                                                     <td><input type="number" min="1" max="5" class="form-control input-sm" name="cart[<?php echo $item['id']; ?>][qty]" value="<?php echo $item['qty']; ?>" /></td>
                                                     <td><?php echo number_format($item['subtotal'], 0, ",", ".") ?></td>
-                                                    <td><a href="<?php echo base_url() ?>shopping/hapus/<?php echo $item['rowid']; ?>" class="btn btn-sm btn-danger"><span class="icon text-gray-300">
+                                                    <td><a href="<?php echo base_url() ?>shopping/hapus/<?php echo $item['rowid']; ?>" class="btn btn-sm btn-light"><span class="icon text-gray-50">
                                                                 <i class="fas fa-trash"></i>
                                                             </span></a></td>
                                                 <?php endforeach; ?>
@@ -65,7 +68,7 @@
                                             <tfoot>
                                                 <tr class="bg-gray-100">
                                                     <td colspan="8" style="text-align: right;">
-                                                        <b>Total Pembayaran : Rp <?php echo number_format($grand_total, 0, ",", "."); ?></b>
+                                                        <b>Total : Rp <?php echo number_format($grand_total, 0, ",", "."); ?></b>
                                                     </td>
                                                 </tr>
                                             </tfoot>
@@ -79,9 +82,9 @@
                         }
                         ?>
                         <div class="card-header py-3" style="text-align: right;">
-                            <a data-toggle="modal" data-target="#myModal" class='btn btn-sm btn-danger' rel="noopener noreferrer">Hapus semua</a>
-                            <button class='btn btn-sm btn-warning' type="submit">Ubah</button>
-                            <a href="<?= base_url('shopping/checkout') ?>" class='btn btn-sm btn-info'>Beli</a>
+                            <a data-toggle="modal" data-target="#myModal" class='btn btn-sm btn-light' rel="noopener noreferrer">Hapus semua</a>
+                            <button class='btn btn-sm btn-light' type="submit">Ubah</button>
+                            <a href="<?= base_url('shopping/checkout') ?>" class='btn btn-sm btn-success'>Beli</a>
                             </h6>
                         </div>
                     </form>

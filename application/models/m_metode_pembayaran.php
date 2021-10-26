@@ -2,7 +2,7 @@
 
 class m_metode_pembayaran extends CI_Model
 {
-    private $table = "no_rek";
+    private $table = "pembayaran";
 
     public $id_norek;
     public $nama_bank;

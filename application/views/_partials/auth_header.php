@@ -20,4 +20,4 @@
 
 </head>
 
-<body class="bg-gradient-info">
+<body class="bg-gradient-light">

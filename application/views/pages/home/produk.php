@@ -1,15 +1,15 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
-    <?php $this->load->view('_partials/sidebar') ?>
+    <?php
+    if ($this->session->userdata('id_role') == 1)
+        $this->load->view('_partials/sidebar');
+    ?>
     <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
             <!-- Topbar -->
             <?php $this->load->view('_partials/topbar') ?>
             <div class="container-fluid">
-                <h1 class="h3 mb-4 text-gray-800"><? ?>
-
-                </h1>
                 <?php echo $this->session->flashdata('msg') ?>
                 <div class="row">
                     <?php $count = 0;
@@ -21,8 +21,7 @@
                         <?php if ($row->jumlah != "0") { ?>
                             <div class="col-sm-3">
                                 <?php echo form_open_multipart('shopping/tambah') ?>
-
-                                <div class="card" style="width: 17rem;">
+                                <div class="card-body">
                                     <img class="card-img-top" height="200" src="<?php echo base_url('upload/product/') . $row->foto ?>" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo substr($row->nama, 0, 15) ?></h5>
@@ -41,7 +40,7 @@
                                             </span>
                                             <span class="text">Tambah</span>
                                         </button>
-                                        <a href="<?php echo base_url('shop/detail/') . $row->id_produk; ?>" class="btn btn-light btn-sm btn-icon-split">
+                                        <a href="<?php echo base_url('product/detail/') . $row->id_produk; ?>" class="btn btn-light btn-sm btn-icon-split">
                                             <span class="icon text-gray-100">
                                                 <i class="fas fa-eye"></i>
                                             </span>
@@ -53,7 +52,6 @@
                             </div>
                         <?php } ?>
                     <?php } ?>
-
                 </div>
             </div>
         </div>

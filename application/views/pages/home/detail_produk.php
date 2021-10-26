@@ -1,6 +1,9 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
-    <?php $this->load->view('_partials/sidebar') ?>
+    <?php
+    if ($this->session->userdata('id_role') == 1)
+        $this->load->view('_partials/sidebar');
+    ?>
     <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
@@ -12,8 +15,6 @@
                 <?php echo $this->session->flashdata('msg') ?>
                 <?php $harga = number_format($data->harga);
                 $harga = str_replace(',', '.', $harga); ?>
-
-
                 <div class="card bg-dark text-info">
                     <img width="100%" height="500" src="<?php echo base_url('upload/product/') . $data->foto ?>" alt="Card image">
                     <div class="card-img-overlay">
@@ -22,7 +23,7 @@
                             <span class="card-text small">Stok <?php echo $data->jumlah ?></span>
                         </p>
                         <p class="card-text">Rp <?php echo $harga ?></p>
-                        <a href="<?= base_url('shop') ?>" class="btn btn-light btn-sm btn-icon-split">
+                        <a href="<?= base_url('product/show') ?>" class="btn btn-light btn-sm btn-icon-split">
                             <span class="icon text-gray-600">
                                 <i class="fas fa-undo"></i>
                             </span>

@@ -1,5 +1,4 @@
 <!-- Page Wrapper -->
-</style>
 <div id="wrapper">
     <?php $this->load->view('_partials/sidebar') ?>
     <div id="content-wrapper" class="d-flex flex-column">
