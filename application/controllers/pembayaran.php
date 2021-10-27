@@ -11,6 +11,7 @@ class pembayaran extends CI_Controller
     }
     public function index()
     {
+        check_not_login();
         $data['data'] = $this->m_metode_pembayaran->getData();
         $this->load->view('_partials/header');
         $this->load->view('pages/pembayaran/pembayaran', $data);
@@ -18,6 +19,7 @@ class pembayaran extends CI_Controller
     }
     public function add()
     {
+        check_not_login();
         $pembayaran = $this->m_metode_pembayaran;
         $validation = $this->form_validation;
 
@@ -39,7 +41,7 @@ class pembayaran extends CI_Controller
     }
     public function edit($id_norek = null)
     {
-
+        check_not_login();
         if (!isset($id_norek)) redirect('pembayaran');
 
         $pembayaran = $this->m_metode_pembayaran;
@@ -67,6 +69,7 @@ class pembayaran extends CI_Controller
     }
     public function delete($id)
     {
+        check_not_login();
         $this->m_metode_pembayaran->deleteData($id);
         $err = $this->db->error();
 

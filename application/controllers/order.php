@@ -11,6 +11,7 @@ class order extends CI_Controller
     }
     public function index()
     {
+        check_not_login();
         $id = $this->session->userdata('id_user');
         $data['data'] = $this->m_order->join($id);
         $this->load->view('_partials/header');
@@ -19,6 +20,7 @@ class order extends CI_Controller
     }
     public function update()
     {
+        check_not_login();
         $id = $this->input->post('transaksi_id');
         $status = $this->input->post('status');
 
@@ -39,6 +41,7 @@ class order extends CI_Controller
     #delete order history
     public function delete($id)
     {
+        check_not_login();
         $this->m_order->deleteData($id);
         $this->session->set_flashdata('msg', '
             <div class="alert alert-warning alert-dismissible" role="alert">

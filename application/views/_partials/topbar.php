@@ -19,7 +19,7 @@
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
-        <?php if ($this->session->userdata('id_role') == 2) { ?>
+        <?php if (($this->session->userdata('id_role') == 2) || ($this->session->userdata('id_role') == "")) { ?>
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link dropdown-toggle" href="<?= base_url('home') ?>">
                     <i class="m-0 font-weight-bold text-dark">Home</i>

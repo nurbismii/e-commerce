@@ -15,11 +15,17 @@ class auth extends CI_Controller
 
 	public function index()
 	{
-		$data['produk'] = $this->m_product->get();
-		$data['kategori'] = $this->m_category->getData();
-		$this->load->view('_partials/header');
-		$this->load->view('pages/home/home', $data);
-		$this->load->view('_partials/js');
+		if (($this->session->userdata('id_role') == 2) || ($this->session->userdata('id_role') == "")) {
+			$data['produk'] = $this->m_product->get();
+			$data['kategori'] = $this->m_category->getData();
+			$this->load->view('_partials/header');
+			$this->load->view('pages/home/home', $data);
+			$this->load->view('_partials/js');
+		} else {
+			$this->load->view('_partials/header');
+			$this->load->view('pages/home/dashboard');
+			$this->load->view('_partials/js');
+		}
 	}
 
 	public function loginshop()

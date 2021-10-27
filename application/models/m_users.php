@@ -101,6 +101,7 @@ class m_users extends CI_Model
 
         return $this->db->update($this->table, $this, array('id_user' => $post['id_user']));
     }
+
     // function check already username
     public function check_username_exists($username)
     {

@@ -13,6 +13,7 @@ class product extends CI_Controller
     }
     public function index()
     {
+        check_not_login();
         $data['data'] = $this->m_product->getData();
         $data['data_'] = $this->m_product->get();
         $this->load->view('_partials/header');
@@ -22,6 +23,7 @@ class product extends CI_Controller
 
     public function add()
     {
+        check_not_login();
         $product = $this->m_product;
         $validation = $this->form_validation;
 
@@ -46,7 +48,7 @@ class product extends CI_Controller
     }
     public function edit($id_produk = null)
     {
-
+        check_not_login();
         if (!isset($id_produk)) redirect('product');
 
         $product = $this->m_product;
@@ -76,6 +78,7 @@ class product extends CI_Controller
     }
     public function delete($id)
     {
+        check_not_login();
         $this->m_product->deleteData($id);
         $this->session->set_flashdata('msg', '
             <div class="alert alert-warning alert-dismissible" role="alert">
@@ -85,6 +88,7 @@ class product extends CI_Controller
             </div>');
         redirect('product');
     }
+
     public function category($id_kategori = null)
     {
         $kategori = $this->m_category->get_kategori($id_kategori);
@@ -114,5 +118,31 @@ class product extends CI_Controller
         $this->load->view('_partials/header');
         $this->load->view('pages/home/produk', $data);
         $this->load->view('_partials/js');
+    }
+
+    function tambah()
+    {
+        check_already_login();
+        if (!$this->session->userdata('id_user')) {
+            $this->load->view('_partials/auth_header');
+            $this->load->view('auth/login');
+            $this->load->view('_partials/auth_js');
+        } else {
+            $data_produk = array(
+                'id' => $this->input->post('id'),
+                'name' => $this->input->post('nama'),
+                'price' => $this->input->post('harga'),
+                'gambar' => $this->input->post('foto'),
+                'qty' => $this->input->post('jumlah')
+            );
+            $this->cart->insert($data_produk);
+            $this->session->set_flashdata('msg', '
+                <div class="alert alert-info alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                    Produk berhasil ditambahkan ke keranjang
+                </div>');
+            return redirect('product/kategori');
+        }
     }
 }

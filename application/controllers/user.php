@@ -11,6 +11,7 @@ class user extends CI_Controller
     }
     public function index()
     {
+        check_not_login();
         $data['data'] = $this->m_users->getData();
         $this->load->view('_partials/header');
         $this->load->view('pages/user/user', $data);
@@ -19,6 +20,7 @@ class user extends CI_Controller
 
     public function add()
     {
+        check_not_login();
         $user = $this->m_users;
         $validation = $this->form_validation;
 
@@ -41,6 +43,7 @@ class user extends CI_Controller
 
     public function edit($id = null)
     {
+        check_not_login();
         if (!isset($id)) redirect('user');
 
         $user = $this->m_users;
@@ -77,6 +80,7 @@ class user extends CI_Controller
 
     public function delete($id)
     {
+        check_not_login();
         $this->m_users->deleteData($id);
         $this->session->set_flashdata('msg', '
             <div class="alert alert-warning alert-dismissible" role="alert">

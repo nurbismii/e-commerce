@@ -12,6 +12,7 @@ class category extends CI_Controller
     }
     public function index()
     {
+        check_not_login();
         $data['data'] = $this->m_category->getData();
         $this->load->view('_partials/header');
         $this->load->view('pages/category/category', $data);
@@ -19,6 +20,7 @@ class category extends CI_Controller
     }
     public function add()
     {
+        check_not_login();
         $category = $this->m_category;
         $validation = $this->form_validation;
 
@@ -40,7 +42,7 @@ class category extends CI_Controller
     }
     public function edit($id_kategori = null)
     {
-
+        check_not_login();
         if (!isset($id_kategori)) redirect('category');
 
         $category = $this->m_category;
@@ -68,6 +70,7 @@ class category extends CI_Controller
     }
     public function delete($id)
     {
+        check_not_login();
         $this->m_category->deleteData($id);
         $err = $this->db->error();
 

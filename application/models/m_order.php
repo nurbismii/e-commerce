@@ -23,6 +23,7 @@ class m_order extends CI_Model
         $this->db->select('*');
         $this->db->from('alamat_pengiriman');
         $this->db->join('order', 'alamat_pengiriman.id=order.alamat_id', 'left');
+        $this->db->join('cart', 'order.cart_id=cart.id', 'left');
         $this->db->join('detail_cart', 'order.id=detail_cart.order_id', 'left');
         $this->db->join('product', 'detail_cart.produk=product.id_produk', 'left');
         $this->db->where('alamat_pengiriman.user_id', $id);

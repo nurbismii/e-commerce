@@ -111,7 +111,6 @@ class shopping extends CI_Controller
     public function order()
     {
         $id = $this->session->userdata('id_user');
-
         if (!$this->m_alamat_pengiriman->getData($id)) {
             $this->session->set_flashdata('msg', '
                     <div class="alert alert-danger alert-dismissible" role="alert">

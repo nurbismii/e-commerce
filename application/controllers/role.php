@@ -11,6 +11,7 @@ class role extends CI_Controller
     }
     public function index()
     {
+        check_not_login();
         $data['data'] = $this->m_role->getData();
         $this->load->view('_partials/header');
         $this->load->view('pages/role/role', $data);
@@ -18,6 +19,7 @@ class role extends CI_Controller
     }
     public function add()
     {
+        check_not_login();
         $role = $this->m_role;
         $validation = $this->form_validation;
 
@@ -39,7 +41,7 @@ class role extends CI_Controller
     }
     public function edit($id_role = null)
     {
-
+        check_not_login();
         if (!isset($id_role)) redirect('role');
 
         $role = $this->m_role;
@@ -67,6 +69,7 @@ class role extends CI_Controller
     }
     public function delete($id)
     {
+        check_not_login();
         $this->m_role->deleteData($id);
         $err = $this->db->error();
 

@@ -88,7 +88,7 @@
 
                             <?php } else {
 
-                                echo "<hr><h5><center><b> KERANJANG KOSONG </b></center></h5>";
+                                echo "<hr><h5><center><b> Isi keranjang tidak ada </b></center></h5><hr>";
                             }
                             ?>
                         </div>
@@ -150,7 +150,9 @@
                                 </form>
                             <?php
                             } else {
-                                echo "<h5>Shopping Cart masih kosong</h5>";
+                                echo "<hr>";
+                                echo "<center><h5>Tidak ada ringkasan</h5></center>";
+                                echo "<hr>";
                             }
                             ?>
                         </div>

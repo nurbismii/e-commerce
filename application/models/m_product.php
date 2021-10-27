@@ -56,9 +56,16 @@ class m_product extends CI_Model
     {
         return $this->db->get($this->table)->result();
     }
-    public function getDataDetail($id_produk)
+    public function getDataDetail($id)
     {
-        return $this->db->get_where($this->table, ['id_produk' => $id_produk])->row();
+        $this->db->select('product.*,kategori');
+        $this->db->from('product');
+        $this->db->join('category', 'category.id_kategori=product.id_kategori', 'left');
+        $this->db->where('product.id_produk', $id);
+
+        $query = $this->db->get();
+
+        return $query->row();
     }
     public function setData()
     {
