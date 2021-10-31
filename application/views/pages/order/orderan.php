@@ -13,22 +13,17 @@
                 <?php echo $this->session->flashdata('msg'); ?>
                 <!-- DataTales Example -->
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-dark">Pembelian</h6>
-                            </div>
+                    <!-- Border Left Utilities -->
+                    <div class="col-lg-6">
+                        <div class="card mb-4 py-3 border-left-warning">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-borderless" id="" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-
                                                 <th></th>
-                                                <th>Penerima</th>
-                                                <th>Bukti Bayar</th>
+                                                <th>Pembayaran</th>
                                                 <th>Rincian</th>
-                                                <th>Pesanan</th>
                                             </tr>
                                         </thead>
                                         <?php $count = 0;
@@ -37,15 +32,7 @@
                                         ?>
                                             <tbody>
                                                 <tr>
-
                                                     <td><img class="rounded" width="80" src="<?php echo base_url('upload/product/') . $row->foto ?>"></td>
-                                                    <td>
-
-                                                        <?= $row->nama_penerima ?>(<?= $row->alamat ?>)<br>
-                                                        <?= $row->telepon ?><br>
-                                                        <?= $row->kota ?>,<?= $row->provinsi ?>,
-                                                        <?= $row->kode_pos ?>
-                                                    </td>
                                                     <?php if (empty($row->bukti_bayar)) { ?>
                                                         <td>Belum ada</td>
                                                     <?php } else { ?>
@@ -60,10 +47,47 @@
                                                             <span class="text">Lihat</span>
                                                         </button>
                                                     </td>
+                                                </tr>
+                                            </tbody>
+                                        <?php } ?>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card mb-4 py-3 border-left-success">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless" id="" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Bukti Bayar</th>
+                                                <th>Rincian</th>
+                                            </tr>
+                                        </thead>
+                                        <?php $count = 0;
+                                        foreach ($data as $row) {
+                                            $count++;
+                                        ?>
+                                            <tbody>
+                                                <tr>
+
+                                                    <td><img class="rounded" width="80" src="<?php echo base_url('upload/product/') . $row->foto ?>"></td>
+                                                    <?php if (empty($row->bukti_bayar)) { ?>
+                                                        <td>Belum ada</td>
+                                                    <?php } else { ?>
+                                                        <td>
+                                                            <a href="">
+                                                                <img class="rounded" width="80" src="<?php echo base_url('upload/bukti/') . $row->bukti_bayar ?>">
+                                                            </a>
+                                                        </td>
+                                                    <?php } ?>
                                                     <td>
-                                                        <a class="btn btn-success btn-sm" href="<?= base_url('order/bukti_bayar/' . $row->id)  ?>">
-                                                            <span class="text">Bayar</span>
-                                                        </a>
+                                                        <button class="btn btn-light btn-sm" data-toggle="modal" data-target="#konfirm<?php echo $row->id ?>">
+                                                            <span class="text">Lihat</span>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -91,12 +115,11 @@ foreach ($data as $row) { ?>
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form class="user">
+                <form action="<?= base_url('order/update') ?>" method="POST">
                     <div class="modal-body">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <input type="hidden" name="id" value="<?php echo $row->id ?>" readonly>
                                     <p class="text-left"><?php echo $row->nama_penerima ?>(<?php echo $row->alamat ?>)<br>
                                         <?php echo $row->telepon ?><br>
                                         <?php echo $row->kota ?>,<?php echo $row->provinsi ?>,
@@ -125,6 +148,7 @@ foreach ($data as $row) { ?>
                                         </table>
                                     </div>
                                     <td><img class="rounded" width="100" width="200" src="<?php echo base_url('upload/product/') . $row->foto ?>"></td>
+                                    <td><img class="rounded" width="100" width="200" src="<?php echo base_url('upload/bukti/') . $row->bukti_bayar ?>"></td>
                                     <hr>
                                     </p>
                                     <div class="table-responsive">
@@ -159,14 +183,12 @@ foreach ($data as $row) { ?>
                                             <br>
                                         </table>
                                     </div>
-                                    <p>Resi akan terbit setelah melakukan pembayaran & Submit bukti</p>
                                 </div>
                                 <div class="form-group col-4">
                                     <div class="col-lg">
                                         <div class="form-group">
                                             <label for="Status">Bank</label>
                                             <input class="form-control form-control-user" value="<?= $row->nama_bank ?> a/n <?= $row->atas_nama ?>" disabled="on">
-
                                         </div>
                                         <div class="form-group">
                                             <label for="Status">No Rekening</label>
@@ -175,11 +197,20 @@ foreach ($data as $row) { ?>
                                         </div>
                                         <div class="form-group">
                                             <label for="Status">Status Pembayaran</label>
-                                            <input class="form-control form-control-user" value="<?php echo ucfirst($row->status_pembayaran) ?>" disabled="on">
+                                            <select name="status_pembayaran" class="form-control">
+                                                <option value=""><?= $row->status_pembayaran ?></option>
+                                                <option value="lunas">Lunas</option>
+                                                <option value="belum">Belum</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="Status">Status Pengiriman</label>
-                                            <input class="form-control form-control-user" value="<?php echo ucfirst($row->status_pengiriman) ?>" disabled="on">
+                                            <select name="status_pengiriman" class="form-control">
+                                                <option value=""><?= $row->status_pengiriman ?></option>
+                                                <option value="dikirim">Dikirim</option>
+                                                <option value="proses">Proses</option>
+                                                <option value="tertunda">tertunda</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="Status">Ekspedisi</label>
@@ -187,17 +218,21 @@ foreach ($data as $row) { ?>
                                         </div>
                                         <div class="form-group">
                                             <label for="Status">No Resi</label>
-                                            <input class="form-control form-control-user" value="<?= $row->no_resi ?>" disabled="on">
-
+                                            <input class="form-control form-control-user" name="no_resi">
                                         </div>
 
+                                        <!-- Simpan data -->
+                                        <input type="hidden" name="id" value="<?php echo $row->id ?>">
+                                        <input type="hidden" name="produk_id" value="<?php echo $row->produk ?>">
+                                        <input type="hidden" name="qty" value="<?php echo $row->qty ?>">
+                                        <!-- -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-sm btn-light">Simpan</button>
                     </div>
                 </form>
             </div>

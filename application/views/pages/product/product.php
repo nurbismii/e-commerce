@@ -25,12 +25,13 @@
                             <table class="table table-borderless" id="tableProduct" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>No</th>
                                         <th>Foto</th>
                                         <th>Nama</th>
                                         <th>Deskripsi</th>
                                         <th>Jumlah</th>
                                         <th>Harga</th>
+                                        <th>Berat</th>
                                         <th class="text-center"><i class="fas fa-fw fa-cog"></i></th>
                                     </tr>
                                 </thead>
@@ -40,12 +41,13 @@
                                 ?>
                                     <tbody>
                                         <tr>
-                                            <td><?php echo $row->id_produk ?></td>
+                                            <td><?= $count ?></td>
                                             <td><img class="rounded" width="50" src="<?php echo base_url('upload/product/') . $row->foto ?>"></td>
                                             <td><?php echo $row->nama ?></td>
                                             <td><?php echo $row->deskripsi ?></td>
                                             <td class="text-center"><?php echo $row->jumlah ?></td>
                                             <td><?php echo $row->harga ?></td>
+                                            <td><?php echo $row->berat ?></td>
                                             <td class="text-center">
                                                 <a href="<?php echo base_url('product/edit/' . $row->id_produk) ?>" class="btn btn-warning btn-sm">
                                                     <span class="icon text-white-300">
@@ -73,7 +75,7 @@
 
 <!-- Hapus produk modal -->
 <?php $count = 0;
-foreach ($data_ as $row) {
+foreach ($data as $row) {
     $count++;
 ?>
     <div class="modal fade" id="delete<?php echo $row->id_produk ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">

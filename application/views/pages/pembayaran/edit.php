@@ -33,6 +33,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label for="metode_pembayaran">Nama Pemilik</label>
+                                            <input type="text" <?php echo form_error('atas_nama') ?: '' ?> class="form-control form-control-user" id="bank" name="atas_nama" placeholder="Atas nama">
+                                        </div>
+                                        <div class="form-group">
                                             <label for="rekening">No Rekening</label>
                                             <input type="text" class="form-control form-control-user" id="no_rek" name="no_rek" <?php echo form_error('no_rek') ? 'is-invalid' : '' ?> value="<?php echo $data->no_rek ?>">
                                         </div>

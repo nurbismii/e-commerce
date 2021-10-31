@@ -39,7 +39,7 @@ class home extends CI_Controller
 
     public function produk()
     {
-        $data['produk'] = $this->m_product->get();
+        $data['produk'] = $this->m_product->join();
         $this->load->view('_partials/header');
         $this->load->view('pages/home/produk', $data);
         $this->load->view('_partials/js');
@@ -66,30 +66,5 @@ class home extends CI_Controller
         $this->load->view('_partials/header');
         $this->load->view('pages/result', $data);
         $this->load->view('_partials/js');
-    }
-
-    function tambah()
-    {
-        if (!$this->session->userdata('id_user')) {
-            $this->load->view('_partials/auth_header');
-            $this->load->view('auth/login');
-            $this->load->view('_partials/auth_js');
-        } else {
-            $data_produk = array(
-                'id' => $this->input->post('id'),
-                'name' => $this->input->post('nama'),
-                'price' => $this->input->post('harga'),
-                'gambar' => $this->input->post('foto'),
-                'qty' => $this->input->post('jumlah')
-            );
-            $this->cart->insert($data_produk);
-            $this->session->set_flashdata('msg', '
-                <div class="alert alert-info alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                    Produk berhasil ditambahkan ke keranjang
-                </div>');
-            return redirect('home/kategori');
-        }
     }
 }

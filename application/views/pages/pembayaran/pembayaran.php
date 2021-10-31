@@ -28,6 +28,7 @@
                                     <tr style="text-align:center">
                                         <th>ID</th>
                                         <th>Bank</th>
+                                        <th>Nama Pemilik</th>
                                         <th>No Rekening</th>
                                         <th><i class="fas fa-fw fa-cog"></i></th>
                                     </tr>
@@ -40,6 +41,7 @@
                                         <tr style="text-align:center">
                                             <td><?php echo $row->id_norek ?></td>
                                             <td><?php echo $row->nama_bank ?></td>
+                                            <td><?php echo $row->atas_nama ?></td>
                                             <td><?php echo $row->no_rek ?></td>
                                             <td>
                                                 <a href="<?php echo base_url('pembayaran/edit/' . $row->id_norek) ?>" class="btn btn-warning btn-icon-split btn-sm">

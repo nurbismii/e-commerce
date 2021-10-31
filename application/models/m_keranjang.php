@@ -50,11 +50,13 @@ class m_keranjang extends CI_Model
     {
         $this->db->insert('detail_cart', $data);
     }
+
     public function cek_stok($id)
     {
-        $query = $this->db->query("SELECT id_produk,jumlah from product where id_produk = '" . $id . "'");
+        $query = $this->db->query("SELECT id_produk, jumlah from product where id_produk = '" . $id . "'");
         return $query->row();
     }
+
     public function update_stok($id, $jumlah)
     {
         $this->id_produk = $id;

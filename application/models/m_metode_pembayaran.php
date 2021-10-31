@@ -6,6 +6,7 @@ class m_metode_pembayaran extends CI_Model
 
     public $id_norek;
     public $nama_bank;
+    public $atas_nama;
     public $no_rek;
 
     public function rules()
@@ -30,6 +31,7 @@ class m_metode_pembayaran extends CI_Model
     {
         $post = $this->input->post();
         $this->nama_bank = $post['nama_bank'];
+        $this->atas_nama = $post['atas_nama'];
         $this->no_rek = $post['no_rek'];
 
         return $this->db->insert($this->table, $this);
@@ -39,6 +41,7 @@ class m_metode_pembayaran extends CI_Model
         $post = $this->input->post();
         $this->id_norek = $post['id_norek'];
         $this->nama_bank = $post['nama_bank'];
+        $this->atas_nama = $post['atas_nama'];
         $this->no_rek = $post['no_rek'];
 
         return $this->db->update($this->table, $this, array('id_norek' => $post['id_norek']));

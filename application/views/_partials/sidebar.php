@@ -41,7 +41,6 @@
             <i class="fas fa-fw fa-handshake"></i>
             <span>Order</span></a>
     </li>
-
     <li class="nav-item <?= ($this->uri->segment(1) == "pembayaran") ? 'active' : ''; ?>">
         <a class="nav-link " href="<?= base_url('pembayaran') ?>">
             <i class="fas fa-fw fa-wallet"></i>
@@ -53,11 +52,15 @@
             <i class="fas fa-fw fa-address-card"></i>
             <span>User</span></a>
     </li>
-
     <li class="nav-item <?= ($this->uri->segment(1) == "role") ? 'active' : ''; ?>">
         <a class="nav-link " href="<?= base_url('role') ?>">
             <i class="fas fa-fw fa-book"></i>
             <span>Role</span></a>
+    </li>
+    <li class="nav-item <?= ($this->uri->segment(1) == "setting") ? 'active' : ''; ?>">
+        <a class="nav-link" href="<?= base_url('setting') ?>">
+            <i class="fas fa-fw fa-handshake"></i>
+            <span>Lokasi</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
 </ul>

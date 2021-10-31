@@ -24,7 +24,7 @@
                                 </span>
                                 <p class="card-text"><?php echo $data->deskripsi ?><br></p>
                                 <p class="card-text">Rp <?php echo number_format($data->harga) ?></p>
-                                <a href="<?= base_url('product/show') ?>" class="btn btn-light btn-block btn-sm">
+                                <a href="<?= base_url('home') ?>" class="btn btn-light btn-block btn-sm">
                                     <span class="text">Tutup</span>
                                 </a>
                             </div>
@@ -39,6 +39,7 @@
                                 <input type="hidden" name="id" value="<?php echo $data->id_produk ?>" />
                                 <input type="hidden" name="nama" value="<?php echo $data->nama ?>" />
                                 <input type="hidden" name="harga" value="<?php echo $data->harga ?>" />
+                                <input type="hidden" name="berat" value="<?php echo $data->berat ?>" />
                                 <input type="hidden" name="foto" value="<?php echo $data->foto ?>" />
                                 <input type="hidden" name="jumlah" value="1" />
                             </div>

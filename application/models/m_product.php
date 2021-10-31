@@ -4,12 +4,13 @@ class m_product extends CI_Model
 {
 
     private $table = "product";
-    private $v_table = "v_products";
 
     public $id_produk;
     public $nama;
     public $harga;
     public $jumlah;
+    public $berat;
+    public $satuan;
     public $deskripsi;
     public $foto;
     public $id_kategori;
@@ -38,9 +39,13 @@ class m_product extends CI_Model
                 [
                     'field' => 'deskripsi',
                     'label' => 'Deskripsi',
-                    'rules' => 'trim|required|min_length[1]|max_length[255]',
+                    'rules' => 'required',
                 ],
-
+                [
+                    'field' => 'berat',
+                    'label' => 'Berat',
+                    'rules' => 'required',
+                ],
 
             ];
     }
@@ -48,14 +53,22 @@ class m_product extends CI_Model
     {
         $this->load->database();
     }
-    public function getData()
+
+    public function join()
     {
-        return $this->db->get($this->v_table)->result();
+        $this->db->select('product.*,kategori');
+        $this->db->from('product');
+        $this->db->join('category', 'category.id_kategori=product.id_kategori', 'left');
+
+        $query = $this->db->get();
+        return $query->result();
     }
+
     public function get()
     {
         return $this->db->get($this->table)->result();
     }
+
     public function getDataDetail($id)
     {
         $this->db->select('product.*,kategori');
@@ -74,6 +87,8 @@ class m_product extends CI_Model
         $this->nama = $post['nama'];
         $this->harga = $post['harga'];
         $this->jumlah = $post['jumlah'];
+        $this->berat = $post['berat'];
+        $this->satuan = $post['satuan'];
         $this->deskripsi = $post['deskripsi'];
         $this->foto = $this->_upload();
         $this->id_kategori = $post['kategori'];
@@ -88,6 +103,8 @@ class m_product extends CI_Model
         $this->nama = $post['nama'];
         $this->harga = $post['harga'];
         $this->jumlah = $post['jumlah'];
+        $this->berat = $post['berat'];
+        $this->satuan = $post['satuan'];
         if (!empty($_FILES["userfile"]["nama"])) {
             $this->foto = $this->_upload();
         } else {
@@ -99,12 +116,14 @@ class m_product extends CI_Model
 
         return $this->db->update($this->table, $this, array('id_produk' => $post['id_produk']));
     }
+
     public function deleteData($id)
     {
         $this->deleteFoto($id);
         $this->db->where('id_produk', $id);
         $this->db->delete('product');
     }
+
     public function _upload()
     {
         $config['upload_path']          = './upload/product/';
@@ -122,6 +141,7 @@ class m_product extends CI_Model
         }
         return "default.jpg";
     }
+
     public function deleteFoto($id)
     {
         $produk = $this->getDataDetail($id);
@@ -130,6 +150,7 @@ class m_product extends CI_Model
             return array_map('unlink', glob(FCPATH . "upload/product/$filename.*"));
         }
     }
+
     public function cari_produk()
     {
         $cari = $this->input->GET('cari', TRUE);

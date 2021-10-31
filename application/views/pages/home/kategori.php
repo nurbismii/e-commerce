@@ -44,17 +44,20 @@
 
                                             <div class="col-sm-4">
                                                 <div class="card mb-4">
-                                                    <?php echo form_open_multipart('home/tambah') ?>
+                                                    <?php echo form_open_multipart('shopping/tambah') ?>
                                                     <img class="card-img-top" height="220" src="<?php echo base_url('upload/product/') . $row->foto ?>" alt="Card image cap">
                                                     <div class="card-body">
                                                         <h5 class="card-title"><?php echo substr($row->nama, 0, 17) ?></h5>
                                                         <p class="card-text small"><?php echo substr($row->deskripsi, 0, 22) ?>..<br>
                                                             <span class="card-text small">Stok <?php echo $row->jumlah ?></span>
+                                                            <span class="card-text small">Berat <?php echo $row->berat ?><?= substr(strtolower($row->satuan), 0, 2) ?></span>
                                                         </p>
                                                         <p class="card-text">Rp <?php echo $rupiah ?></p>
                                                         <input type="hidden" name="id" value="<?php echo $row->id_produk ?>" />
                                                         <input type="hidden" name="nama" value="<?php echo $row->nama ?>" />
                                                         <input type="hidden" name="harga" value="<?php echo $row->harga ?>" />
+                                                        <input type="hidden" name="berat" value="<?php echo $row->berat ?>" />
+                                                        <input type="hidden" name="satuan" value="<?php echo $row->satuan ?>" />
                                                         <input type="hidden" name="foto" value="<?php echo $row->foto ?>" />
                                                         <input type="hidden" name="jumlah" value="1" />
                                                         <button type="submit" class="btn btn-outline-success btn-sm btn-icon-split">

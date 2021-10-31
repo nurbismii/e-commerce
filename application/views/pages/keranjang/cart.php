@@ -16,7 +16,7 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-dark">Keranjang
-                            <a href="<?php echo base_url('product/show') ?>" class="btn btn-light float-right btn-sm">Lanjut belanja</a>
+                            <a href="<?php echo base_url('home') ?>" class="btn btn-light float-right btn-sm">Lanjut belanja</a>
                         </h6>
                     </div>
                     <form action="<?php echo site_url('shopping/updatecart') ?>" method="POST" name="frmShopping" enctype="multipart/form-data">
@@ -27,11 +27,13 @@
                                         <thead>
                                             <tr style="text-align:justify;">
                                                 <td width="2%">No</td>
-                                                <td width="10%">Gambar</td>
+                                                <td width="15%">Gambar</td>
                                                 <td width="33%">Item</td>
-                                                <td width="15%">Harga</td>
+                                                <td width="10%">Harga</td>
+                                                <td width="8%">Berat</td>
                                                 <td width="8%">Qty</td>
-                                                <td width="18%">Jumlah</td>
+                                                <td width="11%">Total Harga</td>
+                                                <td width="18%">Total Berat</td>
                                                 <td width="10%">Hapus</td>
                                             </tr>
                                         </thead>
@@ -39,26 +41,34 @@
                                         <?php
 
                                         $grand_total = 0;
+                                        $berat_total = 0;
                                         $i = 1;
 
                                         foreach ($cart as $item) :
+
                                             $grand_total = $grand_total + $item['subtotal'];
+                                            $berat_total = $item['berat'] * $item['qty'];
+
                                         ?>
                                             <input type="hidden" name="cart[<?php echo $item['id']; ?>][id_produk]" value="<?php echo $item['id']; ?>" />
                                             <input type="hidden" name="cart[<?php echo $item['id']; ?>][rowid]" value="<?php echo $item['rowid']; ?>" />
                                             <input type="hidden" name="cart[<?php echo $item['id']; ?>][name]" value="<?php echo $item['name']; ?>" />
                                             <input type="hidden" name="cart[<?php echo $item['id']; ?>][price]" value="<?php echo $item['price']; ?>" />
                                             <input type="hidden" name="cart[<?php echo $item['id']; ?>][gambar]" value="<?php echo $item['gambar']; ?>" />
+                                            <input type="hidden" name="cart[<?php echo $item['id']; ?>][berat]" value="<?php echo $item['berat']; ?>" />
+                                            <input type="hidden" name="cart[<?php echo $item['id']; ?>][satuan]" value="<?php echo $item['satuan']; ?>" />
                                             <input type="hidden" name="cart[<?php echo $item['id']; ?>][qty]" value="<?php echo $item['qty']; ?>" />
                                             <tbody>
                                                 <tr style="text-align:justify">
                                                     <td><?php echo $i++; ?></td>
 
-                                                    <td><img class="rounded" width="50" src="<?php echo base_url() . 'upload/product/' . $item['gambar']; ?>" /></td>
+                                                    <td><img class="rounded" height="80" width="100" src="<?php echo base_url() . 'upload/product/' . $item['gambar']; ?>" /></td>
                                                     <td><?php echo $item['name']; ?></td>
                                                     <td><?php echo number_format($item['price'], 0, ",", "."); ?></td>
+                                                    <td><?php echo number_format($item['berat'], 0, ",", ".") ?></td>
                                                     <td><input type="number" min="1" max="5" class="form-control input-sm" name="cart[<?php echo $item['id']; ?>][qty]" value="<?php echo $item['qty']; ?>" /></td>
                                                     <td><?php echo number_format($item['subtotal'], 0, ",", ".") ?></td>
+                                                    <td><?php echo number_format($berat_total, 0, ",", ".") ?><?php echo strtolower(substr($item['satuan'], 0, 2)) ?></td>
                                                     <td><a href="<?php echo base_url() ?>shopping/hapus/<?php echo $item['rowid']; ?>" class="btn btn-sm btn-light"><span class="icon text-gray-50">
                                                                 <i class="fas fa-trash"></i>
                                                             </span></a></td>
@@ -67,7 +77,7 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr class="bg-gray-100">
-                                                    <td colspan="8" style="text-align: right;">
+                                                    <td colspan="9" style="text-align: right;">
                                                         <b>Total : Rp <?php echo number_format($grand_total, 0, ",", "."); ?></b>
                                                     </td>
                                                 </tr>
@@ -84,7 +94,7 @@
                         <div class="card-header py-3" style="text-align: right;">
                             <a data-toggle="modal" data-target="#myModal" class='btn btn-sm btn-light' rel="noopener noreferrer">Hapus semua</a>
                             <button class='btn btn-sm btn-light' type="submit">Ubah</button>
-                            <a href="<?= base_url('shopping/checkout') ?>" class='btn btn-sm btn-success'>Beli</a>
+                            <a href="<?= base_url('shopping/checkout') ?>" class='btn btn-sm btn-success'>Lanjut</a>
                             </h6>
                         </div>
                     </form>

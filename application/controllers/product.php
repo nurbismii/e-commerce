@@ -14,8 +14,7 @@ class product extends CI_Controller
     public function index()
     {
         check_not_login();
-        $data['data'] = $this->m_product->getData();
-        $data['data_'] = $this->m_product->get();
+        $data['data'] = $this->m_product->join();
         $this->load->view('_partials/header');
         $this->load->view('pages/product/product', $data);
         $this->load->view('_partials/js');
@@ -109,14 +108,6 @@ class product extends CI_Controller
         $data['data'] = $this->m_product->getDataDetail($id);
         $this->load->view('_partials/header');
         $this->load->view('pages/home/detail_produk', $data);
-        $this->load->view('_partials/js');
-    }
-
-    public function show()
-    {
-        $data['produk'] = $this->m_product->get();
-        $this->load->view('_partials/header');
-        $this->load->view('pages/home/produk', $data);
         $this->load->view('_partials/js');
     }
 

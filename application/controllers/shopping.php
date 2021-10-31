@@ -11,7 +11,6 @@ class shopping extends CI_Controller
         $this->load->model('m_keranjang');
         $this->load->model('m_metode_pembayaran');
         $this->load->model('m_order');
-        $this->load->model('m_alamat_pengiriman');
     }
 
     public function cart()
@@ -25,15 +24,12 @@ class shopping extends CI_Controller
 
     public function checkout()
     {
-        $id = $this->session->userdata('id_user');
 
         $data['pembayaran'] = $this->m_metode_pembayaran->getData();
         $data['kategori'] = $this->m_keranjang->get_kategori_all();
-        $data['alamat'] = $this->m_alamat_pengiriman->getData($id);
 
         $this->load->view('_partials/header');
         $this->load->view('pages/keranjang/checkout', $data);
-        $this->load->view('_partials/js');
     }
 
     function tambah()
@@ -48,7 +44,10 @@ class shopping extends CI_Controller
                 'name' => $this->input->post('nama'),
                 'price' => $this->input->post('harga'),
                 'gambar' => $this->input->post('foto'),
-                'qty' => $this->input->post('jumlah')
+                'berat' => $this->input->post('berat'),
+                'satuan' => $this->input->post('satuan'),
+                'qty' => $this->input->post('jumlah'),
+
             );
             $this->cart->insert($data_produk);
             $this->session->set_flashdata('msg', '
@@ -57,7 +56,7 @@ class shopping extends CI_Controller
                     <span aria-hidden="true">&times;</span></button>
                     Produk berhasil ditambahkan ke keranjang
                 </div>');
-            return redirect('product/show');
+            return redirect('home/produk');
         }
     }
     #menghapus isi keranajng
@@ -88,6 +87,8 @@ class shopping extends CI_Controller
             $rowid = $cart['rowid'];
             $price = $cart['price'];
             $gambar = $cart['gambar'];
+            $berat = $cart['berat'];
+            $satuan = $cart['satuan'];
             $amount = $price * $cart['qty'];
             $qty = $cart['qty'];
             $data = array(
@@ -95,6 +96,8 @@ class shopping extends CI_Controller
                 'price' => $price,
                 'gambar' => $gambar,
                 'amount' => $amount,
+                'berat' => $berat,
+                'satuan' => $satuan,
                 'qty' => $qty
             );
             $this->cart->update($data);
@@ -110,73 +113,61 @@ class shopping extends CI_Controller
     #proses buat pesanan
     public function order()
     {
-        $id = $this->session->userdata('id_user');
-        if (!$this->m_alamat_pengiriman->getData($id)) {
-            $this->session->set_flashdata('msg', '
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                        Masukan alamat pengiriman terlebih dahulu
-                    </div>');
-            redirect('shopping/checkout');
-        } else {
-            //-------------------------Input data transaksi--------------------------
-            $cart = array(
-                'user_id' => $this->input->post('user_id'),
-                'no_invoice' => $this->input->post('invoice'),
-                'status_pembayaran' => $this->input->post('status_pembayaran'),
-                'status_pengiriman' => $this->input->post('status_pengiriman'),
-                'subtotal' => $this->input->post('subtotal'),
-                'total' => $this->input->post('total'),
-                'tanggal_pesanan' => date('Y-m-d H:i:s')
-            );
-            $cart_id = $this->m_keranjang->cart($cart);
-            //-------------------------Input data order------------------------------
-            $order = array(
-                'alamat_id' => $this->input->post('alamat_id'),
-                'tanggal' => date('Y-m-d H:i:s'),
-                'cart_id' => $cart_id
-            );
-            $order_id = $this->m_keranjang->order($order);
-            //-------------------------Input data detail order-----------------------
-            if ($cart = $this->cart->contents()) {
-                foreach ($cart as $item) {
-                    $data_detail = array(
-                        'order_id' => $order_id,
-                        'produk' => $item['id'],
-                        'qty' => $item['qty'],
-                        'harga' => $item['price'],
-                    );
-                    $cek = $this->m_keranjang->cek_stok($item['id']);
-                    if ($cek->jumlah < $item['qty']) {
-                        $this->session->set_flashdata('msg', '
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                        Produk yang di inginkan tidak mencukupi atau lagi kosong silahkan lihat stok yang tersedia
-                    </div>');
-                        redirect('product/show');
-                    } else {
-                        $this->m_keranjang->detail_order($data_detail);
-                        $stok = $cek->jumlah - $item['qty'];
-                        $this->m_keranjang->update_stok($item['id'], $stok);
-                    }
-                }
+        //-------------------------Input data transaksi--------------------------
+        $cart = array(
+            'user_id' => $this->input->post('user_id'),
+            'pembayaran_id' => $this->input->post('pembayaran_id'),
+            'no_invoice' => $this->input->post('invoice'),
+            'nama_penerima' => $this->input->post('nama_penerima'),
+            'telepon' => $this->input->post('telepon'),
+            'provinsi' => $this->input->post('provinsi'),
+            'kota' => $this->input->post('kota'),
+            'alamat' => $this->input->post('alamat'),
+            'kode_pos' => $this->input->post('kodepos'),
+            'jasa_layanan' => $this->input->post('paket'),
+            'estimasi' => $this->input->post('estimasi'),
+            'ongkir' => $this->input->post('ongkir'),
+            'berat' => $this->input->post('berat'),
+            'status_pembayaran' => $this->input->post('status_pembayaran'),
+            'status_pengiriman' => $this->input->post('status_pengiriman'),
+            'ekspedisi' => $this->input->post('ekspedisi'),
+            'subtotal' => $this->input->post('subtotal'),
+            'total' => $this->input->post('total_bayar'),
+        );
+        $cart_id = $this->m_keranjang->cart($cart);
+        //-------------------------Input data order------------------------------
+        $order = array(
+            'tanggal' => date('Y-m-d H:i:s'),
+            'cart_id' => $cart_id
+        );
+        $order_id = $this->m_keranjang->order($order);
+        //-------------------------Input data detail order-----------------------
+        if ($cart = $this->cart->contents()) {
+            foreach ($cart as $item) {
+                $data_detail = array(
+                    'order_id' => $order_id,
+                    'produk' => $item['id'],
+                    'qty' => $item['qty'],
+                );
+                // $cek = $this->m_keranjang->cek_stok($item['id']);
+                //if ($cek->jumlah < $item['qty']) {
+                //} else {
+                $this->m_keranjang->detail_order($data_detail);
+                //    $stok = $cek->jumlah - $item['qty'];
+                //   $this->m_keranjang->update_stok($item['id'], $stok);
+                // }
             }
         }
         //-------------------------Hapus shopping cart--------------------------
         $this->cart->destroy();
         $data['kategori'] = $this->m_keranjang->get_kategori_all();
-        $data['data'] = $this->m_metode_pembayaran->getData();
+        $data['data'] = $this->m_order->getOrder();
         $this->session->set_flashdata('msg', '
             <div class="alert alert-info alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
                 Silahkan lakukan pembayaran dan akan di proses 3x24 jam.
-                Konfirmasi ke nomor 085282810040 Setelah melakukan pembayaran.
             </div>');
-        $this->load->view('_partials/header');
-        $this->load->view('pages/keranjang/order-success', $data);
-        $this->load->view('_partials/js');
+        return redirect('order/pesananku');
     }
 }

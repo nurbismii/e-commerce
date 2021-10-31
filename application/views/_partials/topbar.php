@@ -123,7 +123,7 @@
                         Login
                     </a>
                 <?php } else { ?>
-                    <a class="dropdown-item" href="<?= base_url('order') ?>">
+                    <a class="dropdown-item" href="<?= base_url('order/pesananku') ?>">
                         <i class="fas fa-handshake fa-sm fa-fw mr-2 text-gray-400"></i>
                         Pembelian
                     </a>
