@@ -26,7 +26,7 @@
                             <table class="table table-borderless text-center" id="tableCategory" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>ID Kategori</th>
+                                        <th>No</th>
                                         <th>Kategori</th>
                                         <th><i class="fas fa-fw fa-cog"></i></th>
                                     </tr>
@@ -37,7 +37,7 @@
                                 ?>
                                     <tbody>
                                         <tr>
-                                            <td><?php echo $row->id_kategori ?></td>
+                                            <td><?= $count ?></td>
                                             <td><?php echo $row->kategori ?></td>
                                             <td>
                                                 <a href="<?php echo base_url('category/edit/' . $row->id_kategori) ?>" class="btn btn-warning btn-sm">

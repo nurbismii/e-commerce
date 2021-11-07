@@ -51,10 +51,10 @@ class shopping extends CI_Controller
             );
             $this->cart->insert($data_produk);
             $this->session->set_flashdata('msg', '
-                <div class="alert alert-info alert-dismissible" role="alert">
+                <div class="alert alert-success alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                    Produk berhasil ditambahkan ke keranjang
+                    Berhasil ditambahkan ke keranjang
                 </div>');
             return redirect('home/produk');
         }
@@ -166,7 +166,7 @@ class shopping extends CI_Controller
             <div class="alert alert-info alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-                Silahkan lakukan pembayaran dan akan di proses 3x24 jam.
+                Silahkan lakukan pembayaran dan akan di proses 2x24 jam.
             </div>');
         return redirect('order/pesananku');
     }

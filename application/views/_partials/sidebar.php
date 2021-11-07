@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -55,12 +55,19 @@
     <li class="nav-item <?= ($this->uri->segment(1) == "role") ? 'active' : ''; ?>">
         <a class="nav-link " href="<?= base_url('role') ?>">
             <i class="fas fa-fw fa-book"></i>
-            <span>Role</span></a>
+            <span>Role</span>
+        </a>
     </li>
     <li class="nav-item <?= ($this->uri->segment(1) == "setting") ? 'active' : ''; ?>">
         <a class="nav-link" href="<?= base_url('setting') ?>">
-            <i class="fas fa-fw fa-handshake"></i>
-            <span>Lokasi</span></a>
+            <i class="fas fa-fw fa-cogs"></i>
+            <span>Lokasi</span>
+        </a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
 </ul>

@@ -44,17 +44,15 @@
                                             <td><?php echo $row->atas_nama ?></td>
                                             <td><?php echo $row->no_rek ?></td>
                                             <td>
-                                                <a href="<?php echo base_url('pembayaran/edit/' . $row->id_norek) ?>" class="btn btn-warning btn-icon-split btn-sm">
-                                                    <span class="icon text-white-50">
+                                                <a href="<?php echo base_url('pembayaran/edit/' . $row->id_norek) ?>" class="btn btn-warning btn-sm">
+                                                    <span class="icon text-white-300">
                                                         <i class="fas fa-edit"></i>
                                                     </span>
-                                                    <span class="text">Ubah</span>
                                                 </a>
-                                                <button class="btn btn-danger btn-icon-split btn-sm" data-toggle="modal" data-target="#delete<?php echo $row->id_norek ?>">
-                                                    <span class="icon text-white-50">
+                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?php echo $row->id_norek ?>">
+                                                    <span class="icon text-white-300">
                                                         <i class="fas fa-trash"></i>
                                                     </span>
-                                                    <span class="text">Hapus</span>
                                                 </button>
                                             </td>
                                         </tr>

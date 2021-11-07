@@ -68,7 +68,7 @@
                                                     <td><?php echo number_format($item['berat'], 0, ",", ".") ?></td>
                                                     <td><input type="number" min="1" max="5" class="form-control input-sm" name="cart[<?php echo $item['id']; ?>][qty]" value="<?php echo $item['qty']; ?>" /></td>
                                                     <td><?php echo number_format($item['subtotal'], 0, ",", ".") ?></td>
-                                                    <td><?php echo number_format($berat_total, 0, ",", ".") ?><?php echo strtolower(substr($item['satuan'], 0, 2)) ?></td>
+                                                    <td><?php echo number_format($berat_total, 0, ",", ".") ?><?php echo strtolower(substr($item['satuan'], 0, 1)) ?></td>
                                                     <td><a href="<?php echo base_url() ?>shopping/hapus/<?php echo $item['rowid']; ?>" class="btn btn-sm btn-light"><span class="icon text-gray-50">
                                                                 <i class="fas fa-trash"></i>
                                                             </span></a></td>

@@ -12,10 +12,7 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-dark">Produk
-                            <a href="<?php echo site_url('product/add') ?>" class="btn btn-light btn-icon-split float-right btn-sm">
-                                <span class="icon text-white-300">
-                                    <i class="fas fa-plus"></i>
-                                </span>
+                            <a href="<?php echo site_url('product/add') ?>" class="btn btn-success float-right btn-sm">
                                 <span class="text">Baru</span>
                             </a>
                         </h6>
@@ -32,7 +29,7 @@
                                         <th>Jumlah</th>
                                         <th>Harga</th>
                                         <th>Berat</th>
-                                        <th class="text-center"><i class="fas fa-fw fa-cog"></i></th>
+                                        <th width="10%" class="text-center"><i class="fas fa-fw fa-cog"></i></th>
                                     </tr>
                                 </thead>
                                 <?php $count = 0;
@@ -64,6 +61,7 @@
                                     </tbody>
                                 <?php } ?>
                             </table>
+
                         </div>
                     </div>
                 </div>

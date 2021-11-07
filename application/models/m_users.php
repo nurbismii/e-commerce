@@ -38,6 +38,16 @@ class m_users extends CI_Model
         ];
     }
 
+    public function get($id)
+    {
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('id_user', $id);
+        $query = $this->db->get();
+
+        return $query->row();
+    }
+
     public function login($post)
     {
         $this->db->select('*');

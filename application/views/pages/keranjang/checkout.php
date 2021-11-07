@@ -60,7 +60,7 @@
                                                         <td><?php echo number_format($item['berat'], 0, ",", ".") ?></td>
                                                         <td><?= $item['qty']; ?></td>
                                                         <td><?php echo number_format($item['subtotal'], 0, ",", ".") ?></td>
-                                                        <td><?= $berat_total ?><?php echo strtolower(substr($item['satuan'], 0, 2)) ?></td>
+                                                        <td><?= $berat_total ?><?php echo strtolower(substr($item['satuan'], 0, 1)) ?></td>
 
                                                     <?php endforeach; ?>
                                                     </tr>
@@ -105,41 +105,41 @@
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label for="nama_peneriam">Nama Penerima</label>
-                                                            <input type="text" class="form-control form-control-user" name="nama_penerima">
+                                                            <input type="text" class="form-control form-control-user" name="nama_penerima" required>
                                                         </div>
                                                         <div class=" form-group col-md-6">
                                                             <label for="telepon">Telepon</label>
-                                                            <input type="number" class="form-control" name="telepon"></input>
+                                                            <input type="number" class="form-control" name="telepon" required></input>
                                                         </div>
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label for="Provinsi">Provinsi</label>
-                                                            <select class="form-control form-control-user" name="provinsi"></select>
+                                                            <select class="form-control form-control-user" name="provinsi" required></select>
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label for="Kota">Kota</label>
-                                                            <select class="form-control form-control-user" name="kota"></select>
+                                                            <select class="form-control form-control-user" name="kota" required></select>
                                                         </div>
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label for="ekspedisi">Ekspedisi</label>
-                                                            <select class="form-control form-control-user" name="ekspedisi"></select>
+                                                            <select class="form-control form-control-user" name="ekspedisi" required></select>
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label>Jasa Layanan</label>
-                                                            <select class="form-control form-control-user" name="paket"></select>
+                                                            <select class="form-control form-control-user" name="paket" required></select>
                                                         </div>
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-8">
                                                             <label for="Alamat">Alamat Penerima</label>
-                                                            <input type="text" class="form-control form-control-user" name="alamat">
+                                                            <input type="text" class="form-control form-control-user" name="alamat" required>
                                                         </div>
                                                         <div class="form-group col-md-4">
                                                             <label>Kode Pos</label>
-                                                            <input class="form-control form-control-user" name="kodepos"></input>
+                                                            <input class="form-control form-control-user" name="kodepos" required></input>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -170,12 +170,12 @@
                                                                             <td class="text-right">Rp.<?= number_format($grand_total) ?></td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <th class="text-left">Ongkir</th>
-                                                                            <td class="text-right" id="ongkir"></td>
+                                                                            <th class="text-left">Berat</th>
+                                                                            <td class="text-right"><?= $tot_berat ?>g</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <th class="text-left">Berat</th>
-                                                                            <td class="text-right"><?= $tot_berat ?>gr</td>
+                                                                            <th class="text-left">Ongkir</th>
+                                                                            <td class="text-right" id="ongkir"></td>
                                                                         </tr>
                                                                         <tr>
                                                                             <th class="text-left">Total Bayar</th>

@@ -24,7 +24,7 @@
                             <table class="table table-borderless" id="tableUser" width="100%" cellspacing="0">
                                 <thead>
                                     <tr style="text-align:center">
-                                        <th>ID User</th>
+                                        <th>No</th>
                                         <th>Nama</th>
                                         <th>email</th>
                                         <th>Foto</th>
@@ -37,22 +37,20 @@
                                 ?>
                                     <tbody>
                                         <tr style="text-align:center">
-                                            <td><?php echo $row->id_user ?></td>
+                                            <td><?php echo $count ?></td>
                                             <td><?php echo $row->nama ?></td>
                                             <td><?php echo $row->email ?></td>
                                             <td><img class="rounded" width="50" src="<?php echo base_url('upload/user/') . $row->picture ?>" alt=""></td>
                                             <td>
-                                                <a href="<?php echo base_url('user/edit/' . $row->id_user) ?>" class="btn btn-warning btn-icon-split btn-sm">
-                                                    <span class="icon text-white-50">
+                                                <a href="<?php echo base_url('user/edit/' . $row->id_user) ?>" class="btn btn-warning btn-sm">
+                                                    <span class="icon text-white-300">
                                                         <i class="fas fa-edit"></i>
                                                     </span>
-                                                    <span class="text">Ubah</span>
                                                 </a>
-                                                <button class="btn btn-danger btn-icon-split btn-sm" data-toggle="modal" data-target="#delete<?php echo $row->id_user ?>">
-                                                    <span class="icon text-white-50">
+                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?php echo $row->id_user ?>">
+                                                    <span class="icon text-white-300">
                                                         <i class="fas fa-trash"></i>
                                                     </span>
-                                                    <span class="text">Hapus</span>
                                                 </button>
                                             </td>
                                         </tr>

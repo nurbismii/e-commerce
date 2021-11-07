@@ -106,7 +106,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <?php if (!$this->session->userdata('nama')) { ?>
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                        Login Disini
+                        LOGIN
                     </span>
                 <?php } else { ?>
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
@@ -125,11 +125,11 @@
                 <?php } else { ?>
                     <a class="dropdown-item" href="<?= base_url('order/pesananku') ?>">
                         <i class="fas fa-handshake fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Pembelian
+                        Pesanan saya
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="<?= base_url('profile') ?>">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Kelola Profile
+                        Profile
                     </a>
                     <a class="dropdown-item" href="#">
                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -159,8 +159,8 @@
             </div>
             <div class="modal-body">Yakin ingin logout.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-info" href="<?= site_url('auth/logout') ?>">Logout</a>
+                <button class="btn btn-light btn-sm" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-secondary btn-sm" href="<?= site_url('auth/logout') ?>">Logout</a>
             </div>
         </div>
     </div>

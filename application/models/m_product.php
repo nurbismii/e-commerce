@@ -154,7 +154,12 @@ class m_product extends CI_Model
     public function cari_produk()
     {
         $cari = $this->input->GET('cari', TRUE);
-        $data = $this->db->query("SELECT * FROM v_products WHERE nama like '%$cari'");
-        return $data->result();
+        $this->db->select('*');
+        $this->db->from('product');
+        $this->db->join('category', 'category.id_kategori=product.id_kategori', 'left');
+        $this->db->where('category.kategori', $cari);
+        $this->db->or_where('nama', $cari);
+        $query = $this->db->get();
+        return $query->result();
     }
 }

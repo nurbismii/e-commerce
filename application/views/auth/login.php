@@ -21,7 +21,7 @@
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
                                     </div>
-                                    <button type="submit" name="login" class="btn btn-info btn-user btn-block">
+                                    <button type="submit" name="login" class="btn btn-success btn-user btn-block">
                                         Login
                                     </button>
                                     <hr>

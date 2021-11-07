@@ -24,30 +24,37 @@
                                     <table class="table table-borderless" id="" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-
                                                 <th></th>
                                                 <th>Penerima</th>
                                                 <th>Produk</th>
+                                                <th>Jumlah</th>
+                                                <th>Harga</th>
                                             </tr>
                                         </thead>
+                                        <?php $count = 0;
 
-                                        <tbody>
-                                            <tr>
-
-                                                <td><img class="rounded" width="80" src="<?php echo base_url('upload/product/') . $data->foto ?>"></td>
-                                                <td>
-
-                                                    <?= $data->nama_penerima ?>(<?= $data->alamat ?>)<br>
-                                                    <?= $data->telepon ?><br>
-                                                    <?= $data->kota ?>,<?= $data->provinsi ?>,
-                                                    <?= $data->kode_pos ?>
-                                                </td>
-                                                <td>
-                                                    <?= $data->nama ?>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-
+                                        foreach ($datas as $row) {
+                                            $count++;
+                                        ?>
+                                            <?php if ($row->id == $this->uri->segment(3)) { ?>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><img class="rounded" width="80" src="<?php echo base_url('upload/product/') . $row->foto ?>"></td>
+                                                        <td>
+                                                            <?= $row->nama_penerima ?>(<?= $row->alamat ?>)<br>
+                                                            <?= $row->telepon ?><br>
+                                                            <?= $row->kota ?>,<?= $row->provinsi ?>,
+                                                            <?= $row->kode_pos ?>
+                                                        </td>
+                                                        <td>
+                                                            <?= $row->nama ?>
+                                                        </td>
+                                                        <td><?= $row->qty ?></td>
+                                                        <td><?= $row->harga ?>(1 Produk)</td>
+                                                    </tr>
+                                                </tbody>
+                                            <?php } ?>
+                                        <?php } ?>
                                     </table>
                                 </div>
                             </div>
@@ -57,7 +64,7 @@
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Pembayaran</h6>
+                                <h6 class="m-0 font-weight-bold text-dark">Pembayaran</h6>
                             </div>
                             <!-- Card Body -->
                             <form action="" method="POST" enctype="multipart/form-data">

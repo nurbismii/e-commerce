@@ -21,7 +21,12 @@ class m_order extends CI_Model
                 ]
             ];
     }
-    //mengambil keseluruhan data tabel cart
+
+    public function get()
+    {
+        return $this->db->get('cart')->result();
+    }
+
     public function getOrder()
     {
         $this->db->select('*,');
@@ -30,7 +35,7 @@ class m_order extends CI_Model
         $this->db->join('order', 'detail_cart.order_id=order.id', 'left');
         $this->db->join('cart', 'order.cart_id=cart.id', 'left');
         $this->db->join('pembayaran', 'cart.pembayaran_id=pembayaran.id_norek', 'left');
-        $this->db->order_by('cart.id', 'DESC');
+        $this->db->order_by('cart.bukti_bayar', 'DESC');
         $query = $this->db->get();
 
         return $query->result();
@@ -44,7 +49,7 @@ class m_order extends CI_Model
         $this->db->join('order', 'detail_cart.order_id=order.id', 'left');
         $this->db->join('cart', 'order.cart_id=cart.id', 'left');
         $this->db->join('pembayaran', 'cart.pembayaran_id=pembayaran.id_norek', 'left');
-        $this->db->where('cart.id', $id);
+        $this->db->where('order.cart_id', $id);
         $query = $this->db->get();
 
         return $query->row();
@@ -53,11 +58,7 @@ class m_order extends CI_Model
     public function join($id)
     {
         $this->db->select('*,');
-        $this->db->from('detail_cart');
-        $this->db->join('product', 'detail_cart.produk=product.id_produk', 'left');
-        $this->db->join('order', 'detail_cart.order_id=order.id', 'left');
-        $this->db->join('cart', 'order.cart_id=cart.id', 'left');
-        $this->db->join('pembayaran', 'cart.pembayaran_id=pembayaran.id_norek', 'left');
+        $this->db->from('cart');
         $this->db->where('cart.user_id', $id);
         $this->db->order_by('cart.id', 'DESC');
         $query = $this->db->get();
@@ -70,6 +71,16 @@ class m_order extends CI_Model
         $post = $this->input->post();
         $this->id = $post['id'];
         $this->bukti_bayar = $this->_upload();
+
+        return $this->db->update('cart', $this, array('id' => $post['id']));
+    }
+    public function barang_diterima()
+    {
+        $post = $this->input->post();
+        $this->id = $post['id'];
+        $this->status_pengiriman = $this->input->post('status_pengiriman');
+        $this->status_pembayaran = $this->input->post('status_pembayaran');
+        $this->no_resi = $this->input->post('no_resi');
 
         return $this->db->update('cart', $this, array('id' => $post['id']));
     }
