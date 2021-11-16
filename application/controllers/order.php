@@ -17,6 +17,14 @@ class order extends CI_Controller
         $this->load->view('_partials/js');
     }
 
+    public function Konfirmasi()
+    {
+        $data['data'] = $this->m_order->get();
+        $this->load->view('_partials/header');
+        $this->load->view('pages/order/pesanan', $data);
+        $this->load->view('_partials/js');
+    }
+
     public function pesananku()
     {
         $id = $this->session->userdata('id_user');
@@ -52,7 +60,7 @@ class order extends CI_Controller
         if (!$data['data']) show_404();
 
         $this->load->view('_partials/header');
-        $this->load->view('pages/order/order_selesai', $data);
+        $this->load->view('pages/order/order_pembayaran', $data);
         $this->load->view('_partials/js');
     }
 
@@ -101,32 +109,34 @@ class order extends CI_Controller
         $validation->set_rules($order->rules());
 
         if ($validation->run()) {
-
             $datas = array(
                 'id' => $id,
                 'status_pengiriman' => $status_pengiriman,
                 'status_pembayaran' => $status_pembayaran,
                 'no_resi' => $no_resi
             );
-            $cek = $this->m_keranjang->cek_stok($produk_id);
-            if ($cek->jumlah < $qty) {
-                $this->session->set_flashdata('msg', '
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                    Stok kurang, ubah stok segera!!!
-                </div>');
-            } else {
-                $stok = $cek->jumlah - $qty;
-                $this->m_keranjang->update_stok($produk_id, $stok);
-                $this->m_order->statusUpdate($datas, $id);
-                $this->session->set_flashdata('msg', '
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                    Berhasil melakukan perubahan
-                </div>');
-                return redirect('order');
+
+            for ($i = 0; $i < count($id); $i++) {
+                $cek = $this->m_keranjang->cek_stok($produk_id[$i]);
+                if ($cek->jumlah < $qty[$i]) {
+                    $this->session->set_flashdata('msg', '
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                        Stok kurang, ubah stok segera!!!
+                    </div>');
+                } else {
+                    $stok = $cek->jumlah - $qty[$i];
+                    $this->m_keranjang->update_stok($produk_id[$i], $stok);
+                    $this->m_order->statusUpdate($datas, $id);
+                    $this->session->set_flashdata('msg', '
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                        Berhasil melakukan perubahan
+                    </div>');
+                    return redirect('order');
+                }
             }
         } else {
             $this->session->set_flashdata('msg', '

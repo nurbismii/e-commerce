@@ -4,103 +4,104 @@
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
     </button>
-
-    <!-- Topbar Search -->
-    <form action="<?= base_url('home/cari') ?>" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        <div class="input-group">
-            <input name="cari" type="text" class="form-control bg-light border-0 small" placeholder="Pencarian" aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-light" type="submit">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
+    <?php if (($this->session->userdata('id_role') == 2) || ($this->session->userdata('id_role') == "")) { ?>
+        <!-- Topbar Search -->
+        <form action="<?= base_url('home/cari') ?>" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <input name="cari" type="text" class="form-control bg-light border-0 small" placeholder="Pencarian" aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-light" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
-
+        </form>
+    <?php } ?>
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
         <?php if (($this->session->userdata('id_role') == 2) || ($this->session->userdata('id_role') == "")) { ?>
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link dropdown-toggle" href="<?= base_url('home') ?>">
-                    <i class="m-0 font-weight-bold text-dark">Home</i>
+                    <i class="text-dark">Home</i>
                 </a>
             </li>
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link dropdown-toggle" href="<?= base_url('home/produk') ?>">
-                    <i class="m-0 font-weight-bold text-dark">Produk</i>
+                    <i class="text-dark">Produk</i>
                 </a>
             </li>
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link dropdown-toggle" href="<?= base_url('home/kategori') ?>">
-                    <i class="m-0 font-weight-bold text-dark">Kategori</i>
+                    <i class="text-dark">Kategori</i>
                 </a>
             </li>
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link dropdown-toggle" href="<?= base_url('home/kontak') ?>">
-                    <i class="m-0 font-weight-bold text-dark">Kontak</i>
+                    <i class="text-dark">Kontak</i>
                 </a>
             </li>
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link dropdown-toggle" href="<?= base_url('home/tentang') ?>">
-                    <i class="m-0 font-weight-bold text-dark">Tentang</i>
+                    <i class="text-dark">Tentang</i>
                 </a>
             </li>
         <?php } ?>
         <div class="topbar-divider d-none d-sm-block"></div>
 
-        <li class="nav-item dropdown no-arrow mx-1">
-            <?php
-            $cart = $this->cart->contents();
-            $jml_item = 0;
-            foreach ($cart as $key => $val) {
-                $jml_item =  $jml_item + $val['qty'];
-            }
-
-            ?>
-
-            <a class="nav-link dropdown-toggle" href="<?= base_url('home') ?>" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="badge badge-danger badge-counter"><?= $jml_item ?></span>
-            </a>
-            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                    Keranjang
-                </h6>
-                <?php if ($cart = $this->cart->contents()) { ?>
-                    <?php
-                    $grand_total = 0;
-                    $i = 1;
-
-                    foreach ($cart as $item) :
-
-                        $grand_total = $grand_total + $item['subtotal'];
-                    ?>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-
-                            <div class="dropdown-list-image mr-3">
-
-                                <img class="rounded" height="50" src="<?php echo base_url() . 'upload/product/' . $item['gambar']; ?>" alt="...">
-                                <div class="small text-gray-600"><?php echo $i++ ?></div>
-                            </div>
-                            <div class="font-weight-bold">
-
-                                <div class="text-truncate"><?php echo substr($item['name'], 0, 15); ?></div>
-                                <div class="small text-gray-800">Rp. <?php echo number_format($item['price'], 0, ",", "."); ?></div>
-
-                                <div class="small text-gray-800">Qty : <?php echo $item['qty']; ?></div>
-                            </div>
-                        </a>
-                    <?php endforeach; ?>
-                <?php } else {
-                    echo "<h6><b><center> Keranjang kosong </center></b></h6>";
+        <?php if (($this->session->userdata('id_role') == 2) || ($this->session->userdata('id_role') == "")) { ?>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <?php
+                $cart = $this->cart->contents();
+                $jml_item = 0;
+                foreach ($cart as $key => $val) {
+                    $jml_item =  $jml_item + $val['qty'];
                 }
+
                 ?>
-                <a class="dropdown-item text-center text-gray-800" href="<?= base_url('shopping/cart') ?>">Lihat</a>
-            </div>
-        </li>
 
-        <div class="topbar-divider d-none d-sm-block"></div>
+                <a class="nav-link dropdown-toggle" href="<?= base_url('home') ?>" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge badge-danger badge-counter"><?= $jml_item ?></span>
+                </a>
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                    <h6 class="dropdown-header">
+                        Keranjang
+                    </h6>
+                    <?php if ($cart = $this->cart->contents()) { ?>
+                        <?php
+                        $grand_total = 0;
+                        $i = 1;
 
+                        foreach ($cart as $item) :
+
+                            $grand_total = $grand_total + $item['subtotal'];
+                        ?>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+
+                                <div class="dropdown-list-image mr-3">
+
+                                    <img class="rounded" height="50" src="<?php echo base_url() . 'upload/product/' . $item['gambar']; ?>" alt="...">
+                                    <div class="small text-gray-600"><?php echo $i++ ?></div>
+                                </div>
+                                <div class="font-weight-bold">
+
+                                    <div class="text-truncate"><?php echo substr($item['name'], 0, 15); ?></div>
+                                    <div class="small text-gray-800">Rp. <?php echo number_format($item['price'], 0, ",", "."); ?></div>
+
+                                    <div class="small text-gray-800">Qty : <?php echo $item['qty']; ?></div>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
+                    <?php } else {
+                        echo "<h6><b><center> Keranjang kosong </center></b></h6>";
+                    }
+                    ?>
+                    <a class="dropdown-item text-center text-gray-800" href="<?= base_url('shopping/cart') ?>">Lihat</a>
+                </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+        <?php } ?>
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

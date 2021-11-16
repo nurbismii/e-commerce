@@ -13,12 +13,12 @@
                 <?php echo $this->session->flashdata('msg'); ?>
                 <!-- DataTales Example -->
                 <div class="row">
-                    <!-- Border Left Utilities -->
+                    <!-- Border belum bayar -->
                     <div class="col-lg-12">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-dark">Sedang Proses</h6>
+                            <h6 class="m-0 font-weight-bold text-dark">Konfirmasi</h6>
                         </div>
-                        <div class="card mb-4 py-3 border-left-success">
+                        <div class="card mb-4 py-3 border-left-warning">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-hover" id="" width="100%" cellspacing="0">
@@ -35,10 +35,12 @@
                                         foreach ($data as $row) {
                                             
                                         ?>
-                                            <?php if ($row->status_pembayaran == "lunas") { ?>
+                                            <?php if ($row->status_pembayaran != "lunas" && $row->status_pembayaran != "diterima") { ?>
                                                 <tbody>
                                                     <tr>
-                                                        <td><?= ++$count ?></td>
+                                                        <td>
+                                                            <?= ++$count ?>
+                                                        </td>
                                                         <td>
                                                             <?= $row->nama_penerima ?>(<?= $row->alamat ?>)<br>
                                                             <?= $row->telepon ?><br>
@@ -50,7 +52,7 @@
 
 
                                                         <td>
-                                                            <a class="btn btn-light btn-sm" href="<?= base_url('order/orderan_detail/' . $row->id) ?>">
+                                                            <a href="<?= base_url('order/orderan_detail/' . $row->id) ?>" class="btn btn-light btn-sm">
                                                                 <span class="text">Lihat</span>
                                                             </a>
                                                         </td>

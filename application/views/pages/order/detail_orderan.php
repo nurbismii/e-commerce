@@ -75,17 +75,18 @@
                             <form action="<?= base_url('order/update') ?>" method="POST" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <div class="form-group col-lg">
+                                        <!-- Proses input data update -->
                                         <?php $count = 0;
                                         foreach ($datas as $row) {
                                             $count++;
                                         ?>
                                             <?php if ($row->id == $this->uri->segment(3)) { ?>
-                                                <input type="text" name="id" value="<?= $row->id ?>">
-                                                <input type="text" name="qty" value="<?= $row->qty ?>">
-                                                <input type="text" name="produk_id" value="<?= $row->id_produk ?>">
+                                                <input type="hidden" name="id" value="<?= $row->id ?>">
+                                                <input type="hidden" name="qty[]" value="<?= $row->qty ?>">
+                                                <input type="hidden" name="produk_id[]" value="<?= $row->id_produk ?>">
                                             <?php } ?>
                                         <?php } ?>
-
+                                        <!-- Proses input data update end -->
                                         <div class="form-group">
                                             <div class="h3 mb-0 text-gray-800">Total Rp.
                                                 <?= number_format($data->total) ?>

@@ -61,7 +61,6 @@ class m_keranjang extends CI_Model
     {
         $this->id_produk = $id;
         $this->jumlah = $jumlah;
-
         return $this->db->update('product', $this, array('id_produk' => $id));
     }
 }
