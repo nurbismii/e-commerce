@@ -15,17 +15,11 @@ class auth extends CI_Controller
 
 	public function index()
 	{
-		if (($this->session->userdata('id_role') == 2) || ($this->session->userdata('id_role') == "")) {
-			$data['produk'] = $this->m_product->get();
-			$data['kategori'] = $this->m_category->getData();
-			$this->load->view('_partials/header');
-			$this->load->view('pages/home/home', $data);
-			$this->load->view('_partials/js');
-		} else {
-			$this->load->view('_partials/header');
-			$this->load->view('pages/home/dashboard');
-			$this->load->view('_partials/js');
-		}
+		$data['produk'] = $this->m_product->get();
+		$data['kategori'] = $this->m_category->getData();
+		$this->load->view('_partials/header');
+		$this->load->view('pages/home/home', $data);
+		$this->load->view('_partials/js');
 	}
 
 	public function loginshop()
@@ -78,7 +72,11 @@ class auth extends CI_Controller
 					'email' => $row->email
 				);
 				$this->session->set_userdata($user_data);
-				redirect('home');
+				if ($row->id_role == 2) {
+					redirect('home');
+				} else {
+					redirect('dashboard');
+				}
 			} else {
 				$this->session->set_flashdata('msg', '
                     <div class="alert alert-warning alert-dismissible" id_cs="alert">

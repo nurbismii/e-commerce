@@ -27,36 +27,18 @@
                             <div class="card shadow mb-4">
                                 <div class="card-body">
                                     <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Tentang</h1>
+                                    </div>
+                                    <div class="text-center">
                                         <img src="<?= base_url('upload/user/default.jpg') ?>" width="30%" alt="profil" class="img-profile rounded-circle">
                                     </div>
                                     <h3 class="profile-username text-center">Nur Bismi</h3>
-                                    <p class="text-muted text-center">Member sejak : 14 Oktober 2021</p>
+                                    <p class="text-muted text-center">NIM : 181011401128</p>
                                     <hr>
-                                    <strong>
-                                        <i class="fas fa-map-marker mr-2"></i>
-                                        Alamat
-                                    </strong>
                                     <p class="text-muted">
-                                        JL. Kebayoran Residence Cluster Kebayoran Villas Blok E No 07
+                                        E-Commerce sederhana ini dibuat untuk memenuhi tugas mata kuliah e-commerce
                                     </p>
                                     <hr>
-                                    <strong>
-                                        <i class="fas fa-envelope mr-2"></i>
-                                        Email
-                                    </strong>
-                                    <p class="text-muted">
-                                        nurbismi74@gmail.com
-                                    </p>
-                                    <hr>
-                                    <strong>
-                                        <i class="fas fa-phone mr-2"></i>
-                                        No Tlp
-                                    </strong>
-                                    <p class="text-muted">
-                                        085282810040
-                                    </p>
-                                    <hr>
-
                                 </div>
                             </div>
                         </div>

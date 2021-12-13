@@ -1,52 +1,29 @@
-<nav class="navbar navbar-expand navbar-light bg-light topbar mb-4 static-top shadow">
+<nav class="navbar navbar-expand-lg navbar-light bg-light topbar mb-4 static-top shadow">
 
-    <!-- Sidebar Toggle (Topbar) -->
-    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-        <i class="fa fa-bars"></i>
-    </button>
     <?php if (($this->session->userdata('id_role') == 2) || ($this->session->userdata('id_role') == "")) { ?>
-        <!-- Topbar Search -->
-        <form action="<?= base_url('home/cari') ?>" method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-                <input name="cari" type="text" class="form-control bg-light border-0 small" placeholder="Pencarian" aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-light" type="submit">
-                        <i class="fas fa-search fa-sm"></i>
-                    </button>
-                </div>
+
+        <a class="navbar-brand" href="<?= base_url('home') ?>">D'fiza Store</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="<?= base_url('home') ?>">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link <?= ($this->uri->segment(2) == "produk") ? 'active' : ''; ?>" href="<?= base_url('home/produk') ?>">Produk</a>
+                <a class="nav-item nav-link <?= ($this->uri->segment(2) == "kontak") ? 'active' : ''; ?>" href="<?= base_url('home/kontak') ?>">Kontak</a>
+                <a class="nav-item nav-link <?= ($this->uri->segment(2) == "tentang") ? 'active' : ''; ?>" href="<?= base_url('home/tentang') ?>">Tentang</a>
             </div>
+        </div>
+
+        <form class="form-inline my-2 my-lg-0" action="<?= base_url('home/cari') ?>" method="GET">
+            <input class="form-control mr-sm-2" name="cari" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+
     <?php } ?>
     <!-- Topbar Navbar -->
+
     <ul class="navbar-nav ml-auto">
-        <?php if (($this->session->userdata('id_role') == 2) || ($this->session->userdata('id_role') == "")) { ?>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="<?= base_url('home') ?>">
-                    <i class="text-dark">Home</i>
-                </a>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="<?= base_url('home/produk') ?>">
-                    <i class="text-dark">Produk</i>
-                </a>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="<?= base_url('home/kategori') ?>">
-                    <i class="text-dark">Kategori</i>
-                </a>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="<?= base_url('home/kontak') ?>">
-                    <i class="text-dark">Kontak</i>
-                </a>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="<?= base_url('home/tentang') ?>">
-                    <i class="text-dark">Tentang</i>
-                </a>
-            </li>
-        <?php } ?>
-        <div class="topbar-divider d-none d-sm-block"></div>
 
         <?php if (($this->session->userdata('id_role') == 2) || ($this->session->userdata('id_role') == "")) { ?>
             <li class="nav-item dropdown no-arrow mx-1">

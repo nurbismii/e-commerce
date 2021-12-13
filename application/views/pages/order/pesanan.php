@@ -50,7 +50,6 @@
                                                         <td><?= ucfirst($row->status_pembayaran) ?></td>
                                                         <td><?= ucfirst($row->status_pengiriman) ?></td>
 
-
                                                         <td>
                                                             <a href="<?= base_url('order/orderan_detail/' . $row->id) ?>" class="btn btn-light btn-sm">
                                                                 <span class="text">Lihat</span>

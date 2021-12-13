@@ -12,14 +12,9 @@ class home extends CI_Controller
     }
     public function index()
     {
-        if (($this->session->userdata('id_role') == 2) || ($this->session->userdata('id_role') == "")) {
-            $data['kategori'] = $this->m_category->getData();
-            $this->load->view('pages/home/home', $data);
-        } else {
-            $this->load->view('_partials/header');
-            $this->load->view('pages/home/dashboard');
-            $this->load->view('_partials/js');
-        }
+        $data['kategori'] = $this->m_category->getData();
+        $data['produk'] = $this->m_product->join();
+        $this->load->view('pages/home/home', $data);
     }
 
     public function kategori($id_kategori = null)

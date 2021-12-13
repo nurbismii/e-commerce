@@ -63,4 +63,14 @@ class m_keranjang extends CI_Model
         $this->jumlah = $jumlah;
         return $this->db->update('product', $this, array('id_produk' => $id));
     }
+    public function paket_terkirim()
+    {
+        $this->db->where('status_pengiriman', 'dikirim');
+        return $this->db->count_all_results('cart');
+    }
+    public function transaksi_tertunda()
+    {
+        $this->db->where('status_pengiriman', NULL);
+        return $this->db->count_all_results('cart');
+    }
 }

@@ -9,9 +9,34 @@ class order extends CI_Controller
         $this->load->library('cart');
         $this->load->model('m_order');
     }
+
     public function index()
     {
         $data['data'] = $this->m_order->get();
+        $this->load->view('_partials/header');
+        $this->load->view('pages/order/orderan', $data);
+        $this->load->view('_partials/js');
+    }
+
+    public function proses()
+    {
+        $data['data'] = $this->m_order->get_proses();
+        $this->load->view('_partials/header');
+        $this->load->view('pages/order/orderan', $data);
+        $this->load->view('_partials/js');
+    }
+
+    public function menunggu()
+    {
+        $data['data'] = $this->m_order->get_menunggu();
+        $this->load->view('_partials/header');
+        $this->load->view('pages/order/orderan', $data);
+        $this->load->view('_partials/js');
+    }
+
+    public function dikirim()
+    {
+        $data['data'] = $this->m_order->get_dikirim();
         $this->load->view('_partials/header');
         $this->load->view('pages/order/orderan', $data);
         $this->load->view('_partials/js');

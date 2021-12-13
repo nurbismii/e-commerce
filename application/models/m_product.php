@@ -49,6 +49,7 @@ class m_product extends CI_Model
 
             ];
     }
+
     public function __construct()
     {
         $this->load->database();
@@ -96,6 +97,7 @@ class m_product extends CI_Model
 
         return $this->db->insert($this->table, $this);
     }
+    
     public function updateData()
     {
         $post = $this->input->post();

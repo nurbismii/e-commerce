@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -39,13 +39,15 @@
         <li class="nav-item ">
             <a class="nav-link collapsed" data-toggle="collapse" data-target="#transaksi" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-handshake"></i>
-                <span>Transaksi</span>
+                <span>Order</span>
             </a>
             <div id="transaksi" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Mengatur Komponen :</h6>
-                    <a class="collapse-item <?= ($this->uri->segment(1) == "order") ? 'active' : ''; ?>" href=" <?= base_url('order') ?>">Proses</a>
-                    <a class="collapse-item" href=" <?= base_url('order/konfirmasi') ?> ">Menunggu</a>
+                    <a class="collapse-item <?= ($this->uri->segment(1) == "") ? 'active' : ''; ?>" href=" <?= base_url('order') ?>">Diterima</a>
+                    <a class="collapse-item <?= ($this->uri->segment(2) == "dikirim") ? 'active' : ''; ?>" href=" <?= base_url('order/dikirim') ?>">Dikirim</a>
+                    <a class="collapse-item <?= ($this->uri->segment(2) == "proses") ? 'active' : ''; ?>" href=" <?= base_url('order/proses') ?> ">Proses</a>
+                    <a class="collapse-item <?= ($this->uri->segment(2) == "menunggu") ? 'active' : ''; ?>" href=" <?= base_url('order/menunggu') ?> ">Menunggu</a>
                 </div>
             </div>
         </li>

@@ -24,8 +24,28 @@ class m_order extends CI_Model
 
     public function get()
     {
+        $this->db->where('status_pengiriman', 'diterima');
         return $this->db->get('cart')->result();
     }
+
+    public function get_proses()
+    {
+        $this->db->where('status_pengiriman', 'proses');
+        return $this->db->get('cart')->result();
+    }
+
+    public function get_menunggu()
+    {
+        $this->db->where('status_pengiriman', NULL);
+        return $this->db->get('cart')->result();
+    }
+
+    public function get_dikirim()
+    {
+        $this->db->where('status_pengiriman', 'dikirim');
+        return $this->db->get('cart')->result();
+    }
+
 
     public function getOrder()
     {

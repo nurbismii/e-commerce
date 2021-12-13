@@ -163,4 +163,10 @@ class m_users extends CI_Model
         }
         return "default.jpg";
     }
+
+    public function jumlah_customer()
+    {
+        $this->db->where('id_role', 2);
+        return $this->db->count_all_results($this->table);
+    }
 }
